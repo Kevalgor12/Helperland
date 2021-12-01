@@ -1,0 +1,605 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+.scroll-up-btn{
+    position: fixed;
+    text-align: center;
+    line-height: 45px;
+    z-index: 9999;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.scroll-up-btn.top-arrow{
+    height: 45px;
+    width: 45px;
+    background: #525252;
+    font-size: 20px;
+    color: #fff;
+    left: 60px;
+    bottom: 10px;
+    border-radius: 50%;
+}
+
+.scroll-up-btn.message-box{
+    height: 45px;
+    width: 45px;
+    right: 60px;
+    bottom: 10px;
+}
+
+.scroll-up-btn.show{
+    bottom: 100px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.max-width{
+	max-width: 1560px;
+}
+
+.container-fluid {
+	padding: 0 0;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+.navbar-bg-color {
+	background-color: #272727B3;
+}
+.navbar-brand img {
+    height: 130px;
+    width: 175px;
+}
+
+.navbar.navbar-bg-color .navbar-brand img{
+    height: 54px;
+    width: 74.69px;
+}
+
+.navbar .navbar-nav li{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.navbar .navbar-nav .rounded-link{
+	background-color: transparent;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 0px  25px;
+    margin: 0px 5px;
+}
+
+.navbar .navbar-nav li a{
+    padding: 0px;
+    line-height: 40px;
+    font-size: 17px;
+    color: #111111 !important;
+}
+.home{
+	background: url("../images/Landing-Page-background-image.png") no-repeat center;
+	height: 960px;
+    background-size: cover;
+	color: white;
+	font-family: 'Roboto';
+	text-align: center;
+	letter-spacing: 0px;
+	opacity: 1;
+}
+.home .max-width{
+	padding-top: 318px;
+    padding-left: 55px;
+}
+.home .home-content .text-1{
+	font-size: 45px;
+	text-align: left;
+}
+.home .home-content .text-2{
+	font-size: 14px;
+	text-align: left;
+}
+.home .home-content .text-3{
+	font-size: 14px;
+	text-align: left;
+}
+.home .home-content .text-4{
+	font-size: 14px;
+	text-align: left;
+}
+.button{
+	text-align: center;
+}
+.button-cleaner{
+	background-color: #005F7199;
+	border-color: white;
+	border-width: 1px;
+	border-radius: 30px;
+	padding: 10px 20px;
+	margin: 10px 100px;
+	font-family: 'Roboto';
+	color: white;
+	font-size: 14px;
+	text-align: center;
+}
+.pay-service {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 163px;
+}
+.pay-service .pay-content {
+	display: inline-block;
+	justify-content: center;
+	padding: 10px 10px;
+}
+.arrow {
+	padding-top: 42px;
+}
+
+.why-helperland{
+    background-size: cover;
+    height: 100vh;
+	padding: 10px 15px;
+	color: #4F4F4F;
+	font-family: 'Roboto';
+	text-align: center;
+	letter-spacing: 0px;
+	opacity: 1;
+}
+.why-helperland .max-width{
+	margin: 50px 0 50px 0;
+	padding: 0 10px;
+}
+.helperland-content .text-1{
+	font-family: 'Roboto';
+	color: #4F4F4F;
+	text-align: center;
+	font-size: 30px;
+}
+.helperland-images div{
+	display: inline-block;
+	text-align: center;
+	padding: 10px 10px;
+}
+.helperland-img img{
+	height: 270px;
+	width: 270px;
+	margin: 50px 5px 30px 5px;
+}
+.helperland-images p{
+	font-size: 20px;
+	font-family: 'Roboto';
+}
+.helperland-images span{
+	font-size: 15px;
+	font-family: 'Roboto';
+}
+
+.blog{
+    background-size: cover;
+    height: 929px;
+	padding: 10px 15px;
+	font-family: 'Roboto';
+	text-align: center;
+	letter-spacing: 0px;
+	opacity: 1;
+}
+.blog .max-width{
+	margin: 160px 0 20px 0;
+	padding: 0 10px;
+}
+.blog-content div{
+	display: inline-block;
+}
+.blog-content .lorem{
+	text-align: left;
+	font-family: 'Roboto';
+	font-size: 30px;
+}
+.blog-content p{
+	text-align: left;
+	font-family: 'Roboto';
+	font-size: 18px;
+}
+.blog-content img{
+	width: 403px;
+	height: 336px;
+}
+.our-blog p{
+	font-family: 'Roboto';
+	font-size: 40px;
+	color: #4F4F4F;
+}
+.blog-images div{
+	display: inline-block;
+}
+.blog-images img{
+	width: 357px;
+	height: 164px;
+}
+.blog-images p img{
+	width: 29px;
+	height: 9px;
+}
+.blog-images .blog-lorem{
+	font-family: 'Roboto';
+	font-size: 20px;
+	color: #4F4F4F;
+	text-align: left;
+}
+.blog-images .blog-date{
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #A3A3A3;
+	text-align: left;
+}
+.blog-images .blog-text{
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #565656;
+	text-align: left;
+}
+.blog-images .blog-readpost{
+	font-family: 'Roboto';
+	font-size: 18px;
+	color: #4F4F4F;
+	text-align: left;
+} 
+
+.customer-say{
+	background-color: #F4F5F8;
+    background-size: cover;
+    height: 750px;
+    width: 100%;
+	text-align: center;
+	letter-spacing: 0px;
+	opacity: 1;
+}
+.customer-say .max-width{
+	margin: 160px 0 20px 0;
+}
+.customer{
+	font-family: 'Roboto';
+	color: #4F4F4F;
+	font-size: 40px;
+	text-align: center;
+	padding-top: 57px;
+	padding-bottom: 57px;
+}
+.col{
+	width: 365px;
+	height: 380px;
+}
+.home .card{
+	width: 357px;
+	height: 370px;
+	border-left-color: #007ecc;
+	border-width: 3px;
+}
+.newsletter{
+	font-family: 'Roboto';
+	color: #353548;
+	font-size: 17.99px;
+	text-align: center;
+	opacity: 1;
+}
+.get-news-submit {
+	background-color: #FF7B6D;
+	color: #FFFFFF;
+	width: 88px;
+	height: 40px;
+	border-radius: 20px;
+	border-color: #FF7B6D
+}
+
+footer{
+    background-color: #111111;
+}
+
+footer .footer-max-width{
+    max-width: 1560px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    flex-wrap: wrap;
+    color: #F1F1F1;
+}
+
+footer .footer-max-width .nav li a{
+    color: #F1F1F1;
+}
+
+footer .footer-max-width .logo img{
+    width: 120px;
+}
+
+footer .footer-max-width .socil-icon a{
+    margin: 0px 10px;
+}
+
+footer .privacy-policy{
+    text-align: center;
+    background-color: #292929;
+    color: #F1F1F1;
+    padding: 10px;
+}
+
+footer .privacy-policy span{
+    color: #6EABEF;
+}
+
+footer .privacy-policy button{
+    background: #EED507;
+    border-radius: 20px;
+    padding: 5px 30px;
+}
+
+.navbar .navbar-bg-color{
+	background-color: gray;
+	height: 64px;
+}
+
+/* FAQ page start */
+
+.faq {
+	background: url("../images/faq-banner.png") no-repeat center;
+	height: 370px;
+    background-size: cover;
+	padding: 10px 15px;
+	opacity: 1;
+}
+.faq .max-width {
+	margin: 402px 0 20px 0;
+	padding: 0 10px;
+}
+.faq-content {
+	color: #4F4F4F;
+	font-family: 'Roboto';
+	font-size: 16px;
+	text-align: center;
+	letter-spacing: 0px;
+	opacity: 1;
+}
+.faq-content .text-1 {
+	margin-top: 68px;
+	font-family: 'Roboto';
+	font-size: 18px;
+}
+.star-title::before {
+	content: "";
+	position: absolute;
+	height: 1px;
+	width: 166px;
+	bottom: -26px;
+	left: 50%;
+	background-color: #CCCCCC;
+	transform: translate(-50%);
+}
+.star-title::after {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 25px;
+	width: 43px;
+	bottom: -37px;
+	left: 50%;
+	transform: translate(-50%);
+	font-size: 20px;
+	background: #FFF url("../images/separator.png") no-repeat center;
+}
+.footer-privacy-policy {
+	font-family: 'Roboto';
+	color: #6F6F6F;
+	font-size: 14px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+/* FAQ page end */
+
+/* prices page start */
+
+.prices {
+	margin-bottom: 50px;
+}
+.prices .max-width {
+	margin: auto;
+	max-width: 1240px;
+	background-color: yellow;
+}
+.titleimage img {
+	width: 100%;
+}
+.star-title {
+	margin-top: 31px;
+	margin-bottom: 76px;
+}
+.prices .card {
+	max-width: 553px;
+	min-height: 304px;
+	border: 1px solid #B0C9CE;
+}
+.card .card-header {
+	background-color: #1D7A8C;
+	font-size: 28px;
+	font-family: 'Roboto';
+	color: #FFFFFF;
+	text-align: center;
+	opacity: 1;
+}
+.euro-20-hour {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.card .card-body .euro {
+	font-family: 'Roboto';
+	font-size: 50px;
+	text-align: center;
+	letter-spacing: NaNpx;
+	color: #646464;
+	opacity: 1;
+}
+.card .card-body .card-title {
+	font-family: 'Roboto';
+	font-size: 50px;
+	text-align: center;
+	letter-spacing: NaNpx;
+	color: #646464;
+	opacity: 1;
+}
+.card .card-body .per-hour {
+	font-family: 'Roboto';
+	font-size: 30px;
+	text-align: center;
+	letter-spacing: NaNpx;
+	color: #646464;
+	opacity: 1;
+}
+.card .card-body .card-text {
+	font-family: 'Roboto';
+	color: #646464;
+	font-size: 16px;
+	text-align: left;
+	padding-right: 93.97px;
+}
+.card-images {
+	padding-left: 130px;
+	padding-bottom: 10px;
+	text-align: left;
+}
+.breaking-line {
+	max-width: 1140px;
+	margin-top: 51px;
+	margin-bottom: 41px;
+}
+.extra-service {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.extra-service .extra-content {
+	display: inline-block;
+	justify-content: center;
+	padding: 54px 54px;
+}
+.extra-image {
+	width: 108px;
+	height: 108px;
+	display: flex;
+	justify-content: center;
+	border: 1px solid;
+	border-radius: 64px;
+}
+.extra-image img {
+	margin: auto;
+}
+.extra-text {
+	text-align: center;
+}
+.extra-content .extra-text-1 {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #646464;
+	text-align: center;
+	opacity: 1;
+}
+.extra-content .extra-text-2 {
+	font-family: 'Roboto';
+	font-size: 18px;
+	color: #1D7A8C;
+	text-align: center;
+	opacity: 1;
+}
+
+.what-include {
+	background-color: #F6F6F6;
+	padding-bottom: 81px;
+}
+.what-include-service {
+	text-align: center;
+}
+.what-include-service .what-include-content {
+	display: inline-block;
+	justify-content: center;
+	padding: 15px 15px;
+}
+.what-include-image {
+	width: 360px;
+	height: 210px;
+	display: flex;
+	justify-content: center;
+}
+.what-include-text {
+	text-align: left;
+}
+.what-include-text .what-include-text-1 {
+	font-family: 'Roboto';
+	font-size: 20px;
+	color: #4F4F4F;
+	opacity: 1;
+	letter-spacing: 0px;
+}
+.what-include-text .what-include-text-2 {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	opacity: 1;
+	letter-spacing: 0px;
+	padding-bottom: 14px;
+}
+
+.price-why-helperland {
+	padding-top: 40px;
+}
+.price-why-helperland-review .price-why-helperland-text-1 b {
+	font-family: 'Roboto';
+	font-size: 20px;
+	color: #646464;
+	opacity: 1;
+	letter-spacing: 0px;
+	text-align: right;
+}
+.price-why-helperland-review .price-why-helperland-text-2 {
+	font-family: 'Roboto';
+	font-size: 14px;
+	color: #646464;
+	opacity: 1;
+	letter-spacing: 0px;
+	text-align: right;
+}
+.price-why-helperland-review {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 61px;
+}
+.price-why-helperland-review .price-why-helperland-text {
+	display: inline-block;
+	justify-content: center;
+	padding: 0 12px;
+}
+.price-why-helperland-text .why-text-left {
+	text-align: right;
+}
+.price-why-helperland-text .why-text-right {
+	text-align: left;
+}
+.price-why-helperland-review img {
+	max-width: 375px;
+	height: 241px;
+	margin: auto;
+	padding: 0 12px;
+}
+/* prices page end */
+
