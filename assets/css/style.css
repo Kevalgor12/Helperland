@@ -41,7 +41,7 @@
 }
 
 .max-width{
-	max-width: 1560px;
+	max-width: 1200px;
 	margin: auto;
 }
 
@@ -105,7 +105,7 @@
 }
 .home{
 	background: url("../images/Landing-Page-background-image.png") no-repeat center;
-	height: 960px;
+	min-height: 100vh;
     background-size: cover;
 	color: white;
 	font-family: 'Roboto';
@@ -114,15 +114,20 @@
 	opacity: 1;
 }
 .home .max-width{
+	max-width: 1560px;
+	margin: auto;
 	padding-top: 318px;
-    padding-left: 55px;
+}
+.home .home-content {
+	margin-left: 55px;
+	margin-bottom: 15px;
 }
 .home .home-content .text-1{
-	font-size: 45px;
+	font-size: 50px;
 	text-align: left;
 }
 .home .home-content .text-2{
-	font-size: 14px;
+	font-size: 16px;
 	text-align: left;
 }
 .home .home-content .text-3{
@@ -135,17 +140,18 @@
 }
 .button{
 	text-align: center;
+	
 }
 .button-cleaner{
 	background-color: #005F7199;
 	border-color: white;
 	border-width: 1px;
 	border-radius: 30px;
-	padding: 10px 20px;
-	margin: 10px 100px;
+	width: 225px;
+	height: 54px;
 	font-family: 'Roboto';
 	color: white;
-	font-size: 14px;
+	font-size: 18px;
 	text-align: center;
 }
 .pay-service {
@@ -159,52 +165,67 @@
 	justify-content: center;
 	padding: 10px 10px;
 }
+.pay-service .pay-content span {
+	font-family: 'Roboto';
+	font-size: 20px;
+	color: #FFFFFF;
+}
+.pay-service .pay-content .pay-image {
+	height: 63px;
+}
+.pay-service .pay-content .pay-arrow {
+	padding-bottom: 50px;
+}
 .arrow {
 	padding-top: 42px;
 }
 
 .why-helperland{
     background-size: cover;
-    height: 100vh;
 	padding: 10px 15px;
-	color: #4F4F4F;
-	font-family: 'Roboto';
 	text-align: center;
-	letter-spacing: 0px;
-	opacity: 1;
 }
 .why-helperland .max-width{
-	margin: 50px 0 50px 0;
-	padding: 0 10px;
+	max-width: 1200px;
+	margin: auto;
+}
+.helperland-content {
+	margin: 50px 0px;
 }
 .helperland-content .text-1{
 	font-family: 'Roboto';
 	color: #4F4F4F;
 	text-align: center;
-	font-size: 30px;
+	font-size: 40px;
 }
-.helperland-images div{
+.helperland-images{
+	margin-bottom: 100px;
+}
+.helperland-images .helperland-img{
 	display: inline-block;
 	text-align: center;
 	padding: 10px 10px;
 }
-.helperland-img img{
-	height: 270px;
-	width: 270px;
-	margin: 50px 5px 30px 5px;
+.helperland-images .helperland-img img{
+	height: 320px;
+	width: 320px;
+	margin: 0px 5px;
+	border-radius: 160px;
 }
-.helperland-images p{
-	font-size: 20px;
+.helperland-images .helperland-img p{
+	font-size: 30px;
 	font-family: 'Roboto';
+	color: #565656;
+	margin-top: 35px;
 }
-.helperland-images span{
-	font-size: 15px;
+.helperland-images .helperland-img span{
+	font-size: 17px;
 	font-family: 'Roboto';
+	color: #565656;
 }
 
 .blog{
     background-size: cover;
-    height: 929px;
 	padding: 10px 15px;
 	font-family: 'Roboto';
 	text-align: center;
@@ -212,16 +233,13 @@
 	opacity: 1;
 }
 .blog .max-width{
-	margin: 160px 0 20px 0;
-	padding: 0 10px;
-}
-.blog-content div{
-	display: inline-block;
+	max-width: 1162px;
+	margin: auto;
 }
 .blog-content .lorem{
-	text-align: left;
 	font-family: 'Roboto';
 	font-size: 30px;
+	color: #4F4F4F;
 }
 .blog-content p{
 	text-align: left;
@@ -232,12 +250,18 @@
 	width: 403px;
 	height: 336px;
 }
+.our-blog {
+	margin: 50px 0px;
+}
 .our-blog p{
 	font-family: 'Roboto';
 	font-size: 40px;
 	color: #4F4F4F;
 }
-.blog-images div{
+.blog-images {
+	margin-bottom: 50px;
+}
+.blog-images .blog-img-text{
 	display: inline-block;
 }
 .blog-images img{
@@ -251,7 +275,7 @@
 .blog-images .blog-lorem{
 	font-family: 'Roboto';
 	font-size: 20px;
-	color: #4F4F4F;
+	color: #3D4046;
 	text-align: left;
 }
 .blog-images .blog-date{
@@ -276,14 +300,15 @@
 .customer-say{
 	background-color: #F4F5F8;
     background-size: cover;
-    height: 750px;
+    min-height: 100vh;
     width: 100%;
 	text-align: center;
 	letter-spacing: 0px;
 	opacity: 1;
 }
 .customer-say .max-width{
-	margin: 160px 0 20px 0;
+	max-width: 1200px;
+	margin: auto;
 }
 .customer{
 	font-family: 'Roboto';
@@ -295,13 +320,21 @@
 }
 .col{
 	width: 365px;
-	height: 380px;
 }
-.home .card{
+.card{
 	width: 357px;
-	height: 370px;
-	border-left-color: #007ecc;
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
+	border-left-color: #4C95A3 !important;
 	border-width: 3px;
+}
+.card .card-body .card-text {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #565656;
+	width: 300px;
+	padding: 0px 0px !important;
 }
 .newsletter{
 	font-family: 'Roboto';
@@ -325,7 +358,7 @@ footer{
 }
 
 footer .footer-max-width{
-    max-width: 1560px;
+    max-width: 1350px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -938,7 +971,6 @@ footer .privacy-policy button{
 	display: flex;
 	justify-content: center;
 	margin-top: 31px;
-	height: 100%;
 	margin-bottom: 15px;
 }
 
@@ -995,10 +1027,13 @@ footer .privacy-policy button{
 	}
 }
 
+.upcoming-service .sidebar-table .customer-table {
+	margin-bottom: 15px;
+}
+
 .upcoming-service .sidebar-table .table {
 	width: 845px;
 	border: 1.2px solid #E1E1E1 !important;
-	overflow: visible;
 }
 
 .upcoming-service .sidebar-table .table thead {
@@ -1025,11 +1060,6 @@ footer .privacy-policy button{
 	padding-left: 10px;
 	letter-spacing: 0px;
 	background: #FFFFFF !important;
-}
-
-.upcoming-service .sidebar-table .table tbody, td, tfoot, th, thead, tr {
-    border-style: none;
-	border-bottom: 1.2px solid #E1E1E1 !important;
 }
 
 .upcoming-service .sidebar-table .table .btn-cancel {
@@ -1089,7 +1119,6 @@ footer .privacy-policy button{
 	display: flex;
 	justify-content: center;
 	margin-top: 31px;
-	height: 100%;
 	margin-bottom: 15px;
 }
 
@@ -1109,6 +1138,7 @@ footer .privacy-policy button{
 	color: #FFFFFF;
 	display: block;
 	padding: 16px;
+	border-bottom: 1px solid #FFFFFF;
 	text-decoration: none;
 }
 
@@ -1140,9 +1170,13 @@ footer .privacy-policy button{
 	}
 }
 
+.service-history .sidebar-table .customer-table {
+	margin-bottom: 15px;
+}
+
 .service-history .sidebar-table .table {
 	width: 845px;
-	border: 1px solid #E1E1E1;
+	border: 1px solid #E1E1E1 !important;
 }
 
 .service-history .sidebar-table .customer-table .row {
@@ -1179,12 +1213,19 @@ footer .privacy-policy button{
 	color: #646464;
 	opacity: 1;
 	letter-spacing: 0px;
-	background: #F9F9F9;
+	background: #F9F9F9 !important;
 }
 
 .service-history .sidebar-table .table.dataTable thead .sorting{
     background-image: none !important;
     background-size: 12px;
+}
+
+.customer-table table.dataTable thead .sorting .sort-img{
+    content: url(../images/sort.png);
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
 }
 
 .customer-table table.dataTable thead .sorting_asc .sort-img{
@@ -1198,7 +1239,7 @@ footer .privacy-policy button{
     content: url(../images/downsort.jpg);
     width: 7px;
     height: 14px;
-    margin-left: 5px;
+    margin-left: 12px;
 }
 
 .service-history .sidebar-table .table tbody tr td {
@@ -1209,6 +1250,16 @@ footer .privacy-policy button{
 	opacity: 1;
 	padding-left: 10px;
 	letter-spacing: 0px;
+}
+
+.service-history .sidebar-table .table tbody tr, td {
+	background: #FFFFFF !important;
+}
+
+.service-history .sidebar-table .table tbody, td, tfoot, th, thead, tr {
+    border-style: none;
+	vertical-align: middle;
+	border-bottom: 1.2px solid #E1E1E1 !important;
 }
 
 .service-history .sidebar-table .customer-table .table tbody .round-border {
@@ -1223,12 +1274,54 @@ footer .privacy-policy button{
 	color: #207C8E;
 }
 
-.service-history .sidebar-table .table .btn-cancel {
-	width: 80px;
+.service-history .sidebar-table .table .btn-completed {
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #FFFFFF;
+	text-align: center;
+	width: 82px;
+	height: 22px;
+	background: #67B644;
+	border: 1px solid #67B644;
+}
+
+.service-history .sidebar-table .table .btn-cancelled {
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #FFFFFF;
+	text-align: center;
+	width: 76px;
+	height: 22px;
+	background: #ff6b6b;
+	border: 1px solid #ff6b6b;
+}
+
+.service-history .sidebar-table .table .btn-ratesp {
+	font-family: 'Roboto';
+	font-size: 14px;
+	color: #FFFFFF;
+	text-align: center;
+	width: 70px;
 	height: 34px;
 	border-radius: 17px;
-	background: #FF6B6B;
-	border-color: #FF6B6B;
+	background: #6DA9B5;
+	border: 1px solid #6DA9B5;
+}
+
+.dataTables_length label {
+	margin-top: 20px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+	width: 38px;
+	height: 38px;
+	border-radius: 19px;
+	color: #FFFFFF !important;
+	margin: 0px 0px !important;
+	padding: 5px 5px;
+	text-align: center;
+	border: 1px solid #1D7A8C !important;
+	background: #1D7A8C !important;
 }
 
 @media screen and (max-width: 1000px) {
