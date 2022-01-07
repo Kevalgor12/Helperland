@@ -41,7 +41,7 @@
 }
 
 .max-width{
-	max-width: 1200px;
+	max-width: ;
 	margin: auto;
 }
 
@@ -58,14 +58,9 @@
 	height: 64px;
 }
 
-.navbar-brand img {
-    height: 130px;
-    width: 175px;
-}
-
 .navbar.navbar-bg-color .navbar-brand img {
     height: 54px;
-    width: 74.69px;
+    width: 73px;
 }
 
 .navbar .navbar-nav li {
@@ -103,6 +98,16 @@
     font-size: 17px;
     color: #FFFFFF !important;
 }
+
+@media (max-width : 1201px){
+	.navbar-collapse .navbar-nav {
+		align-items: center;
+		background: gray;
+		min-height: 70vh;
+		width: 400px;
+	}
+}
+
 .home{
 	background: url("../images/Landing-Page-background-image.png") no-repeat center;
 	min-height: 100vh;
@@ -114,7 +119,7 @@
 	opacity: 1;
 }
 .home .max-width{
-	max-width: 1560px;
+	/* max-width: 1560px; */
 	margin: auto;
 	padding-top: 318px;
 }
@@ -160,6 +165,16 @@
 	align-items: center;
 	padding-top: 163px;
 }
+
+@media (max-width : 768px) {
+	.pay-service {
+		flex-direction: column;
+	}
+	.pay-arrow {
+		transform: rotate(90deg);
+	}
+}
+
 .pay-service .pay-content {
 	display: inline-block;
 	justify-content: center;
@@ -186,7 +201,7 @@
 	text-align: center;
 }
 .why-helperland .max-width{
-	max-width: 1200px;
+	/* max-width: 1200px; */
 	margin: auto;
 }
 .helperland-content {
@@ -307,7 +322,7 @@
 	opacity: 1;
 }
 .customer-say .max-width{
-	max-width: 1200px;
+	/* max-width: 1200px; */
 	margin: auto;
 }
 .customer{
@@ -358,7 +373,7 @@ footer{
 }
 
 footer .footer-max-width{
-    max-width: 1350px;
+    /* max-width: 1350px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -395,6 +410,12 @@ footer .privacy-policy button{
     background: #EED507;
     border-radius: 20px;
     padding: 5px 30px;
+}
+
+@media (max-width : 991px) {
+	footer .footer-max-width {
+		justify-content: center;
+	}
 }
 
 /* FAQ page start */
@@ -913,11 +934,6 @@ footer .privacy-policy button{
 	height: 64px;
 }
 
-.navbar.navbar-upcoming-service .navbar-brand img {
-    height: 54px;
-    width: 74.69px;
-}
-
 .rectangle-line1 {
 	width: 1px; 
 	height: 48px; 
@@ -980,7 +996,7 @@ footer .privacy-policy button{
 	width: 262px;
 	text-align: left;
 	background-color: #1D7A8C;
-	margin-right: 31px;
+	margin-right: 15px;
 	margin-bottom: 15px;
 }
 
@@ -999,29 +1015,26 @@ footer .privacy-policy button{
 	color: #FFFFFF;
 }
 
-.sidebar a:hover:not(.active) {
+.upcoming-service .sidebar-table .sidebar a:hover:not(.active) {
 	background-color: #146371;
 	color: white;
 }
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-	.sidebar {
+	.upcoming-service .sidebar-table .sidebar {
 		width: 100%;
 		height: auto;
 		position: relative;
 	}
-	.sidebar a {
+	.upcoming-service .sidebar-table .sidebar a {
 		float: left;
-	}
-	div.content {
-		margin-left: 0;
 	}
 }
   
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
-	.sidebar a {
+	.upcoming-service .sidebar-table .sidebar a {
 		text-align: center;
 		float: none;
 	}
@@ -1147,24 +1160,26 @@ footer .privacy-policy button{
 	color: #FFFFFF;
 }
 
+.service-history .sidebar-table .sidebar a:hover:not(.active) {
+	background-color: #146371;
+	color: white;
+}
+
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-	.sidebar {
+	.service-history .sidebar-table .sidebar {
 		width: 100%;
 		height: auto;
 		position: relative;
 	}
-	.sidebar a {
+	.service-history .sidebar-table .sidebar a {
 		float: left;
-	}
-	div.content {
-		margin-left: 0;
 	}
 }
   
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
-	.sidebar a {
+	.service-history .sidebar-table .sidebar a {
 		text-align: center;
 		float: none;
 	}
@@ -1176,7 +1191,7 @@ footer .privacy-policy button{
 
 .service-history .sidebar-table .table {
 	width: 845px;
-	border: 1px solid #E1E1E1 !important;
+	border: 1.2px solid #E1E1E1 !important;
 }
 
 .service-history .sidebar-table .customer-table .row {
@@ -1331,3 +1346,285 @@ footer .privacy-policy button{
 }
 
 /* service-history end page */
+
+
+/* user-management start page */
+
+.navbar-usermanagement {
+	background-color: #1FB6FF;
+	height: 60px;
+}
+
+.navbar .navbar-collapse {
+	padding-right: 15px;
+}
+
+.navbar-usermanagement .navbar-brand {
+	padding: 0px 0px !important;
+}
+
+.navbar .navbar-brand .navbar-title {
+	color: #FFFFFF;
+	font-size: 38px;
+	padding-left: 15px;
+}
+
+.navbar .navbar-collapse .navbar-nav .nav-item .nav-link .username-text {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+.user-management {
+	margin-top: 60px;
+}
+
+.user-management .max-width {
+	max-width: 1560px;
+	margin: auto;
+}
+
+.user-management .sidebar-table {
+	display: flex;
+	justify-content: center;
+}
+
+.user-management .sidebar-table .sidebar {
+	margin: 0;
+	padding: 0;
+	width: 273px;
+	text-align: left;
+	background-color: #FFFFFF;
+	border: 1px solid #E1E1E1;
+	border-top: none;
+}
+
+.user-management .sidebar-table .sidebar a {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #646464;
+	display: block;
+	padding: 16px;
+	border-bottom: 1px solid #E1E1E1;
+	text-decoration: none;
+}
+
+.user-management .sidebar-table a.active {
+	color: #1FB6FF;
+}
+
+.user-management .sidebar-table .sidebar a:hover:not(.active) {
+	color: #646464;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+	.user-management .sidebar-table .sidebar {
+		width: 100%;
+		height: auto;
+		position: relative;
+	}
+	.user-management .sidebar-table .sidebar a {
+		float: left;
+	}
+}
+  
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+	.user-management .sidebar-table .sidebar a {
+		text-align: center;
+		float: none;
+	}
+}
+
+.user-management .sidebar-table .customer-table {
+	padding: 0px 20px;
+	width: 1287px;
+	background: #F2F4F5;
+}
+
+.user-management .sidebar-table .customer-table .row {
+	margin: 0px 0px;
+}
+
+.user-management .sidebar-table .customer-table .service-history-text {
+	font-family: 'Roboto';
+	color: #646464;
+	font-size: 22px;
+	text-align: left;
+	margin: 29px 0px 14px 0px;
+	padding: 0px 0px;
+}
+
+.user-management .sidebar-table .customer-table .addnew-btn-text {
+	text-align: right;
+	margin: 24px 0px 10px 0px;
+	padding: 0px 0px;
+}
+
+.user-management .sidebar-table .customer-table .button-addnew {
+	font-family: 'Roboto';
+	font-size: 14px;
+	width: 132px;
+	height: 36px;
+	color: #FFFFFF;
+	background: #1FB6FF;
+	border: #1FB6FF;
+	border-radius: 4px;
+}
+
+.user-management .sidebar-table .customer-table .user-inputs {
+	padding: 20px 15px;
+	background: #FFFFFF;
+	border: 1px solid #E1E1E1 !important;
+}
+
+.user-management .sidebar-table .customer-table .user-inputs .nav {
+	justify-content: space-between;
+}
+
+.user-management .sidebar-table .customer-table .user-inputs .nav .input-group-text {
+	color: #646464;
+	background-color: #F3F3F3;
+}
+
+.user-management .sidebar-table .customer-table .user-inputs select {
+	width: 210px;
+	height: 46px;
+	margin-right: 5px;
+	padding: 0px 0px 0px 10px;
+	color: #A0A0A0 !important;
+	border: 1px solid #DEDDDD;
+	border-radius: 4px;
+}
+
+.user-management .sidebar-table .customer-table .user-inputs input {
+	width: 180px;
+	height: 46px;
+	margin-right: 5px;
+	padding: 0px 0px 0px 10px;
+	border: 1px solid #DEDDDD;
+	border-radius: 4px;
+}
+
+.user-management .sidebar-table .customer-table .user-inputs button {
+	width: 84px;
+	height: 46px;
+	margin-right: 5px;
+	border-radius: 4px;
+}
+
+.user-management .sidebar-table .customer-table .btn-search {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
+	background: #1FB6FF;
+	border: 1px solid #1FB6FF;
+}
+
+.user-management .sidebar-table .customer-table .btn-clear {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #646464;
+	background: #FFFFFF;
+	border: 1px solid #DEDDDD;
+	border-radius: 4px;
+}
+
+.user-management .sidebar-table .table {
+	margin: 20px 0px;
+	border: 1px solid #E1E1E1 !important;
+}
+
+.user-management .sidebar-table .table thead {
+	font-family: 'Roboto';
+	font-size: 16px;
+	text-align: left;
+	color: #646464;
+	opacity: 1;
+	letter-spacing: 0px;
+	background: #F9F9F9 !important;
+}
+
+.user-management .sidebar-table .table.dataTable thead .sorting{
+    background-image: none !important;
+	background-size: 14px;
+}
+
+.user-management .sidebar-table .customer-table table.dataTable thead .sorting .sort-img{
+    content: url(../images/sort.png);
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+}
+
+.user-management .sidebar-table .customer-table table.dataTable thead .sorting_asc .sort-img{
+    content: url(../images/upsort.jpg);
+    width: 7px;
+    height: 14px;
+    margin-left: 5px;
+}
+
+.user-management .sidebar-table .customer-table table.dataTable thead .sorting_desc .sort-img{
+    content: url(../images/downsort.jpg);
+    width: 7px;
+    height: 14px;
+    margin-left: 12px;
+}
+
+.user-management .sidebar-table .table tbody tr td {
+	font-family: 'Roboto';
+	font-size: 16px;
+	text-align: center;
+	color: #646464;
+	opacity: 1;
+	padding-left: 10px;
+	letter-spacing: 0px;
+}
+
+.user-management .sidebar-table .table tbody tr, td {
+	background: #FFFFFF !important;
+}
+
+.user-management .sidebar-table .table tbody, td, tfoot, th, thead, tr {
+    border-style: none;
+	vertical-align: middle;
+	text-align: center;
+	border-bottom: 1.2px solid #E1E1E1 !important;
+}
+
+.user-management .sidebar-table .customer-table .table .btn-active {
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #FFFFFF;
+	width: 58px;
+	height: 24px;
+	background: #67B644;
+	border: 1px solid #67B644;
+}
+
+.user-management .sidebar-table .customer-table .table .btn-inactive {
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #FFFFFF;
+	width: 62px;
+	height: 24px;
+	background: #FF6B6B;
+	border: 1px solid #FF6B6B;
+}
+
+.user-management .sidebar-table .customer-table .table .dropdown-toggle::after {
+	display: none;
+}
+
+.user-management .sidebar-table .customer-table .rights-content {
+	margin: 22px 0px;
+}
+
+.user-management .sidebar-table .customer-table .rights-content .rights {
+	font-family: 'Roboto';
+	font-size: 14px;
+	color: #A2A6A8;
+}
+
+/* user-management end page */
