@@ -50,6 +50,7 @@
 }
 
 .navbar {
+	padding: 0px 10px;
     background-color: transparent;
 }
 
@@ -102,9 +103,12 @@
 @media (max-width : 1201px){
 	.navbar-collapse .navbar-nav {
 		align-items: center;
-		background: gray;
+		background: #716F6C;
 		min-height: 70vh;
-		width: 400px;
+		width: 200px;
+	}
+	.navbar .navbar-nav li {
+		margin: 5px 0px;
 	}
 }
 
@@ -119,7 +123,7 @@
 	opacity: 1;
 }
 .home .max-width{
-	/* max-width: 1560px; */
+	max-width: 1560px;
 	margin: auto;
 	padding-top: 318px;
 }
@@ -201,7 +205,7 @@
 	text-align: center;
 }
 .why-helperland .max-width{
-	/* max-width: 1200px; */
+	max-width: 1200px;
 	margin: auto;
 }
 .helperland-content {
@@ -213,27 +217,13 @@
 	text-align: center;
 	font-size: 40px;
 }
-.helperland-images{
-	margin-bottom: 100px;
-}
-.helperland-images .helperland-img{
-	display: inline-block;
-	text-align: center;
-	padding: 10px 10px;
-}
-.helperland-images .helperland-img img{
+.why-helperland .helperland-images .img-fluid {
 	height: 320px;
 	width: 320px;
-	margin: 0px 5px;
-	border-radius: 160px;
+	margin-bottom: 30px;
+	border-radius: 160px !important;
 }
-.helperland-images .helperland-img p{
-	font-size: 30px;
-	font-family: 'Roboto';
-	color: #565656;
-	margin-top: 35px;
-}
-.helperland-images .helperland-img span{
+.helperland-images span{
 	font-size: 17px;
 	font-family: 'Roboto';
 	color: #565656;
@@ -261,9 +251,23 @@
 	font-family: 'Roboto';
 	font-size: 18px;
 }
-.blog-content img{
+.blog .row .bloggroup-img img{
 	width: 403px;
 	height: 336px;
+}
+@media (max-width : 440px) {
+	.blog .row .bloggroup-img img {
+		width: 300px;
+		height: auto;
+	}
+	.blog .blog-images .blog-img-text p {
+		text-align: center;
+		justify-items: center;
+	}
+	.blog .blog-images .blog-img-text .blog-img {
+		width: 300px;
+		height: auto;
+	}
 }
 .our-blog {
 	margin: 50px 0px;
@@ -279,11 +283,11 @@
 .blog-images .blog-img-text{
 	display: inline-block;
 }
-.blog-images img{
+.blog-images .blog-img-text .blog-img {
 	width: 357px;
 	height: 164px;
 }
-.blog-images p img{
+.blog-images .blog-readpost .blog-arrow {
 	width: 29px;
 	height: 9px;
 }
@@ -322,7 +326,7 @@
 	opacity: 1;
 }
 .customer-say .max-width{
-	/* max-width: 1200px; */
+	max-width: 1200px;
 	margin: auto;
 }
 .customer{
@@ -334,7 +338,8 @@
 	padding-bottom: 57px;
 }
 .col{
-	width: 365px;
+	display: flex;
+	justify-content: center;
 }
 .card{
 	width: 357px;
@@ -348,7 +353,6 @@
 	font-family: 'Roboto';
 	font-size: 16px;
 	color: #565656;
-	width: 300px;
 	padding: 0px 0px !important;
 }
 .newsletter{
@@ -1628,3 +1632,10 @@ footer .privacy-policy button{
 }
 
 /* user-management end page */
+
+
+/* Service requests start page */
+
+
+
+/* Service requests end page */
