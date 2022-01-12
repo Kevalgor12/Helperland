@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-xl fixed-top navbar-light navbar-usermanagement">
+    <nav class="navbar navbar-expand-xl fixed-top navbar-light navbar-admin">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <span class="navbar-title">helperland</span>
@@ -36,44 +36,107 @@
         </div>
     </nav>
 
-    <section class="user-management" id="user-management">
+    <section class="admin" id="admin">
         <div class="max-width">
             <div class="sidebar-table">
-                <div class="sidebar">
-                    <a href="#dashboard">Service Management</a>
-                    <a href="#service-requests">Role Management</a>
-                    <a href="#service-schedule">Coupon Code Management</a>
-                    <a href="#service-history">Escalation Management</a>
-                    <a href="#my-ratings">Service Requests</a>
-                    <a href="#block-customer">Service Providers</a>
-                    <a class="active" href="#my-ratings">User Management</a>
-                    <a href="#block-customer">Finance Module</a>
-                    <a href="#my-ratings">Zip Code Management </a>
-                    <a href="#block-customer">Rating Management</a>
-                    <a href="#block-customer">Inquiry Management</a>
-                    <a href="#my-ratings">Newsletter Management</a>
-                    <a href="#block-customer">Content Management</a>
+                <div class="sidebar" id="sidebar">
+                    <a class="menu" href="#service-management">Service Management</a>
+                    <a class="menu" href="#role-management">Role Management</a>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Coupon Code Management
+                            </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="subnav">
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#Coupon-codes">Coupon Codes</a>
+                                        </li>
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#usage-history">Usage History</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="menu" href="#escalation-management">Escalation Management</a>
+                    <a class="menu" href="#service-requests">Service Requests</a>
+                    <a class="menu" href="#service-providers">Service Providers</a>
+                    <a class="menu active" href="#user-management">User Management</a>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Finance Module
+                            </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="subnav">
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#Coupon-codes">All Transactions</a>
+                                        </li>
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#usage-history">Generate Payment</a>
+                                        </li>
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#Coupon-codes">Customer Invoices</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="menu" href="#zip-code-management">Zip Code Management </a>
+                    <a class="menu" href="#rating-management">Rating Management</a>
+                    <a class="menu" href="#inquiry-management">Inquiry Management</a>
+                    <a class="menu" href="#newsletter-management">Newsletter Management</a>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                Content Management
+                            </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="subnav">
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#Coupon-codes">Blog</a>
+                                        </li>
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#usage-history">FAQs</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="customer-table">
                     <div class="row">
-                        <div class="col-md-6 service-history-text"><b>User Management</b></div>
+                        <div class="col-md-6 admin-text"><b>User Management</b></div>
                         <div class="col-md-6 addnew-btn-text"><button class="button-addnew"><img src="assets/images/add.png" alt=""> Add New User</button></div>
                     </div>
                     <div class="row user-inputs">
                         <ul class="nav">
                             <li class="nav-item">
-                                <select name="uname" id="uname">
-                                    <option value="" disabled selected>User name</option>
-                                    <option value="Gujarati">Lyum watson</option>
-                                    <option value="Maths">John Smith</option>
+                                <select name="admin-user" id="admin-user">
+                                    <option disabled selected hidden value="">User name</option>
+                                    <option value="Lyum watson">Lyum watson</option>
+                                    <option value="John Smith">John Smith</option>
                                 </select>
                             </li>
                             <li class="nav-item">
-                                <select name="urole" id="urole">
-                                    <option value="" disabled selected>User role</option>
-                                    <option value="Gujarati">Inquiry Manager</option>
-                                    <option value="Maths">Content Manager</option>
-                                    <option value="Science">Finance Manager</option>
+                                <select name="admin-urole" id="admin-urole">
+                                    <option disabled selected hidden value="">User role</option>
+                                    <option value="Inquiry Manager">Inquiry Manager</option>
+                                    <option value="Finance Manager">Finance Manager</option>
+                                    <option value="Content Manager">Content Manager</option>
                                 </select>
                             </li>
                             <li class="nav-item">
@@ -82,14 +145,14 @@
                                     <input type="text" id="number" name="number" placeholder="Phone number">
                                 </div>
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 <input type="text" id="zcode" name="zcode" placeholder="Zipcode">
                             </li>
-                            <li>
-                                <button class="btn-search">Search</button>
-                            </li>
-                            <li>
-                                <button class="btn-clear">Clear</button>
+                            <li class="nav-item">
+                                <div>
+                                    <button class="btn-search">Search</button>
+                                    <button class="btn-clear">Clear</button>
+                                </div>
                             </li>
                         </ul>
                     </div>

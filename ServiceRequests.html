@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management</title>
+    <title>Service Requests</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-xl fixed-top navbar-light navbar-usermanagement">
+    <nav class="navbar navbar-expand-xl fixed-top navbar-light navbar-admin">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <span class="navbar-title">helperland</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -36,86 +36,169 @@
         </div>
     </nav>
 
-    <section class="user-management" id="user-management">
+    <section class="admin" id="admin">
         <div class="max-width">
             <div class="sidebar-table">
-                <div class="sidebar">
-                    <a href="#dashboard">Service Management</a>
-                    <a href="#service-requests">Role Management</a>
-                    <a href="#service-schedule">Coupon Code Management</a>
-                    <a href="#service-history">Escalation Management</a>
-                    <a href="#my-ratings">Service Requests</a>
-                    <a href="#block-customer">Service Providers</a>
-                    <a class="active" href="#my-ratings">User Management</a>
-                    <a href="#block-customer">Finance Module</a>
-                    <a href="#my-ratings">Zip Code Management </a>
-                    <a href="#block-customer">Rating Management</a>
-                    <a href="#block-customer">Inquiry Management</a>
-                    <a href="#my-ratings">Newsletter Management</a>
-                    <a href="#block-customer">Content Management</a>
+                <div class="sidebar" id="sidebar">
+                    <a class="menu" href="#service-management">Service Management</a>
+                    <a class="menu" href="#role-management">Role Management</a>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Coupon Code Management
+                            </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="subnav">
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#Coupon-codes">Coupon Codes</a>
+                                        </li>
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#usage-history">Usage History</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="menu" href="#escalation-management">Escalation Management</a>
+                    <a class="menu" href="#service-requests">Service Requests</a>
+                    <a class="menu" href="#service-providers">Service Providers</a>
+                    <a class="menu active" href="#user-management">User Management</a>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Finance Module
+                            </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="subnav">
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#Coupon-codes">All Transactions</a>
+                                        </li>
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#usage-history">Generate Payment</a>
+                                        </li>
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#Coupon-codes">Customer Invoices</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="menu" href="#zip-code-management">Zip Code Management </a>
+                    <a class="menu" href="#rating-management">Rating Management</a>
+                    <a class="menu" href="#inquiry-management">Inquiry Management</a>
+                    <a class="menu" href="#newsletter-management">Newsletter Management</a>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                Content Management
+                            </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="subnav">
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#Coupon-codes">Blog</a>
+                                        </li>
+                                        <li class="subnav-content">
+                                            <a class="sabmenu" href="#usage-history">FAQs</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="customer-table">
                     <div class="row">
-                        <div class="col-md-6 service-history-text"><b>User Management</b></div>
+                        <div class="col-md-6 admin-text"><b>Service Requests</b></div>
                         <div class="col-md-6 addnew-btn-text"><button class="button-addnew"><img src="assets/images/add.png" alt=""> Add New User</button></div>
                     </div>
                     <div class="row user-inputs">
                         <ul class="nav">
                             <li class="nav-item">
-                                <select name="uname" id="uname">
-                                    <option value="" disabled selected>User name</option>
-                                    <option value="Gujarati">Lyum watson</option>
-                                    <option value="Maths">John Smith</option>
+                                <input type="text" id="serviceid" name="serviceid" placeholder="Service ID">
+                            </li>
+                            <li class="nav-item">
+                                <select name="admin-customer" id="admin-customer">
+                                    <option disabled selected hidden value="">Customer</option>
+                                    <option value="David Bough">David Bough</option>
+                                    <option value="David Bough">David Bough</option>
                                 </select>
                             </li>
                             <li class="nav-item">
-                                <select name="urole" id="urole">
-                                    <option value="" disabled selected>User role</option>
-                                    <option value="Gujarati">Inquiry Manager</option>
-                                    <option value="Maths">Content Manager</option>
-                                    <option value="Science">Finance Manager</option>
+                                <select name="sprovider" id="sprovider">
+                                    <option disabled selected hidden value="">Service Provider</option>
+                                    <option value="Lyum watson">Lyum watson</option>
+                                    <option value="John Smith">John Smith</option>
+                                </select>
+                            </li>
+                            <li class="nav-item">
+                                <select name="admin-status" id="admin-status">
+                                    <option disabled selected hidden value="volvo">Status</option>
+                                    <option value="new">New</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
                                 </select>
                             </li>
                             <li class="nav-item">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">+49</span>
-                                    <input type="text" id="number" name="number" placeholder="Phone number">
+                                    <span class="input-group-text" id="basic-addon1"><img src="assets/images/admin-calendar-blue.png" alt=""></span>
+                                    <input type="text" id="formdate" name="formdate" data placeholder="From Date">
                                 </div>
                             </li>
-                            <li>
-                                <input type="text" id="zcode" name="zcode" placeholder="Zipcode">
+                            <li class="nav-item">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><img src="assets/images/admin-calendar-blue.png" alt=""></span>
+                                    <input type="text" id="todate" name="todate" data placeholder="To Date">
+                                </div>
                             </li>
-                            <li>
-                                <button class="btn-search">Search</button>
-                            </li>
-                            <li>
-                                <button class="btn-clear">Clear</button>
+                            <li class="nav-item">
+                                <div>
+                                    <button class="btn-search">Search</button>
+                                    <button class="btn-clear">Clear</button>
+                                </div>
                             </li>
                         </ul>
                     </div>
-                    <table id="tableusermanagement" class="table display">
+                    <table id="tableservicerequests" class="table display">
                         <thead>
                             <tr>
-                                <th>User Name <img class="sort-img" alt=""></th>
-                                <th>User Type</th>
-                                <th>Role</th>
-                                <th>Postal Code <img class="sort-img" alt=""></th>
-                                <th>City</th>
-                                <th>Radius <img class="sort-img" alt=""></th>
-                                <th>User Status <img class="sort-img" alt=""></th>
+                                <th>Service ID <img class="sort-img" alt=""></th>
+                                <th>Service date <img class="sort-img" alt=""></th>
+                                <th>Customer details <img class="sort-img" alt=""></th>
+                                <th>Service Provider <img class="sort-img" alt=""></th>
+                                <th>Status <img class="sort-img" alt=""></th>
                                 <th>Actions </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Lyum watson</td>
-                                <td>Call Center</td>
-                                <td>Inquiry Manager</td>
-                                <td>123456</td>
-                                <td>Berlin</td>
+                                <td>323436</td>
+                                <td>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
                                 <td></td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <button class="btn-new">New</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -123,21 +206,34 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
+                                            <li><a class="dropdown-item" href="#">Edit & Reschedule</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="#">Change SP</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Service provider</td>
-                                <td></td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td>10 km</td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <button class="btn-new">New</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -145,22 +241,43 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                            <li><a class="dropdown-item" href="#">Service History</a></li>
+                                            <li><a class="dropdown-item" href="#">Edit & Reschedule</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="#">Change SP</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Call Center</td>
-                                <td>Inquiry Manager</td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-pending">Pending</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -168,21 +285,43 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
+                                            <li><a class="dropdown-item" href="#">Edit & Reschedule</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="#">Change SP</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Customer</td>
-                                <td></td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-pending">Pending</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -190,22 +329,43 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                            <li><a class="dropdown-item" href="#">Service History</a></li>
+                                            <li><a class="dropdown-item" href="#">Edit & Reschedule</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="#">Change SP</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Call Center</td>
-                                <td>Content Manager</td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-completed">Completed</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -213,21 +373,40 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Customer</td>
-                                <td></td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-inactive">Inactive</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-completed">Completed</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -235,22 +414,40 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                            <li><a class="dropdown-item" href="#">Service History</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Service provider</td>
-                                <td></td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td>20 km</td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-cancelled">Cancelled</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -258,22 +455,43 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                            <li><a class="dropdown-item" href="#">Service History</a></li>
+                                            <li><a class="dropdown-item" href="#">Edit & Reschedule</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="#">Change SP</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Call Center</td>
-                                <td>Finance Manager</td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-completed">Completed</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -281,21 +499,40 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Customer</td>
-                                <td></td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-cancelled">Cancelled</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -303,22 +540,43 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                            <li><a class="dropdown-item" href="#">Service History</a></li>
+                                            <li><a class="dropdown-item" href="#">Edit & Reschedule</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="#">Change SP</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Customer</td>
-                                <td></td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-completed">Completed</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -326,22 +584,40 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                            <li><a class="dropdown-item" href="#">Service History</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>John Smith</td>
-                                <td>Call Center</td>
-                                <td>Finance Manager</td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-inactive">Inactive</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-new">New</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -349,21 +625,43 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
+                                            <li><a class="dropdown-item" href="#">Edit & Reschedule</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="#">Change SP</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Lyum watson</td>
-                                <td>Customer</td>
-                                <td>Inquiry Manager</td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td>10 km</td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-active">Active</button>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-pending">Pending</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -371,44 +669,43 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                            <li><a class="dropdown-item" href="#">Service History</a></li>
+                                            <li><a class="dropdown-item" href="#">Edit & Reschedule</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="#">Change SP</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Lyum watson</td>
-                                <td>Call Center</td>
-                                <td></td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
+                                <td>323436</td>
                                 <td>
-                                    <button class="btn-inactive">Inactive</button>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="assets/images/group-38.png" alt="">
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                        </ul>
+                                    <div>
+                                        <img src="assets/images/layer-712.png" alt="clock"> 09/04/2018 <br>
+                                        <img src="assets/images/calendar2.png" alt="calendar"> 12:00 - 18:00
                                     </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Lyum watson</td>
-                                <td>Call Center</td>
-                                <td>Inquiry Manager</td>
-                                <td>123456</td>
-                                <td>Berlin</td>
-                                <td></td>
                                 <td>
-                                    <button class="btn-active">active</button>
+                                    <div>
+                                        David Bough <br>
+                                        <img src="assets/images/layer-15.png" alt="home"> Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="round-border" src="assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="col-md-9">
+                                            Lyum Watson
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-completed">Completed</button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -416,8 +713,10 @@
                                             <img src="assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Deactivate</a></li>
+                                            <li><a class="dropdown-item" href="#">Refund</a></li>
+                                            <li><a class="dropdown-item" href="#">Escalate</a></li>
+                                            <li><a class="dropdown-item" href="#">History Log</a></li>
+                                            <li><a class="dropdown-item" href="#">Download Invoice</a></li>
                                         </ul>
                                     </div>
                                 </td>

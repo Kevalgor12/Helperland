@@ -6,14 +6,12 @@ $(document).ready(function(){
         }else{
             $('.scroll-up-btn').removeClass("show");
         }
-    })
+    });
 
     $('.top-arrow').click(function(){
         $('html').animate({scrollTop: 0})
     });
-})
 
-$(document).ready(function(){
     $(window).scroll(function(){
         var scroll = $(window).scrollTop();
         if (scroll > 50) {
@@ -23,10 +21,14 @@ $(document).ready(function(){
         else{
             $(".homepage").removeClass("navbar-bg-color");
         }
-    })
-})
+    });
 
-$(document).ready(function () {
+    $(".sub-menu ul").hide();
+    $(".sub-menu a").click(function () {
+        $(this).parent(".sab-menu").children("ul").slideToggle("100");
+        $(this).find(".arrow-icon").parent("a").parent("li").toggleClass("open");
+    });
+
     $('#table').DataTable({
         paging: false,
         bFilter: false,
@@ -79,4 +81,21 @@ $(document).ready(function () {
         "order": []
     });
 
-});
+    $('#tableservicerequests').DataTable({
+        paging: true,
+        "pagingType": "full_numbers",
+        // bFilter: false,
+        ordering: true,
+        searching: false,
+        info: false,
+        "columnDefs": [
+            { "orderable": false, "targets": 5 }
+        ],
+        "oLanguage": {
+            "sInfo": "Total Records: TOTAL"
+        },
+        "dom": '<"top">rt<"bottom"lip><"clear">',
+        responsive: true,
+        "order": []
+    });
+})

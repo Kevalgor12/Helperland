@@ -429,6 +429,7 @@ footer .privacy-policy button{
 	opacity: 1;
 }
 .faq .max-width {
+	max-width: 1000px;
 	padding: 0 10px;
 }
 .faq-content {
@@ -455,7 +456,7 @@ footer .privacy-policy button{
 	transform: translate(-50%);
 }
 
-.accordion .accordion-button::before{
+.faq .faq-content .accordion .accordion-button::before{
     flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
@@ -467,11 +468,11 @@ footer .privacy-policy button{
     margin-right: 15px;
 }
 
-.accordion .accordion-button::after{
+.faq .faq-content .accordion .accordion-button::after{
 	display: none;
 }
 
-.accordion .accordion-button:not(.collapsed)::before {
+.faq .faq-content .accordion .accordion-button:not(.collapsed)::before {
     transform: rotate(90deg);
 }
 
@@ -1352,48 +1353,48 @@ footer .privacy-policy button{
 /* service-history end page */
 
 
-/* user-management start page */
+/* user-management and Service Requests start page */
 
-.navbar-usermanagement {
+.navbar-admin {
 	background-color: #1FB6FF;
 	height: 60px;
 }
 
-.navbar .navbar-collapse {
+.navbar-admin .navbar-collapse {
 	padding-right: 15px;
 }
 
-.navbar-usermanagement .navbar-brand {
+.navbar-admin .navbar-brand {
 	padding: 0px 0px !important;
 }
 
-.navbar .navbar-brand .navbar-title {
+.navbar-admin .navbar-brand .navbar-title {
 	color: #FFFFFF;
 	font-size: 38px;
 	padding-left: 15px;
 }
 
-.navbar .navbar-collapse .navbar-nav .nav-item .nav-link .username-text {
+.navbar-admin .navbar-collapse .navbar-nav .nav-item .nav-link .username-text {
 	font-family: 'Roboto';
 	font-size: 16px;
 	color: #FFFFFF;
 }
 
-.user-management {
+.admin {
 	margin-top: 60px;
 }
 
-.user-management .max-width {
+.admin .max-width {
 	max-width: 1560px;
 	margin: auto;
 }
 
-.user-management .sidebar-table {
+.admin .sidebar-table {
 	display: flex;
 	justify-content: center;
 }
 
-.user-management .sidebar-table .sidebar {
+.admin .sidebar-table .sidebar {
 	margin: 0;
 	padding: 0;
 	width: 273px;
@@ -1403,7 +1404,57 @@ footer .privacy-policy button{
 	border-top: none;
 }
 
-.user-management .sidebar-table .sidebar a {
+.admin .sidebar-table .sidebar .accordion .accordion-item {
+	border: none;
+	border-bottom: 1px solid #E1E1E1;
+}
+
+.admin .sidebar-table .sidebar .accordion .accordion-item .accordion-button {
+	width: 271px;
+	height: 57px;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #646464;
+	padding: 16px;
+}
+
+.admin .sidebar-table .sidebar .accordion .accordion-item .accordion-body {
+	font-family: 'Roboto';
+	font-size: 15px;
+	color: #646464;
+	padding: 0px;
+}
+
+.admin .sidebar-table .sidebar .accordion .accordion-button::after{
+    flex-shrink: 0;
+    width: 20px;
+    height: 10px;
+    content: "";
+    background-image: url("../images/admin-small-arrow.png");
+	transform: rotate(-90deg);
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform .2s ease-in-out;
+}
+
+.admin .sidebar-table .sidebar .accordion .accordion-button::before{
+	display: none;
+}
+
+.admin .sidebar-table .sidebar .accordion .accordion-button:not(.collapsed)::after {
+    transform: rotate(0deg);
+}
+
+.admin .sidebar-table .sidebar .subnav {
+	font-family: 'Roboto';
+	font-size: 15px;
+	color: #646464;
+	list-style: none;
+	background: #F9F9F9;
+	margin: 0px;
+}
+
+.admin .sidebar-table .sidebar .menu {
 	font-family: 'Roboto';
 	font-size: 16px;
 	color: #646464;
@@ -1413,45 +1464,54 @@ footer .privacy-policy button{
 	text-decoration: none;
 }
 
-.user-management .sidebar-table a.active {
+.admin .sidebar-table .sidebar .accordion .accordion-item .accordion-body .sabmenu {
+	font-family: 'Roboto';
+	font-size: 15px;
+	color: #646464;
+	display: block;
+	padding: 16px;
+	text-decoration: none;
+}
+
+.admin .sidebar-table a.active {
 	color: #1FB6FF;
 }
 
-.user-management .sidebar-table .sidebar a:hover:not(.active) {
+.admin .sidebar-table .sidebar a:hover:not(.active) {
 	color: #646464;
 }
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-	.user-management .sidebar-table .sidebar {
+	.admin .sidebar-table .sidebar {
 		width: 100%;
 		height: auto;
 		position: relative;
 	}
-	.user-management .sidebar-table .sidebar a {
+	.admin .sidebar-table .sidebar a {
 		float: left;
 	}
 }
   
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
-	.user-management .sidebar-table .sidebar a {
+	.admin .sidebar-table .sidebar a {
 		text-align: center;
 		float: none;
 	}
 }
 
-.user-management .sidebar-table .customer-table {
+.admin .sidebar-table .customer-table {
 	padding: 0px 20px;
 	width: 1287px;
 	background: #F2F4F5;
 }
 
-.user-management .sidebar-table .customer-table .row {
+.admin .sidebar-table .customer-table .row {
 	margin: 0px 0px;
 }
 
-.user-management .sidebar-table .customer-table .service-history-text {
+.admin .sidebar-table .customer-table .admin-text {
 	font-family: 'Roboto';
 	color: #646464;
 	font-size: 22px;
@@ -1460,13 +1520,13 @@ footer .privacy-policy button{
 	padding: 0px 0px;
 }
 
-.user-management .sidebar-table .customer-table .addnew-btn-text {
+.admin .sidebar-table .customer-table .addnew-btn-text {
 	text-align: right;
 	margin: 24px 0px 10px 0px;
 	padding: 0px 0px;
 }
 
-.user-management .sidebar-table .customer-table .button-addnew {
+.admin .sidebar-table .customer-table .button-addnew {
 	font-family: 'Roboto';
 	font-size: 14px;
 	width: 132px;
@@ -1477,33 +1537,26 @@ footer .privacy-policy button{
 	border-radius: 4px;
 }
 
-.user-management .sidebar-table .customer-table .user-inputs {
+.admin .sidebar-table .customer-table .user-inputs {
 	padding: 20px 15px;
 	background: #FFFFFF;
 	border: 1px solid #E1E1E1 !important;
 }
 
-.user-management .sidebar-table .customer-table .user-inputs .nav {
+.admin .sidebar-table .customer-table .user-inputs .nav {
 	justify-content: space-between;
 }
 
-.user-management .sidebar-table .customer-table .user-inputs .nav .input-group-text {
+.admin .sidebar-table .customer-table .user-inputs .nav .nav-item {
+	padding: 0px 0px;
+}
+
+.admin .sidebar-table .customer-table .user-inputs .nav .input-group-text {
 	color: #646464;
 	background-color: #F3F3F3;
 }
 
-.user-management .sidebar-table .customer-table .user-inputs select {
-	width: 210px;
-	height: 46px;
-	margin-right: 5px;
-	padding: 0px 0px 0px 10px;
-	color: #A0A0A0 !important;
-	border: 1px solid #DEDDDD;
-	border-radius: 4px;
-}
-
-.user-management .sidebar-table .customer-table .user-inputs input {
-	width: 180px;
+.admin .sidebar-table .customer-table .user-inputs .nav .nav-item input {
 	height: 46px;
 	margin-right: 5px;
 	padding: 0px 0px 0px 10px;
@@ -1511,36 +1564,48 @@ footer .privacy-policy button{
 	border-radius: 4px;
 }
 
-.user-management .sidebar-table .customer-table .user-inputs button {
+.admin .sidebar-table .customer-table .user-inputs .nav .nav-item select {
+	height: 46px;
+	width: auto;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #A0A0A0;
+	padding: 0px 0px 0px 5px;
+	margin-right: 5px;
+	border: 1px solid #DEDDDD;
+}
+
+.admin .sidebar-table .customer-table .btn-search {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
 	width: 84px;
 	height: 46px;
 	margin-right: 5px;
 	border-radius: 4px;
-}
-
-.user-management .sidebar-table .customer-table .btn-search {
-	font-family: 'Roboto';
-	font-size: 16px;
-	color: #FFFFFF;
 	background: #1FB6FF;
 	border: 1px solid #1FB6FF;
 }
 
-.user-management .sidebar-table .customer-table .btn-clear {
+.admin .sidebar-table .customer-table .btn-clear {
 	font-family: 'Roboto';
 	font-size: 16px;
 	color: #646464;
+	width: 84px;
+	height: 46px;
+	margin-right: 5px;
+	border-radius: 4px;
 	background: #FFFFFF;
 	border: 1px solid #DEDDDD;
 	border-radius: 4px;
 }
 
-.user-management .sidebar-table .table {
+.admin .sidebar-table .table {
 	margin: 20px 0px;
 	border: 1px solid #E1E1E1 !important;
 }
 
-.user-management .sidebar-table .table thead {
+.admin .sidebar-table .table thead {
 	font-family: 'Roboto';
 	font-size: 16px;
 	text-align: left;
@@ -1550,54 +1615,60 @@ footer .privacy-policy button{
 	background: #F9F9F9 !important;
 }
 
-.user-management .sidebar-table .table.dataTable thead .sorting{
+.admin .sidebar-table .table.dataTable thead .sorting{
     background-image: none !important;
 	background-size: 14px;
 }
 
-.user-management .sidebar-table .customer-table table.dataTable thead .sorting .sort-img{
+.admin .sidebar-table .customer-table table.dataTable thead .sorting .sort-img{
     content: url(../images/sort.png);
     width: 14px;
     height: 14px;
     margin-left: 5px;
 }
 
-.user-management .sidebar-table .customer-table table.dataTable thead .sorting_asc .sort-img{
+.admin .sidebar-table .customer-table table.dataTable thead .sorting_asc .sort-img{
     content: url(../images/upsort.jpg);
     width: 7px;
     height: 14px;
     margin-left: 5px;
 }
 
-.user-management .sidebar-table .customer-table table.dataTable thead .sorting_desc .sort-img{
+.admin .sidebar-table .customer-table table.dataTable thead .sorting_desc .sort-img{
     content: url(../images/downsort.jpg);
     width: 7px;
     height: 14px;
     margin-left: 12px;
 }
 
-.user-management .sidebar-table .table tbody tr td {
+.admin .sidebar-table .table tbody tr td {
 	font-family: 'Roboto';
 	font-size: 16px;
-	text-align: center;
+	text-align: left;
 	color: #646464;
 	opacity: 1;
 	padding-left: 10px;
 	letter-spacing: 0px;
 }
 
-.user-management .sidebar-table .table tbody tr, td {
+.admin .sidebar-table .customer-table .table tbody .round-border {
+	padding: 7px 2px;
+	border: 1.2px solid #9C9C9C;
+	border-radius: 50%;
+}
+
+.admin .sidebar-table .table tbody tr, td {
 	background: #FFFFFF !important;
 }
 
-.user-management .sidebar-table .table tbody, td, tfoot, th, thead, tr {
+.admin .sidebar-table .table tbody, td, tfoot, th, thead, tr {
     border-style: none;
 	vertical-align: middle;
-	text-align: center;
+	text-align: left;
 	border-bottom: 1.2px solid #E1E1E1 !important;
 }
 
-.user-management .sidebar-table .customer-table .table .btn-active {
+.admin .sidebar-table .customer-table .table .btn-active {
 	font-family: 'Roboto';
 	font-size: 13px;
 	color: #FFFFFF;
@@ -1607,7 +1678,7 @@ footer .privacy-policy button{
 	border: 1px solid #67B644;
 }
 
-.user-management .sidebar-table .customer-table .table .btn-inactive {
+.admin .sidebar-table .customer-table .table .btn-inactive {
 	font-family: 'Roboto';
 	font-size: 13px;
 	color: #FFFFFF;
@@ -1617,25 +1688,58 @@ footer .privacy-policy button{
 	border: 1px solid #FF6B6B;
 }
 
-.user-management .sidebar-table .customer-table .table .dropdown-toggle::after {
+.admin .sidebar-table .customer-table .table .btn-new {
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #FFFFFF;
+	width: 45px;
+	height: 24px;
+	background: #F2BB37;
+	border: 1px solid #F2BB37;
+}
+
+.admin .sidebar-table .customer-table .table .btn-pending {
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #FFFFFF;
+	width: 62px;
+	height: 24px;
+	background: #1FB6FF;
+	border: 1px solid #1FB6FF;
+}
+
+.admin .sidebar-table .customer-table .table .btn-completed {
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #FFFFFF;
+	width: 78px;
+	height: 24px;
+	background: #67B644;
+	border: 1px solid #67B644;
+}
+
+.admin .sidebar-table .customer-table .table .btn-cancelled {
+	font-family: 'Roboto';
+	font-size: 13px;
+	color: #FFFFFF;
+	width: 78px;
+	height: 24px;
+	background: #FF6B6B;
+	border: 1px solid #FF6B6B;
+}
+
+.admin .sidebar-table .customer-table .table .dropdown-toggle::after {
 	display: none;
 }
 
-.user-management .sidebar-table .customer-table .rights-content {
+.admin .sidebar-table .customer-table .rights-content {
 	margin: 22px 0px;
 }
 
-.user-management .sidebar-table .customer-table .rights-content .rights {
+.admin .sidebar-table .customer-table .rights-content .rights {
 	font-family: 'Roboto';
 	font-size: 14px;
 	color: #A2A6A8;
 }
 
-/* user-management end page */
-
-
-/* Service requests start page */
-
-
-
-/* Service requests end page */
+/* user-management and Service Requests end page */
