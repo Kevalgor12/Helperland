@@ -98,4 +98,9 @@ $(document).ready(function(){
         responsive: true,
         "order": []
     });
+
+    /**For sidebar toggle**/
+    jQuery(".sidebar-toggle").click(function(){
+        jQuery("#sidebar").toggleClass("show");
+    });
 })

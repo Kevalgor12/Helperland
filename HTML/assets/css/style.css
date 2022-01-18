@@ -55,7 +55,7 @@
 }
 
 .navbar-bg-color {
-	background-color: #272727;
+	background-color: #525252;
 	height: 64px;
 }
 
@@ -85,8 +85,16 @@
     margin: 0px 5px;
 }
 
-.navbar-bg-color .navbar-nav .rounded-link-transparent {
+.navbar-bg-color .navbar-nav .rounded-link {
 	background-color: #29626D;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 0px  25px;
+    margin: 0px 5px;
+}
+
+.navbar-bg-color .navbar-nav .rounded-link-transparent {
+	background-color: transparent;
     border: 1px solid white;
     border-radius: 30px;
     padding: 0px  25px;
@@ -100,15 +108,44 @@
     color: #FFFFFF !important;
 }
 
-@media (max-width : 1201px){
+.navbar .navbar-toggler {
+	border: 1px solid #FFFFFF;
+}
+
+.navbar .navbar-toggler .fa-bars {
+	color: #FFFFFF;
+}
+
+@media (max-width : 1200px){
 	.navbar-collapse .navbar-nav {
 		align-items: center;
 		background: #716F6C;
-		min-height: 70vh;
+		height: auto;
 		width: 200px;
 	}
 	.navbar .navbar-nav li {
 		margin: 5px 0px;
+	}
+	.admin .sidebar-table .sidebar {
+		z-index: 999;
+		left: 0;
+	}
+}
+
+@media (max-width : 1200px) {
+	.admin .sidebar-table .sidebar {
+		transform: translateX(-100%);
+		transition: transform 0.5s;
+		width: 0 !important;
+		opacity: 0;
+		visibility: hidden;
+	}
+	.admin .sidebar-table .sidebar.show {
+		transform: translateX(0);
+		width: auto !important;
+    	opacity: 1;
+		visibility: visible;
+		position: absolute;
 	}
 }
 
@@ -337,11 +374,11 @@
 	padding-top: 57px;
 	padding-bottom: 57px;
 }
-.col{
+.customer-content .col{
 	display: flex;
 	justify-content: center;
 }
-.card{
+.customer-content .col .card{
 	width: 357px;
 	border-right: none;
 	border-top: none;
@@ -349,7 +386,7 @@
 	border-left-color: #4C95A3 !important;
 	border-width: 3px;
 }
-.card .card-body .card-text {
+.customer-content .col .card .card-body .card-text {
 	font-family: 'Roboto';
 	font-size: 16px;
 	color: #565656;
@@ -358,10 +395,22 @@
 .newsletter{
 	font-family: 'Roboto';
 	color: #353548;
-	font-size: 17.99px;
+	font-size: 18px;
 	text-align: center;
 	opacity: 1;
 }
+.your-email {
+	background-color: #F4F5F8;
+	border-radius: 20px;
+	border: 1px solid #565656;
+	width: 223px;
+	height: 40px;
+	font-size: 14px;
+	color: #565656;
+	text-align: left;
+	padding-left: 22px;
+}
+
 .get-news-submit {
 	background-color: #FF7B6D;
 	color: #FFFFFF;
@@ -369,7 +418,7 @@
 	height: 40px;
 	border-radius: 20px;
 	margin-bottom: 53px;
-	border-color: #FF7B6D
+	border: 1px solid #FF7B6D
 }
 
 footer{
@@ -456,6 +505,23 @@ footer .privacy-policy button{
 	transform: translate(-50%);
 }
 
+.star-title::after {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 25px;
+	width: 43px;
+	bottom: -37px;
+	left: 50%;
+	transform: translate(-50%);
+	font-size: 20px;
+	background: #FFFFFF url("../images/separator.png") no-repeat center;
+}
+
+.faq .faq-content .accordion .accordion-item {
+	border-bottom: 1px solid #E1E1E1;
+}
+
 .faq .faq-content .accordion .accordion-button::before{
     flex-shrink: 0;
     width: 1.25rem;
@@ -476,18 +542,6 @@ footer .privacy-policy button{
     transform: rotate(90deg);
 }
 
-.star-title::after {
-	content: "";
-	display: block;
-	position: absolute;
-	height: 25px;
-	width: 43px;
-	bottom: -37px;
-	left: 50%;
-	transform: translate(-50%);
-	font-size: 20px;
-	background: #FFF url("../images/separator.png") no-repeat center;
-}
 .footer-privacy-policy {
 	font-family: 'Roboto';
 	color: #6F6F6F;
@@ -513,6 +567,10 @@ footer .privacy-policy button{
 	margin-top: 64px;
 }
 .star-title {
+	font-family: 'Roboto';
+	font-size: 36px;
+	color: #4F4F4F;
+	text-align: center;
 	margin-top: 31px;
 	margin-bottom: 76px;
 }
@@ -521,7 +579,7 @@ footer .privacy-policy button{
 	min-height: 304px;
 	border: 1px solid #B0C9CE;
 }
-.card .card-header {
+.prices .card .card-header {
 	background-color: #1D7A8C;
 	font-size: 28px;
 	font-family: 'Roboto';
@@ -533,7 +591,7 @@ footer .privacy-policy button{
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-.card .card-body .euro {
+.prices .card .card-body .euro {
 	font-family: 'Roboto';
 	font-size: 50px;
 	text-align: center;
@@ -541,7 +599,7 @@ footer .privacy-policy button{
 	color: #646464;
 	opacity: 1;
 }
-.card .card-body .card-title {
+.prices .card .card-body .card-title {
 	font-family: 'Roboto';
 	font-size: 50px;
 	text-align: center;
@@ -549,7 +607,7 @@ footer .privacy-policy button{
 	color: #646464;
 	opacity: 1;
 }
-.card .card-body .per-hour {
+.prices .card .card-body .per-hour {
 	font-family: 'Roboto';
 	font-size: 30px;
 	text-align: center;
@@ -557,14 +615,14 @@ footer .privacy-policy button{
 	color: #646464;
 	opacity: 1;
 }
-.card .card-body .card-text {
+.prices .card .card-body .card-text {
 	font-family: 'Roboto';
 	color: #646464;
 	font-size: 16px;
 	text-align: left;
 	padding-right: 93.97px;
 }
-.card-images {
+.prices .card-images {
 	padding-left: 130px;
 	padding-bottom: 10px;
 	text-align: left;
@@ -1025,26 +1083,6 @@ footer .privacy-policy button{
 	color: white;
 }
 
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-	.upcoming-service .sidebar-table .sidebar {
-		width: 100%;
-		height: auto;
-		position: relative;
-	}
-	.upcoming-service .sidebar-table .sidebar a {
-		float: left;
-	}
-}
-  
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-	.upcoming-service .sidebar-table .sidebar a {
-		text-align: center;
-		float: none;
-	}
-}
-
 .upcoming-service .sidebar-table .customer-table {
 	margin-bottom: 15px;
 }
@@ -1090,12 +1128,6 @@ footer .privacy-policy button{
 	border-radius: 17px;
 	background: #FF6B6B;
 	border: 1px solid #FF6B6B;
-}
-
-@media screen and (max-width: 1000px) {
-	.sidebar {
-		display: none;
-	}
 }
 
 /* upcoming-service end page */
@@ -1168,26 +1200,6 @@ footer .privacy-policy button{
 .service-history .sidebar-table .sidebar a:hover:not(.active) {
 	background-color: #146371;
 	color: white;
-}
-
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-	.service-history .sidebar-table .sidebar {
-		width: 100%;
-		height: auto;
-		position: relative;
-	}
-	.service-history .sidebar-table .sidebar a {
-		float: left;
-	}
-}
-  
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-	.service-history .sidebar-table .sidebar a {
-		text-align: center;
-		float: none;
-	}
 }
 
 .service-history .sidebar-table .customer-table {
@@ -1344,11 +1356,7 @@ footer .privacy-policy button{
 	background: #1D7A8C !important;
 }
 
-@media screen and (max-width: 1000px) {
-	.sidebar {
-		display: none;
-	}
-}
+
 
 /* service-history end page */
 
@@ -1418,11 +1426,24 @@ footer .privacy-policy button{
 	padding: 16px;
 }
 
+.admin .sidebar-table .sidebar .accordion .accordion-button:focus {
+    border: none;
+    box-shadow: none;
+}
+
 .admin .sidebar-table .sidebar .accordion .accordion-item .accordion-body {
 	font-family: 'Roboto';
 	font-size: 15px;
 	color: #646464;
 	padding: 0px;
+}
+
+.admin .sidebar-table .sidebar .accordion .accordion-button {
+    background-color: #FFFFFF;
+}
+
+.admin .sidebar-table .sidebar .accordion .accordion-button:not(.collapsed) {
+    background-color: #F9F9F9;
 }
 
 .admin .sidebar-table .sidebar .accordion .accordion-button::after{
@@ -1473,32 +1494,12 @@ footer .privacy-policy button{
 	text-decoration: none;
 }
 
-.admin .sidebar-table a.active {
+.admin .sidebar-table .menu.active {
 	color: #1FB6FF;
 }
 
-.admin .sidebar-table .sidebar a:hover:not(.active) {
+.admin .sidebar-table .sidebar .menu:hover:not(.active) {
 	color: #646464;
-}
-
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-	.admin .sidebar-table .sidebar {
-		width: 100%;
-		height: auto;
-		position: relative;
-	}
-	.admin .sidebar-table .sidebar a {
-		float: left;
-	}
-}
-  
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-	.admin .sidebar-table .sidebar a {
-		text-align: center;
-		float: none;
-	}
 }
 
 .admin .sidebar-table .customer-table {
@@ -1743,3 +1744,167 @@ footer .privacy-policy button{
 }
 
 /* user-management and Service Requests end page */
+
+
+/* book-service start page */
+
+.book-service {
+	margin-bottom: 10px;
+}
+
+.book-service .max-width {
+	max-width: 1560px;
+	margin: auto;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-card {
+	max-width: 360px;
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+	box-shadow: 0px 0px 7px #00000059;
+	opacity: 1;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-header {
+	font-family: 'Roboto';
+	font-size: 18px;
+	text-align: left;
+	color: #FFFFFF;
+	padding: 20px 20px;
+	background: #1D7A8C;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-text1 {
+	font-family: 'Roboto';
+	padding: 20px 20px;
+	border-bottom: 1px solid #C8C8C8;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .text-1 {
+	font-size: 16px;
+	color: #4F4F4F;
+	margin: 0px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-text1 .textline-1 {
+	margin-bottom: 10px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .text-2 {
+	font-size: 18px;
+	color: #646464;
+	margin: 0px 0px;
+}
+.book-service .bookservice-content .bookservice-area .payment-summary .underline {
+	background: #E1E1E1;
+	height: 1px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-text2 {
+	font-family: 'Roboto';
+	padding: 20px 20px;
+	border-bottom: 1px solid #C8C8C8;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .text-3 {
+	font-size: 16px;
+	color: #646464 !important;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-text3 {
+	font-family: 'Roboto';
+	padding: 20px 20px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-text4 {
+	font-family: 'Roboto';
+	padding: 12px 20px;
+	background: #F3F3F3;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .text-4 {
+	font-size: 20px;
+	color: #1D7A8C;
+	margin: 15px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .text-5 {
+	font-size: 42px;
+	color: #1D7A8C;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .text-6 {
+	font-size: 20px;
+	color: #646464;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .text-7 {
+	font-size: 14px;
+	color: #646464;
+	margin: 10px 0px 0px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .text-8 {
+	font-size: 14px;
+	color: #8D8D8D;
+	margin: 0px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .questions {
+	max-width: 360px;
+	margin: 26px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .questions .questions-header {
+	font-family: 'Roboto';
+	font-size: 24px;
+	text-align: center;
+	color: #4F4F4F;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .questions .accordion .accordion-item {
+	border-bottom: 1px solid #E1E1E1;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .questions .accordion .accordion-button {
+	font-family: 'Roboto';
+	font-size: 14px;
+	color: #4F4F4F;
+	padding: 12px 0px 12px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .questions .accordion .accordion-body {
+	font-family: 'Roboto';
+	font-size: 15px;
+	color: #646464;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .accordion .accordion-button::before{
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background-image: url("../images/keyboard-right-arrow-button.png");
+    background-repeat: no-repeat;
+    background-size: 1rem;
+	transform: rotate(-90deg);
+    transition: transform .2s ease-in-out;
+    margin-right: 5px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .accordion .accordion-button::after{
+	display: none;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .accordion .accordion-button:not(.collapsed)::before {
+    transform: rotate(0deg);
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .questions .for-more-help {
+	font-family: 'Roboto';
+	font-size: 16px;
+	text-align: left;
+	color: #1D7A8C;
+	margin: 18px 0px 55px 0px;
+}
+
+/* book-service end page */
