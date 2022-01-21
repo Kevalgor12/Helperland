@@ -512,11 +512,11 @@ footer .privacy-policy button{
 	position: absolute;
 	height: 25px;
 	width: 43px;
-	bottom: -37px;
+	bottom: -38px;
 	left: 50%;
 	transform: translate(-50%);
 	font-size: 20px;
-	background: #FFFFFF url("../images/separator.png") no-repeat center;
+	background: transparent url("../images/separator.png") no-repeat center;
 }
 
 .faq .faq-content .faq-tab .nav-link.active {
@@ -577,7 +577,7 @@ footer .privacy-policy button{
 }
 .prices .max-width {
 	margin: auto;
-	max-width: 1240px;
+	max-width: 1140px;
 }
 .titleimage img {
 	width: 100%;
@@ -649,39 +649,41 @@ footer .privacy-policy button{
 	margin-top: 51px;
 	margin-bottom: 41px;
 }
-.extra-service {
+.prices .extra-service {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 }
-.extra-service .extra-content {
+.prices .extra-service .extra-content {
 	display: inline-block;
+	width: 140px;
 	justify-content: center;
-	padding: 54px 54px;
+	margin: 10px 40px;
 }
-.extra-image {
+.prices .extra-image {
 	width: 108px;
 	height: 108px;
 	display: flex;
 	justify-content: center;
 	border: 1px solid;
 	border-radius: 64px;
-}
-.extra-image img {
 	margin: auto;
 }
-.extra-text {
+.prices .extra-image img {
+	margin: auto;
+}
+.prices .extra-text {
 	text-align: center;
 }
-.extra-content .extra-text-1 {
+.prices .extra-content .extra-text-1 {
 	font-family: 'Roboto';
 	font-size: 16px;
 	color: #646464;
 	text-align: center;
 	opacity: 1;
 }
-.extra-content .extra-text-2 {
+.prices .extra-content .extra-text-2 {
 	font-family: 'Roboto';
 	font-size: 18px;
 	color: #1D7A8C;
@@ -691,7 +693,7 @@ footer .privacy-policy button{
 
 .what-include {
 	background-color: #F6F6F6;
-	padding-bottom: 81px;
+	padding: 42px 0px 73px 0px;
 }
 .what-include-service {
 	text-align: center;
@@ -805,7 +807,7 @@ footer .privacy-policy button{
 .message {
 	max-width: 600px;
 }
-.contact-us input {
+.contact-us .input {
 	font-family: 'Roboto';
 	font-size: 16px;
 	opacity: 1;
@@ -1778,20 +1780,18 @@ footer .privacy-policy button{
 	background: #1D7A8C;
 	font-family: 'Roboto';
 	font-size: 18px;
-	width: auto;
 	color: #FFFFFF;
 	border-radius: 0px;
-	padding: 15px 16px;
+	height: 67px;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .nav-link:not(.active) {
 	background: #F3F3F3;
 	font-family: 'Roboto';
 	font-size: 18px;
-	width: auto;
 	color: #646464;
 	border-radius: 0px;
-	padding: 15px 16px;
+	height: 67px;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .nav-link.active .black {
@@ -1814,6 +1814,96 @@ footer .privacy-policy button{
 	font-family: 'Roboto';
 	font-size: 16px;
 	color: #4F4F4F;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .input-element {
+	width: 160px;
+	height: 35px;
+	font-family: 'Roboto';
+	font-size: 14px;
+	height: 35px;
+	color: #646464;
+	border: 1px solid #E1E1E1;
+	padding: 0px 10px;
+	margin: 16px 10px 0px 0px;
+}
+
+.book-service .extra-service {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.book-service .extra-service .extra-content {
+	display: inline-block;
+	width: 140px;
+	justify-content: center;
+	margin: 16px auto;
+}
+.book-service .extra-image {
+	width: 108px;
+	height: 108px;
+	display: flex;
+	justify-content: center;
+	border: 1px solid;
+	border-radius: 64px;
+	margin: auto;
+}
+.book-service .extra-image img {
+	margin: auto;
+}
+.book-service .extra-text {
+	text-align: center;
+}
+.book-service .extra-content .extra-text-1 {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #646464;
+	text-align: center;
+	opacity: 1;
+}
+.book-service .extra-content .extra-text-2 {
+	font-family: 'Roboto';
+	font-size: 18px;
+	color: #1D7A8C;
+	text-align: center;
+	opacity: 1;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .service-comment {
+	width: 100%;
+	border: 1px solid #C8C8C8;
+	border-radius: 4px;
+	margin: 10px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .checkbox {
+	width: 18px;
+	height: 18px;
+	border: 1px solid #C8C8C8;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .checkbox-text {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .continue-right {
+	text-align: right;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .continue {
+	font-family: 'Roboto';
+	font-size: 20px;
+	color: #FFFFFF;
+	background: #1D7A8C;
+	border-radius: 23px;
+	border: 1px solid #1D7A8C;
+	width: 150px;
+	height: 46px;
+	text-align: center;
+	align-content: right;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .postalcode-check .postalcode {
@@ -1862,7 +1952,7 @@ footer .privacy-policy button{
 	color: #FFFFFF;
 	padding: 15px 15px;
 	background: #1D7A8C;
-	height: 62px;
+	height: 67px;
 }
 
 .book-service .bookservice-content .bookservice-area .payment-summary .payment-text1 {

@@ -51,14 +51,14 @@
 
     <section class="book-service" id="book-service">
         <div class="max-width">
-            <div class="bookservice-content container" style="max-width: 1140px;">
+            <div class="bookservice-content container">
                 <div class="bookservice-header text-center position-relative mb-75">
                     <h1 class="star-title">Set up your cleaning service</h1>
                 </div>
                 <div class="bookservice-area row">
                     <div class="bookservice-details col-md-8 col-sm-12">
                         <div class="faq-tab mb-60">
-                            <ul class="nav nav-pills mb-3 justify-content-center" style="max-width: 750px;" id="pills-tab" role="tablist">
+                            <ul class="nav nav-pills nav-fill mb-3 justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="pills-SetupService-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-SetupService" type="button" role="tab" aria-controls="pills-SetupService" 
@@ -125,10 +125,102 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-5">
-                                            When do you need the cleaner?
+                                            <span class="text-1"><b>When do you need the cleaner?</b></span>
+                                            <div>
+                                                <input class="input-element" type="date" id="formdate" name="formdate" data placeholder="From Date">
+                                                <select name="booktime" id="booktime">
+                                                    <option disabled selected hidden value="">2:00 PM</option>
+                                                    <option value="3:00 PM">3:00 PM</option>
+                                                    <option value="4:00 PM">4:00 PM</option>
+                                                    <option value="5:00 PM">5:00 PM</option>
+                                                    <option value="6:00 PM">6:00 PM</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-md-7">
-                                            How long do you need your cleaner to stay?
+                                            <span class="text-1"><b>How long do you need your cleaner to stay?</b></span>
+                                            <div>
+                                                <select name="servicetime" id="servicetime">
+                                                    <option disabled selected hidden value="">3.0 Hrs</option>
+                                                    <option value="3.0 Hrs">3.0 Hrs</option>
+                                                    <option value="4.0 Hrs">4.0 Hrs</option>
+                                                    <option value="5.0 Hrs">5.0 Hrs</option>
+                                                    <option value="6.0 Hrs">6.0 Hrs</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <span class="text-1"><b>Extra Services</b></span>
+                                        <div class="extra-service">
+                                            <div class="extra-content">
+                                                <div class="extra-image">
+                                                    <img src="assets/images/3.png">
+                                                </div>
+                                                <br>
+                                                <div class="extra-text">
+                                                    <span class="extra-text-1">Inside cabinets</span><br>
+                                                    <span class="extra-text-2">30 minutes</span>
+                                                </div>
+                                            </div>
+                                            <div class="extra-content">
+                                                <div class="extra-image">
+                                                  <img src="assets/images/5.png">
+                                                </div>
+                                                <br>
+                                                <div class="extra-text">
+                                                    <span class="extra-text-1">Inside fridge</span><br>
+                                                    <span class="extra-text-2">30 minutes</span>
+                                                </div>
+                                            </div>
+                                            <div class="extra-content">
+                                                <div class="extra-image">
+                                                    <img src="assets/images/4.png">
+                                                </div>
+                                                <br>
+                                                <div class="extra-text">
+                                                    <span class="extra-text-1">Inside oven</span><br>
+                                                    <span class="extra-text-2">30 minutes</span>
+                                                </div>
+                                            </div>
+                                            <div class="extra-content">
+                                                <div class="extra-image">
+                                                    <img src="assets/images/2.png">
+                                                </div>
+                                                <br>
+                                                <div class="extra-text">
+                                                    <span class="extra-text-1">Laundry wash & dry</span><br>
+                                                    <span class="extra-text-2">30 minutes</span>
+                                                </div>
+                                            </div>
+                                            <div class="extra-content">
+                                                <div class="extra-image">
+                                                    <img src="assets/images/1.png">
+                                                </div>
+                                                <br>
+                                                <div class="extra-text">
+                                                    <span class="extra-text-1">Interior windows</span><br>
+                                                    <span class="extra-text-2">30 minutes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <span class="text-1"><b>Comments</b></span>
+                                        <div>
+                                            <textarea name="comments" class="service-comment" cols="50" rows="5"></textarea>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="terms-conditions" name="terms-conditions" class="checkbox">
+                                            <label class="checkbox-text" for="terms-conditions"> I have pets at home</label><br>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="continue-right">
+                                            <button type="submit" class="continue mt-3"><b>Continue</b></button>
                                         </div>
                                     </div>
                                 </div>
@@ -153,37 +245,37 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8 text-1">Basic</div>
-                                    <div class="col-md-4 text-1">3 Hrs</div>
+                                    <div class="col-8 text-1">Basic</div>
+                                    <div class="col-4 text-1">3 Hrs</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8 text-1">Inside cabinets(extra)</div>
-                                    <div class="col-md-4 text-1">30 Mins</div>
+                                    <div class="col-8 text-1">Inside cabinets(extra)</div>
+                                    <div class="col-4 text-1">30 Mins</div>
                                 </div>
                                 <hr class="underline mt-2 mb-2">
                                 <div class="row">
-                                    <div class="col-md-8 text-1"><b>Total Service Time</b></div>
-                                    <div class="col-md-4 text-3"><b>3.5 Hrs</b></div>
+                                    <div class="col-8 text-1"><b>Total Service Time</b></div>
+                                    <div class="col-4 text-3"><b>3.5 Hrs</b></div>
                                 </div>
                             </div>
                             <div class="payment-text2">
                                 <div class="row">
-                                    <div class="col-md-8 text-1">Per cleaning</div>
-                                    <div class="col-md-4 text-1">$87</div>
+                                    <div class="col-8 text-1">Per cleaning</div>
+                                    <div class="col-4 text-1">$87</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8 text-1">Discount</div>
-                                    <div class="col-md-4 text-1">- $27</div>
+                                    <div class="col-8 text-1">Discount</div>
+                                    <div class="col-4 text-1">- $27</div>
                                 </div>
                             </div>
                             <div class="payment-text3">
                                 <div class="row">
-                                    <div class="text-4 col-md-8">Total Payment</div>
-                                    <div class="text-5 col-md-4"><b>$63</b></div>
+                                    <div class="text-4 col-8">Total Payment</div>
+                                    <div class="text-5 col-4"><b>$63</b></div>
                                 </div>
                                 <div class="row">
-                                    <div class="text-1 col-md-8 pt-1 pb-1">Effective Price</div>
-                                    <div class="text-6 col-md-4"><b>$50.4</b></div>
+                                    <div class="text-1 col-8 pt-1 pb-1">Effective Price</div>
+                                    <div class="text-6 col-4"><b>$50.4</b></div>
                                 </div>
                                 <div class="row">
                                     <span class="text-7"><span class="text-danger"><b>*</b></span>You will save 20% according to §35a EStG.</span>
