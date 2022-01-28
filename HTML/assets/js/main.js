@@ -14,19 +14,13 @@ $(document).ready(function(){
 
     $(window).scroll(function(){
         var scroll = $(window).scrollTop();
-        if (scroll > 50) {
+        if (scroll > 100) {
             $(".homepage").addClass("navbar-bg-color");
         }
   
         else{
             $(".homepage").removeClass("navbar-bg-color");
         }
-    });
-
-    $(".sub-menu ul").hide();
-    $(".sub-menu a").click(function () {
-        $(this).parent(".sab-menu").children("ul").slideToggle("100");
-        $(this).find(".arrow-icon").parent("a").parent("li").toggleClass("open");
     });
 
     $('#table').DataTable({

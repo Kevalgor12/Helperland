@@ -20,10 +20,10 @@
   <nav class="homepage navbar fixed-top navbar-expand-xl navbar-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="assets/images/logo-large.png" alt="logo">
+        <img class="img-fluid" src="assets/images/logo-large.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa fa-bars" aria-hidden="true"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -137,7 +137,7 @@
       <div class="helperland-content">
         <b class="text-1">Why Helperland</b>
       </div>
-      <div class="helperland-images row justify-content-center">
+      <div class="helperland-images row justify-content-center me-0 ms-0">
         <div class="col-sm-12 col-md-6 col-lg-4 mb-5">
           <img class="img-fluid" src="assets/images/helper-img-2.png">
           <h3>Experience & Vetted <br> Professionals</h3>
@@ -164,9 +164,11 @@
   </section>
 
   <section class="blog" id="blog">
+    <img class="blog-img-left" src="assets/images/blog-left-bg.png" alt="">
+    <img class="blog-img-right" src="assets/images/blog-right-bg.png" alt="">
     <div class="max-width">
       <div class="row">
-        <div class="blog-content col-lg-7" style="padding: 0px 50px;">
+        <div class="blog-content col-lg-7">
           <p class="lorem"><b>Lorem ipsum dolor sit amet, consectetur</b></p>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisi sapien, suscipit ut accumsan vitae, pulvinar ac libero.
@@ -282,57 +284,53 @@
             </div>
           </div>
         </div>
-        <div>
-          <p class="newsletter"><b>GET OUR NEWSLETTER</b></p>
-        </div>
-        <div class="text-center">
-          <input type="text" name="email" placeholder="YOUR EMAIL" class="mb-3">
-          <button type="submit" class="get-news-submit ms-2">Submit</button>
-        </div>
       </div>
     </div>
-  </section>
-  <!-- <footer class="footer">
-    <div class="footer-text">
-      <p class="footer-lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <span>Privacy Policy </span></p>
+    <div>
+      <p class="newsletter">GET OUR NEWSLETTER</p>
     </div>
-  </footer> -->
+    <div class="text-center">
+      <input type="text" name="email" placeholder="YOUR EMAIL" class="your-email mb-3">
+      <button type="submit" class="get-news-submit">Submit</button>
+    </div>
+  </section>
+
   <footer>
     <div class="footer-max-width">
-        <div class="logo">
-            <img src="assets/images/footer-logo.png" alt="">
-        </div>
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="#">HOME</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">ABOUT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">TESTIMONIALS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">FAQS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">INSURANCE POLICY</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">IMPRESSUM</a>
-            </li>
-        </ul>
-        <div class="socil-icon d-flex flex-wrap justify-content-center">
-            <a href="#" class="mb-2"><img src="assets/images/ic-facebook.png" alt="facebook"></a>
-            <a href=""><img src="assets/images/ic-instagram.png" alt="instagram"></a>
-        </div>
+      <div class="logo">
+        <img src="assets/images/footer-logo.png" alt="">
+      </div>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">ABOUT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">TESTIMONIALS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">FAQS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">INSURANCE POLICY</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">IMPRESSUM</a>
+        </li>
+      </ul>
+      <div class="social-icon d-flex flex-wrap">
+        <a href="#" class="mb-2"><img src="assets/images/ic-facebook.png" alt="facebook"></a>
+        <a href=""><img src="assets/images/ic-instagram.png" alt="instagram"></a>
+      </div>
     </div>
-    <div class="privacy-policy d-flex align-items-center">
-        <p class="mb-0 ms-auto">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi ipsa laborum excepturi maiores.
-        </p>
-        <span class="me-auto">&nbspPrivacy Policy</span>
-        <button class="me-2">OK</button>
+    <div class="privacy-policy d-flex flex-wrap align-items-center justify-content-center">
+      <p class="mb-0 mx-auto">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi ipsa laborum excepturi maiores.
+        <span>&nbspPrivacy Policy</span>
+      </p>
+      <button>OK!</button>
     </div>
   </footer>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
