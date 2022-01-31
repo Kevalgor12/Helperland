@@ -911,7 +911,16 @@ footer .privacy-policy button{
 	width: 100%;
 	height: 46px;
 	margin-top: 5px;
-	color: #A0A0A0;
+	border: 1px solid #C8C8C8;
+}
+.contact-us .message .input-group {
+	font-family: 'Roboto';
+	font-size: 16px;
+	opacity: 1;
+	letter-spacing: 0px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	height: 46px;
 }
 .contact-us .message select {
 	font-family: 'Roboto';
@@ -922,7 +931,9 @@ footer .privacy-policy button{
 	width: 100%;
 	height: 46px;
 	margin-top: 5px;
-	color: #A0A0A0;
+	color: #707581;
+	border: 1px solid #C8C8C8;
+	border-radius: 4px;
 }
 .contact-us .message textarea {
 	font-family: 'Roboto';
@@ -933,7 +944,8 @@ footer .privacy-policy button{
 	width: 100%;
 	height: 146px;
 	margin-top: 5px;
-	color: #A0A0A0;
+	border: 1px solid #C8C8C8;
+	border-radius: 4px;
 }
 .contact-us .message .submit {
 	font-family: 'Roboto';
@@ -1051,6 +1063,12 @@ footer .privacy-policy button{
 	color: #A0A0A0;
 }
 
+.service-provider .max-width .service-content .register-inputs .terms {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #1FB6FF !important;
+}
+
 .service-provider .max-width .service-content .register-inputs button {
 	width: 166px;
 	height: 46px;
@@ -1063,7 +1081,7 @@ footer .privacy-policy button{
 	margin: 10px 0px;
 	color: #FFFFFF;
 	background-color: #1D7A8C;
-	border-color: solid #1D7A8C;
+	border: 1px solid #1D7A8C;
 	border-radius: 23px;
 }
 

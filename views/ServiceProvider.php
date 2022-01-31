@@ -30,7 +30,7 @@
                     <input type="checkbox" id="sendnewsletter" name="sendnewsletter" class="checkbox">
                     <label for="sendnewsletter"> Send me newsletters from Helperland</label><br>
                     <input type="checkbox" id="terms-conditions" name="terms-conditions" class="checkbox">
-                    <label for="terms-conditions"> I accept terms and conditions & privacy policy</label><br>
+                    <label for="terms-conditions"> I accept <span class="terms"> terms and conditions </span> & <span class="terms"> privacy policy </span> </label><br>
                     <button>Get Started <img src="../assets/images/arrow-white.png" alt="arrow"> </button>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     <div class="col-md-6 text-set">
                         <h3>Register yourself</h3>
                         <p class="register-text">
-                            Provide your basic information to register <br>
+                            Provide your basic information to register 
                             yourself as a service provider.
                         </p>
                         <p class="register-text">
@@ -68,7 +68,7 @@
                     <div class="col-md-6 text-set">
                         <h3>Get service requests</h3>
                         <p class="register-text">
-                            You will get service requests from <br>
+                            You will get service requests from 
                             customes depend on service area and profile.
                         </p>
                         <p class="register-text">
@@ -80,7 +80,7 @@
                     <div class="col-md-6 text-set">
                         <h3>Complete service</h3>
                         <p class="register-text">
-                            Accept service requests from your customers <br>
+                            Accept service requests from your customers 
                             and complete your work.
                         </p>
                         <p class="register-text">

@@ -1,3 +1,7 @@
+<?php
+  $base_url = "http://localhost/Helperland/";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,30 +67,45 @@
                 </div>
             </div>
             <div class="message mx-auto">
-                <div class="row me-0 ms-0">
-                    <div class="col-md-6"><input type="text" class="input" id="fname" name="fname" placeholder="First name"></div>
-                    <div class="col-md-6"><input type="text" class="input" id="lname" name="lname" placeholder="Last name"></div>
-                </div>
-                <div class="row me-0 ms-0">
-                    <div class="col-md-6"><input type="text" class="input id="number" name="number" placeholder="Mobile number"></div>
-                    <div class="col-md-6"><input type="email" class="input id="email" name="email" placeholder="Email address"></div>
-                </div>
-                <div class="row me-0 ms-0">
-                    <div class="col-md-12">
-                        <select name="subject" id="subject">
-                            <option value="" disabled selected hidden>Subject</option>
-                            <option value="Gujarati">Gujarati</option>
-                            <option value="Maths">Maths</option>
-                            <option value="Science">Science</option>
-                        </select>
+                <form method="POST" autocomplete="off" action="http://localhost/Helperland/?controller=Helperland&function=insert_contactus">
+                    <div class="row me-0 ms-0">
+                        <div class="col-md-6">
+                            <input type="text" class="input form-control" id="fname" name="FirstName" placeholder="First name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="input form-control" id="lname" name="LastName" placeholder="Last name" required>
+                        </div>
                     </div>
-                </div>
-                <div class="row me-0 ms-0">
-                    <div class="col-md-12"><textarea id="sendmessage" name="sendmessage" rows="4" placeholder="Message"></textarea></div>
-                </div>
-                <div class="row me-0 ms-0">
-                    <button class="submit mx-auto"><b>Submit</b></button>
-                </div>
+                    <div class="row me-0 ms-0">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">+49</span>
+                                <input type="text" class="form-control" id="number" name="PhoneNumber" placeholder="Mobile number" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="input form-control" id="email" name="Email" placeholder="Email address" required>
+                        </div>
+                    </div>
+                    <div class="row me-0 ms-0">
+                        <div class="col-md-12">
+                            <select name="Subject" id="subject" required>
+                                <option value="" disabled selected hidden>Subject</option>
+                                <option value="Gujarati">Gujarati</option>
+                                <option value="Maths">Maths</option>
+                                <option value="Science">Science</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row me-0 ms-0">
+                        <div class="col-md-12">
+                            <textarea class="form-control" id="sendmessage" name="Message" rows="4" placeholder="Message" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row me-0 ms-0">
+                        <button class="submit mx-auto"><b>Submit</b></button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="mapimage">
