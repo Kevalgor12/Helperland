@@ -215,17 +215,17 @@ class HelperlandController{
     {
         if(isset($_POST['submit']))
         {
-            if(($_POST['password'] == "") || ($_POST['confirm-password'] == ""))
+            if(($_POST['password'] == "") && ($_POST['confirm-password'] == ""))
             {
                 echo 'fill the details';
             }
             else
             {
                 $base_url = "http://localhost/Helperland/";
+                $email = $_SESSION['email'];
 
                 if($_POST['password'] == $_POST['confirm-password'])
                 {
-                    $email = $_SESSION['email'];
                     $password = $_POST['password'];
                     $this->model->reset_password('user', $email, $password);
                     header('location:' . $base_url);
