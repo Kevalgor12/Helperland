@@ -1,4 +1,4 @@
-    <footer>
+<footer>
         <div class="footer-max-width">
             <div class="logo">
                 <img src="http://localhost/Helperland/assets/images/footer-logo.png" alt="">
@@ -28,17 +28,19 @@
                 <a href=""><img src="http://localhost/Helperland/assets/images/ic-instagram.png" alt="instagram"></a>
             </div>
         </div>
-        <div class="privacy-policy d-flex flex-wrap align-items-center justify-content-center">
-            <p class="mb-0 mx-auto">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi ipsa laborum excepturi maiores.
-                <span>&nbspPrivacy Policy</span>
+        <hr class="footer-underline">
+        <div class="footer-privacy-policy">
+            <p class="mb-0">
+                ©2018 Helperland All rights reserved. Terms and conditions | Privacy Policy
             </p>
-            <button>OK!</button>
         </div>
     </footer>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
     <script src="http://localhost/Helperland/assets/js/main.js"></script>
+    <script src="http://localhost/Helperland/assets/js/datatable.js"></script>
 </body>
 </html>

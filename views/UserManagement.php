@@ -7,7 +7,7 @@
     <title>User Management</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/Helperland/assets/css/style.css">
 </head>
 <body>
     
@@ -99,7 +99,7 @@
                 <div class="customer-table">
                     <div class="row">
                         <div class="col-md-6 admin-text"><b>User Management</b></div>
-                        <div class="col-md-6 addnew-btn-text"><button class="button-addnew"><img src="../assets/images/add.png" alt=""> Add New User</button></div>
+                        <div class="col-md-6 addnew-btn-text"><button class="button-addnew"><img src="http://localhost/Helperland/assets/images/add.png" alt=""> Add New User</button></div>
                     </div>
                     <div class="row user-inputs">
                         <ul class="nav">
@@ -162,7 +162,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -184,7 +184,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -207,7 +207,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -229,7 +229,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -252,7 +252,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -274,7 +274,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -297,7 +297,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -320,7 +320,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -342,7 +342,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -365,7 +365,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -388,7 +388,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -410,7 +410,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -433,7 +433,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -455,7 +455,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../assets/images/group-38.png" alt="">
+                                            <img src="http://localhost/Helperland/assets/images/group-38.png" alt="">
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
@@ -478,6 +478,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="http://localhost/Helperland/assets/js/main.js"></script>
+    <script src="http://localhost/Helperland/assets/js/datatable.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Provider>Become-a-pro</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/Helperland/assets/css/style.css">
 </head>
 <body>
     
@@ -21,21 +21,35 @@
                     <h4>Register Now!</h4>
                 </div>
                 <div class="register-inputs me-0 ms-0">
-                    <input type="text" id="fname" name="fname" placeholder="First name">
-                    <input type="text" id="lname" name="lname" placeholder="Last name">
-                    <input type="email" id="email" name="email" placeholder="Email Address">
-                    <input type="text" id="number" name="number" placeholder="Phone Number">
-                    <input type="password" id="password" name="password" placeholder="Password">
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
-                    <input type="checkbox" id="sendnewsletter" name="sendnewsletter" class="checkbox">
-                    <label for="sendnewsletter"> Send me newsletters from Helperland</label><br>
-                    <input type="checkbox" id="terms-conditions" name="terms-conditions" class="checkbox">
-                    <label for="terms-conditions"> I accept <span class="terms"> terms and conditions </span> & <span class="terms"> privacy policy </span> </label><br>
-                    <button>Get Started <img src="../assets/images/arrow-white.png" alt="arrow"> </button>
+                    <form method="POST" autocomplete="off" action="http://localhost/Helperland/?controller=Helperland&function=insert_serviceprovider">
+                        <input type="text" id="fname" name="fname" placeholder="First name" required>
+                        <input type="text" id="lname" name="lname" placeholder="Last name" required>
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
+                        <input type="text" id="number" name="mobile" placeholder="Phone Number" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+                        <div class="checkbox-content">
+                            <div>
+                                <input type="checkbox" id="sendnewsletter" name="sendnewsletter" class="checkbox" required>
+                            </div>
+                            <div>
+                                <label for="sendnewsletter"> Send me newsletters from Helperland</label><br>
+                            </div>
+                        </div>
+                        <div class="checkbox-content">
+                            <div>
+                                <input type="checkbox" id="terms-conditions" name="terms-conditions" class="checkbox" required>
+                            </div>
+                            <div>
+                                <label for="terms-conditions"> I accept <span class="terms"> terms and conditions </span> & <span class="terms"> privacy policy </span> </label><br>
+                            </div>
+                        </div>
+                        <button name="submit">Get Started <img src="http://localhost/Helperland/assets/images/arrow-white.png" alt="arrow"> </button>
+                    </form>
                 </div>
             </div>
             <div class="arrow">
-                <img src="../assets/images/group-18_5.png">
+                <img src="http://localhost/Helperland/assets/images/group-18_5.png">
             </div>
         </div>
     </section>
@@ -46,49 +60,49 @@
                 <h2>How it works</h2>
             </div>
             <div class="howitworks-content">
-                <div class="row">
-                    <div class="col-md-6 text-set">
+                <div class="img-text-set">
+                    <div class="text-set">
                         <h3>Register yourself</h3>
                         <p class="register-text">
                             Provide your basic information to register 
                             yourself as a service provider.
                         </p>
                         <p class="register-text">
-                            Read more <img src="../assets/images/shape-2-copy-3.png" alt="">
+                            Read more <img src="http://localhost/Helperland/assets/images/shape-2-copy-3.png" alt="">
                         </p>
                     </div>
-                    <div class="col-md-6 img-left">
-                        <img src="../assets/images/how_it_works1.png" alt="img1">
+                    <div class="text-set">
+                        <img class="img-fluid" src="http://localhost/Helperland/assets/images/how_it_works1.png" alt="img1">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <img src="../assets/images/how_it_works2.png" alt="">
-                    </div>
-                    <div class="col-md-6 text-set">
+                <div class="img-text-set row-reverse">
+                    <div class="text-set">
                         <h3>Get service requests</h3>
                         <p class="register-text">
                             You will get service requests from 
                             customes depend on service area and profile.
                         </p>
                         <p class="register-text">
-                            Read more <img src="../assets/images/shape-2-copy-3.png" alt="">
+                            Read more <img src="http://localhost/Helperland/assets/images/shape-2-copy-3.png" alt="">
                         </p>
                     </div>
+                    <div class="text-set">
+                        <img class="img-fluid" src="http://localhost/Helperland/assets/images/how_it_works2.png" alt="">
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 text-set">
+                <div class="img-text-set">
+                    <div class="text-set">
                         <h3>Complete service</h3>
                         <p class="register-text">
                             Accept service requests from your customers 
                             and complete your work.
                         </p>
                         <p class="register-text">
-                            Read more <img src="../assets/images/shape-2-copy-3.png" alt="">
+                            Read more <img src="http://localhost/Helperland/assets/images/shape-2-copy-3.png" alt="">
                         </p>
                     </div>
-                    <div class="col-md-6 img-left">
-                        <img src="../assets/images/how_it_works3.png" alt="">
+                    <div class="text-set">
+                        <img class="img-fluid" src="http://localhost/Helperland/assets/images/how_it_works3.png" alt="">
                     </div>
                 </div>
             </div>

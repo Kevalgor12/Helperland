@@ -38,10 +38,223 @@
     pointer-events: auto;
 }
 
-.max-width{
-	max-width: 1560px;
-	margin: auto;
+.modal-dialog {
+	max-width: 400px;
+	margin: 20px auto;
 }
+
+.modal .modal-dialog .modal-content .modal-header {
+	font-family: 'Roboto';
+	color: #646464;
+	padding: 15px 30px;
+}
+
+.modal .modal-dialog .modal-content .modal-body {
+	padding: 15px 30px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .input-group {
+	font-family: 'Roboto';
+	font-size: 16px;
+	opacity: 1;
+	letter-spacing: 0px;
+	margin: 20px 0px;
+	height: 48px;
+	border: 1px solid #C8C8C8;
+	border-radius: 4px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .input-group input {
+	font-family: 'Roboto';
+	font-size: 16px;
+	opacity: 1;
+	letter-spacing: 0px;
+	padding-left: 10px;
+	height: 46px;
+	border: none;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .input-group .input-group-text {
+	background: transparent;
+	border: none;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .checkbox-content {
+	display: flex;
+	text-align: left;
+	margin: 20px 0px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .checkbox-content .checkbox {
+	width: 20px;
+	height: 20px;
+	margin-top: 2px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .checkbox-content label {
+	height: 20px;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	padding-left: 10px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-login {
+	width: 100%;
+	height: 50px;
+	font-family: 'Roboto';
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+	background: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	border-radius: 25px;
+	margin-bottom: 20px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .modal-footer-text p {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #646464;
+	text-align: center;
+	margin: 2px 0px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .modal-footer-text p .text-color {
+	color: #1D7A8C;
+	text-decoration: none;
+}
+
+
+/* CreateNewAccount page start */
+
+.create-account {
+	padding-top: 64px;
+}
+.create-account .max-width {
+	max-width: 1240px;
+}
+.create-account .max-width .new-account-details {
+	max-width: 800px;
+	margin-bottom: 40px;
+}
+.create-account .max-width .new-account-details .row {
+	margin: 0px 0px;
+}
+.create-account .max-width .new-account-details .space-bottom {
+	margin-bottom: 20px;
+}
+.create-account .max-width .new-account-details .input {
+	font-family: 'Roboto';
+	font-size: 16px;
+	opacity: 1;
+	letter-spacing: 0px;
+	padding-left: 10px;
+	width: 100%;
+	height: 46px;
+	border: 1px solid #C8C8C8;
+}
+.create-account .max-width .new-account-details .input-group {
+	font-family: 'Roboto';
+	font-size: 16px;
+	opacity: 1;
+	letter-spacing: 0px;
+	height: 46px;
+}
+.create-account .max-width .new-account-details .checkbox-content {
+	display: flex;
+	text-align: left;
+}
+.create-account .max-width .new-account-details .checkbox-content .checkbox {
+	width: 20px;
+	height: 20px;
+	margin-top: 3px;
+}
+.create-account .max-width .new-account-details .checkbox-content label {
+	height: 20px;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	padding-left: 10px;
+}
+.create-account .max-width .new-account-details .text-color {
+	color: #1D7A8C;
+	text-decoration: none;
+}
+.create-account .max-width .new-account-details .submit {
+	font-family: 'Roboto';
+	font-size: 20px;
+	opacity: 1;
+	letter-spacing: 0px;
+	width: 163px;
+	height: 46px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border-radius: 23px;
+	border: 1px solid #1D7A8C;
+}
+.create-account .max-width .new-account-details p {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #646464;
+	text-align: center;
+}
+
+/* CreateNewAccount page end */
+
+
+/* ResetPassword page start */
+
+.reset-password {
+	padding-top: 64px;
+}
+
+.reset-password .max-width {
+	max-width: 1240px;
+}
+
+.reset-password .max-width .reset-password-details {
+	max-width: 300px;
+	margin-bottom: 40px;
+}
+.reset-password .max-width .reset-password-details .row {
+	padding: 0px 12px;
+}
+.reset-password .max-width .reset-password-details .row label {
+	font-family: 'Roboto';
+	font-size: 16px;
+	opacity: 1;
+	letter-spacing: 0px;
+	width: 100%;
+	padding: 5px 0px;
+}
+.reset-password .max-width .reset-password-details .row .input {
+	font-family: 'Roboto';
+	font-size: 16px;
+	opacity: 1;
+	letter-spacing: 0px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	width: 100%;
+	height: 46px;
+	border: 1px solid #C8C8C8;
+}
+.reset-password .max-width .reset-password-details .row .submit {
+	font-family: 'Roboto';
+	font-size: 20px;
+	opacity: 1;
+	letter-spacing: 0px;
+	width: 100px;
+	height: 46px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border-radius: 23px;
+	border: 1px solid #1D7A8C;
+}
+
+/* ResetPassword page end */
+
 
 .container-fluid {
 	padding: 0 0;
@@ -137,7 +350,7 @@
 		overflow-y: auto;
 	}
 	.navbar .navbar-nav li {
-		margin: 5px 0px;
+		margin: 2px 0px;
 	}
 	.navbar .navbar-nav li a {
 		padding: 0px;
@@ -180,7 +393,10 @@
 
 .home{
 	background: url("../images/Landing-Page-background-image.png") no-repeat center;
-	min-height: 100vh;
+	background-attachment: fixed;
+	height: 100vh;
+	min-height: 930px;
+	overflow: hidden;
     background-size: cover;
 	color: white;
 	font-family: 'Roboto';
@@ -197,6 +413,19 @@
 	margin-bottom: 15px;
 	padding-top: 260px;
 }
+@media (max-width: 576px) {
+	.home .home-content {
+		margin-left: 0px;
+		margin-bottom: 15px;
+		padding-top: 260px;
+	}
+	.home .home-content .text-1{
+		text-align: center !important;
+	}
+	.home .home-content .text-2{
+		text-align: center !important;
+	}
+}
 .home .home-content .text-1{
 	font-size: 50px;
 	text-align: left;
@@ -207,6 +436,7 @@
 }
 .home .button{
 	text-align: center;
+	margin-top: 70px;
 }
 .home .button-cleaner{
 	background-color: #005F7199;
@@ -259,7 +489,7 @@
 	}
 }
 .arrow {
-	padding: 42px 0px;
+	padding: 50px 0px;
 }
 
 .why-helperland{
@@ -919,7 +1149,6 @@ footer .privacy-policy button{
 	opacity: 1;
 	letter-spacing: 0px;
 	margin-top: 5px;
-	margin-bottom: 0px;
 	height: 46px;
 }
 .contact-us .message select {
@@ -1030,37 +1259,41 @@ footer .privacy-policy button{
 	padding: 15px 0px;
 }
 
+.service-provider .max-width .service-content .register-inputs .checkbox-content {
+	text-align: left;
+	margin: 0 0;
+	display: flex;
+}
+
 .service-provider .max-width .service-content .register-inputs input {
 	font-family: 'Roboto';
 	font-size: 16px;
+	color: #4F4F4F;
 	opacity: 1;
 	letter-spacing: 0px;
 	padding-left: 10px;
 	width: 100%;
 	height: 46px;
 	margin: 10px 0px;
-	color: #A0A0A0;
 }
 
 .service-provider .max-width .service-content .register-inputs .checkbox {
 	width: 20px;
 	height: 20px;
 	margin: 10px 0px;
-	color: #A0A0A0;
 	text-align: left;
 }
 
 .service-provider .max-width .service-content .register-inputs label {
-	width: 335px;
 	height: 20px;
 	text-align: left;
 	font-family: 'Roboto';
 	font-size: 16px;
 	opacity: 1;
 	letter-spacing: 0px;
-	padding-left: 5px;
+	padding-left: 10px;
 	margin: 10px 0px;
-	color: #A0A0A0;
+	color: #4F4F4F;
 }
 
 .service-provider .max-width .service-content .register-inputs .terms {
@@ -1086,16 +1319,9 @@ footer .privacy-policy button{
 }
 
 .howitworks .max-width {
-	max-width: 760px;
+	max-width: 850px;
 	margin: auto;
-}
-
-.howitworks .max-width .howitworks-content {
-	margin : 50px 0px;
-}
-
-.howitworks .max-width .howitworks-content .img-left {
-	text-align: right;
+	padding: 0 12px;
 }
 
 .howitworks .max-width .howitworks-header {
@@ -1105,11 +1331,44 @@ footer .privacy-policy button{
 	margin: 50px 0px;
 }
 
-.howitworks .max-width .text-set {
-	margin: 50px 0px;
+.howitworks .max-width .howitworks-content {
+	margin : 50px 0px;
 }
 
-.howitworks .max-width .register-text {
+.howitworks .max-width .howitworks-content .img-text-set {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.howitworks .max-width .howitworks-content .img-text-set.row-reverse {
+	flex-direction: row-reverse;
+}
+
+.howitworks .max-width .howitworks-content .img-text-set .text-set {
+	display: inline-block;
+	justify-content: space-between;
+	margin: 20px 50px;
+}
+
+@media (max-width: 768px) {
+	.howitworks .max-width .howitworks-content .img-text-set {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: column-reverse;
+	}
+
+	.howitworks .max-width .howitworks-content .img-text-set.row-reverse {
+		flex-direction: column-reverse;
+	}
+
+	.howitworks .max-width .howitworks-content .img-text-set .text-set {
+		text-align: center;
+	}
+}
+
+.howitworks .max-width .howitworks-content .text-set .register-text {
 	font-family: 'Roboto';
 	font-size: 18px;
 	color: #4f4f4f;
@@ -1211,10 +1470,6 @@ footer .privacy-policy button{
 	color: white;
 }
 
-.upcoming-service .sidebar-table .customer-table {
-	margin-bottom: 15px;
-}
-
 .upcoming-service .sidebar-table .table {
 	width: 845px;
 	border: 1.2px solid #E1E1E1 !important;
@@ -1233,6 +1488,27 @@ footer .privacy-policy button{
 .upcoming-service .sidebar-table .table.dataTable thead .sorting{
     background-image: none !important;
     background-size: 12px;
+}
+
+.upcoming-service .sidebar-table .customer-table table.dataTable thead .sorting .sort-img{
+    content: url(../images/sort.png);
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+}
+
+.upcoming-service .sidebar-table .customer-table table.dataTable thead .sorting_asc .sort-img{
+    content: url(../images/upsort.jpg);
+    width: 7px;
+    height: 14px;
+    margin-left: 5px;
+}
+
+.upcoming-service .sidebar-table .customer-table table.dataTable thead .sorting_desc .sort-img{
+    content: url(../images/downsort.jpg);
+    width: 7px;
+    height: 14px;
+    margin-left: 12px;
 }
 
 .upcoming-service .sidebar-table .table tbody tr td {
@@ -1303,7 +1579,7 @@ footer .privacy-policy button{
 .service-history .sidebar-table .sidebar {
 	margin: 0;
 	padding: 0;
-	width: 262px;
+	min-width: calc(262px);
 	text-align: left;
 	background-color: #1D7A8C;
 	margin-right: 31px;
@@ -1330,13 +1606,13 @@ footer .privacy-policy button{
 	color: white;
 }
 
-.service-history .sidebar-table .customer-table {
-	margin-bottom: 15px;
+.service-history .sidebar-table .table {
+	border: 1.2px solid #E1E1E1 !important;
 }
 
-.service-history .sidebar-table .table {
-	width: 845px;
-	border: 1.2px solid #E1E1E1 !important;
+.service-history .sidebar-table .customer-table {
+	padding: 0px 20px;
+	width: 100%;
 }
 
 .service-history .sidebar-table .customer-table .row {
@@ -1381,21 +1657,21 @@ footer .privacy-policy button{
     background-size: 12px;
 }
 
-.customer-table table.dataTable thead .sorting .sort-img{
+.service-history .sidebar-table .customer-table table.dataTable thead .sorting .sort-img{
     content: url(../images/sort.png);
     width: 14px;
     height: 14px;
     margin-left: 5px;
 }
 
-.customer-table table.dataTable thead .sorting_asc .sort-img{
+.service-history .sidebar-table .customer-table table.dataTable thead .sorting_asc .sort-img{
     content: url(../images/upsort.jpg);
     width: 7px;
     height: 14px;
     margin-left: 5px;
 }
 
-.customer-table table.dataTable thead .sorting_desc .sort-img{
+.service-history .sidebar-table .customer-table table.dataTable thead .sorting_desc .sort-img{
     content: url(../images/downsort.jpg);
     width: 7px;
     height: 14px;

@@ -13,13 +13,13 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <img src="../assets/images/user.png" alt="user">
+                        <img src="http://localhost/Helperland/assets/images/user.png" alt="user">
                         <label class="username-text" for="text">James Smith</label>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <img src="../assets/images/logout.png" alt="bell-icon">
+                        <img src="http://localhost/Helperland/assets/images/logout.png" alt="bell-icon">
                     </a>
                 </li>
             </ul>

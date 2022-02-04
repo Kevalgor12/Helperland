@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prices</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/Helperland/assets/css/style.css">
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 ?>
 
     <section class="titleimage">
-        <img src="../assets/images/group-18.png" alt="price-image">
+        <img src="http://localhost/Helperland/assets/images/group-18.png" alt="price-image">
     </section>
 
     <section class="prices" id="prices">
@@ -37,19 +37,19 @@
                     </div>
                     <div class="card-images">
                         <div class="card-bullet-img">
-                            <img src="../assets/images/forma-1_5.png" alt="bullet">
+                            <img src="http://localhost/Helperland/assets/images/forma-1_5.png" alt="bullet">
                             <span class="card-text"> Lower prices</span>
                         </div>
                     </div>
                     <div class="card-images">
                         <div class="card-bullet-img">
-                            <img src="../assets/images/forma-1_5.png" alt="bullet">
+                            <img src="http://localhost/Helperland/assets/images/forma-1_5.png" alt="bullet">
                             <span class="card-text"> Easy online & secure payment</span>
                         </div>
                     </div>
                     <div class="card-images">
                         <div class="card-bullet-img">
-                            <img src="../assets/images/forma-1_5.png" alt="bullet">
+                            <img src="http://localhost/Helperland/assets/images/forma-1_5.png" alt="bullet">
                             <span class="card-text"> Easy amendment</span>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
             <div class="extra-service">
                 <div class="extra-content">
                     <div class="extra-image">
-                        <img src="../assets/images/3.png">
+                        <img src="http://localhost/Helperland/assets/images/3.png">
                     </div>
                     <br>
                     <div class="extra-text">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="extra-content">
                     <div class="extra-image">
-                      <img src="../assets/images/5.png">
+                      <img src="http://localhost/Helperland/assets/images/5.png">
                     </div>
                     <br>
                     <div class="extra-text">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="extra-content">
                     <div class="extra-image">
-                        <img src="../assets/images/4.png">
+                        <img src="http://localhost/Helperland/assets/images/4.png">
                     </div>
                     <br>
                     <div class="extra-text">
@@ -94,7 +94,7 @@
                 </div>
                 <div class="extra-content">
                     <div class="extra-image">
-                        <img src="../assets/images/2.png">
+                        <img src="http://localhost/Helperland/assets/images/2.png">
                     </div>
                     <br>
                     <div class="extra-text">
@@ -104,7 +104,7 @@
                 </div>
                 <div class="extra-content">
                     <div class="extra-image">
-                        <img src="../assets/images/1.png">
+                        <img src="http://localhost/Helperland/assets/images/1.png">
                     </div>
                     <br>
                     <div class="extra-text">
@@ -124,75 +124,75 @@
             <div class="what-include-service">
                 <div class="what-include-content">
                     <div class="what-include-image">
-                        <img class="img-fluid" src="../assets/images/group-18_3.png">
+                        <img class="img-fluid" src="http://localhost/Helperland/assets/images/group-18_3.png">
                     </div>
                     <br>
                     <div class="what-include-text">
                         <p class="what-include-text-1"><b>Bedroom and Living Room</b></p>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Dust all accessible surfaces
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Dust all accessible surfaces
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Wipe down all mirrors and glass fixtures
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Wipe down all mirrors and glass fixtures
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Clean all floor surfaces
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Clean all floor surfaces
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Take out garbage and recycling
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Take out garbage and recycling
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="what-include-content">
                     <div class="what-include-image">
-                        <img class="img-fluid" src="../assets/images/group-18_4.png">
+                        <img class="img-fluid" src="http://localhost/Helperland/assets/images/group-18_4.png">
                     </div>
                     <br>
                     <div class="what-include-text">
                         <p class="what-include-text-1"><b>Bathrooms</b></p>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Wash and sanitize the toilet, shower, tub, sink
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Wash and sanitize the toilet, shower, tub, sink
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Dust all accessible surfaces
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Dust all accessible surfaces
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Wipe down all mirrors and glass fixtures
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Wipe down all mirrors and glass fixtures
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Clean all floor surfaces
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Clean all floor surfaces
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Take out garbage and recycling
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Take out garbage and recycling
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="what-include-content">
                     <div class="what-include-image">
-                        <img class="img-fluid" src="../assets/images/group-18_2.png">
+                        <img class="img-fluid" src="http://localhost/Helperland/assets/images/group-18_2.png">
                     </div>
                     <br>
                     <div class="what-include-text">
                         <p class="what-include-text-1"><b>Kitchen</b></p>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Dust all accessible surfaces
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Dust all accessible surfaces
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Empty sink and load up dishwasher
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Empty sink and load up dishwasher
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Wipe down exterior of stove, oven and fridge
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Wipe down exterior of stove, oven and fridge
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Clean all floor surfaces
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Clean all floor surfaces
                             </li>
                             <li class="what-include-text-2">
-                                <img src="../assets/images/right-arrow-grey.png" alt=""> Take out garbage and recycling
+                                <img src="http://localhost/Helperland/assets/images/right-arrow-grey.png" alt=""> Take out garbage and recycling
                             </li>
                         </ul>
                     </div>
@@ -223,7 +223,7 @@
                     </div>
                 </div>
                 <div class="price-why-helperland-text col-lg-4">
-                    <img class="img-fluid" src="../assets/images/the-best-img-1.png" alt="">
+                    <img class="img-fluid" src="http://localhost/Helperland/assets/images/the-best-img-1.png" alt="">
                 </div>
                 <div class="price-why-helperland-text col-lg-4">
                     <div class="why-text-right">

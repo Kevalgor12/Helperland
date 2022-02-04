@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Service </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/Helperland/assets/css/style.css">
 </head>
 <body>
     
@@ -15,7 +15,7 @@
     ?>
 
     <section class="titleimage">
-        <img src="../assets/images/book-service-banner.jpg" alt="bookservice-banner">
+        <img src="http://localhost/Helperland/assets/images/book-service-banner.jpg" alt="bookservice-banner">
     </section>
 
     <section class="book-service" id="book-service">
@@ -32,8 +32,8 @@
                                     <button class="nav-link active" id="pills-SetupService-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-SetupService" type="button" role="tab" aria-controls="pills-SetupService" 
                                     aria aria-selected="true">
-                                        <img class="black" src="../assets/images/setup-service.png" alt="">
-                                        <img class="white" src="../assets/images/setup-service-white.png" alt="">
+                                        <img class="black" src="http://localhost/Helperland/assets/images/setup-service.png" alt="">
+                                        <img class="white" src="http://localhost/Helperland/assets/images/setup-service-white.png" alt="">
                                         Setup Service
                                     </button>
                                 </li>
@@ -41,8 +41,8 @@
                                     <button class="nav-link" id="pills-SchedulePlan-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-SchedulePlan" type="button" role="tab" aria-controls="pills-SchedulePlan" 
                                     aria aria-selected="false">
-                                        <img class="black" src="../assets/images/schedule.png" alt="">
-                                        <img class="white" src="../assets/images/schedule-white.png" alt="">
+                                        <img class="black" src="http://localhost/Helperland/assets/images/schedule.png" alt="">
+                                        <img class="white" src="http://localhost/Helperland/assets/images/schedule-white.png" alt="">
                                         Schedule & Plan
                                     </button>
                                 </li>
@@ -50,8 +50,8 @@
                                     <button class="nav-link" id="pills-YourDetails-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-YourDetails" type="button" role="tab" aria-controls="pills-YourDetails" 
                                     aria aria-selected="false">
-                                        <img class="black" src="../assets/images/details.png" alt="">
-                                        <img class="white" src="../assets/images/details-white.png" alt="">
+                                        <img class="black" src="http://localhost/Helperland/assets/images/details.png" alt="">
+                                        <img class="white" src="http://localhost/Helperland/assets/images/details-white.png" alt="">
                                         Your Details
                                     </button>
                                 </li>
@@ -59,8 +59,8 @@
                                     <button class="nav-link" id="pills-MakePayment-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-MakePayment" type="button" role="tab" aria-controls="pills-MakePayment" 
                                     aria aria-selected="false">
-                                        <img class="black" src="../assets/images/payment.png" alt="">
-                                        <img class="white" src="../assets/images/payment-white.png" alt="">
+                                        <img class="black" src="http://localhost/Helperland/assets/images/payment.png" alt="">
+                                        <img class="white" src="http://localhost/Helperland/assets/images/payment-white.png" alt="">
                                         Make Payment
                                     </button>
                                 </li>
@@ -125,7 +125,7 @@
                                         <div class="extra-service">
                                             <div class="extra-content">
                                                 <div class="extra-image">
-                                                    <img src="../assets/images/3.png">
+                                                    <img src="http://localhost/Helperland/assets/images/3.png">
                                                 </div>
                                                 <br>
                                                 <div class="extra-text">
@@ -135,7 +135,7 @@
                                             </div>
                                             <div class="extra-content">
                                                 <div class="extra-image">
-                                                  <img src="../assets/images/5.png">
+                                                  <img src="http://localhost/Helperland/assets/images/5.png">
                                                 </div>
                                                 <br>
                                                 <div class="extra-text">
@@ -145,7 +145,7 @@
                                             </div>
                                             <div class="extra-content">
                                                 <div class="extra-image">
-                                                    <img src="../assets/images/4.png">
+                                                    <img src="http://localhost/Helperland/assets/images/4.png">
                                                 </div>
                                                 <br>
                                                 <div class="extra-text">
@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="extra-content">
                                                 <div class="extra-image">
-                                                    <img src="../assets/images/2.png">
+                                                    <img src="http://localhost/Helperland/assets/images/2.png">
                                                 </div>
                                                 <br>
                                                 <div class="extra-text">
@@ -165,7 +165,7 @@
                                             </div>
                                             <div class="extra-content">
                                                 <div class="extra-image">
-                                                    <img src="../assets/images/1.png">
+                                                    <img src="http://localhost/Helperland/assets/images/1.png">
                                                 </div>
                                                 <br>
                                                 <div class="extra-text">
@@ -251,7 +251,7 @@
                                 </div>
                             </div>
                             <div class="payment-text4">
-                                <img src="../assets/images/smiley.png" alt="smiley"> 
+                                <img src="http://localhost/Helperland/assets/images/smiley.png" alt="smiley"> 
                                 <span class="text-8">
                                     See what is always included
                                 </span>
