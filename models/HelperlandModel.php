@@ -39,7 +39,7 @@ class HelperlandModel
     public function check_email_existance($table, $email)
     {
         $sql_qry = "SELECT * FROM $table where Email = '$email'";
-        $statement =  $this->conn->prepare($sql_qry);
+        $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
         $count = $statement->rowCount();
         return $count;
@@ -65,17 +65,53 @@ class HelperlandModel
     public function login_user($table, $email, $password)
     {
         $sql_qry = "SELECT * FROM $table WHERE Email = '$email' AND Password = '$password'";
-        $statement =  $this->conn->prepare($sql_qry);
+        $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $count = $statement->rowCount();
-        return $count;
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
     }
 
     public function reset_password($table, $email, $password)
     {
         $sql_qry = "UPDATE $table SET Password = '$password' WHERE Email = '$email'";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function check_sp_availability($table, $postalcode)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ZipcodeValue = '$postalcode'";
         $statement =  $this->conn->prepare($sql_qry);
         $statement->execute();
+        $number_of_rows = $statement->fetchColumn();
+        return $number_of_rows;
+    }
+
+    public function fill_radio_button_address($table, $postalcode, $userid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE PostalCode = '$postalcode' AND UserId = '$userid'";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function get_State_from_zipcode($postalcode)
+    {
+        $sql_qry = "SELECT zipcode.ZipcodeValue, city.CityName, state.StateName  FROM zipcode RIGHT OUTER JOIN city ON zipcode.CityId = city.Id AND ZipcodeValue = $postalcode LEFT OUTER JOIN state ON state.Id = city.StateId";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    // public function get
+
+    public function insert_address($table, $array)
+    {
+        $sql_qry = "INSERT INTO $table (UserId, AddressLine1, AddressLine2, City, PostalCode, Mobile) VALUES (:userid, :streetname, :housenumber, :city, :postalcode, :phonenumber)";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute($array);
     }
 }
 ?>

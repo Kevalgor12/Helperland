@@ -35,9 +35,9 @@
                 </div>
                 <div class="modal-footer-text">
                     <div>
-                        <p><span><a href="" class="text-color style-none" data-bs-toggle="modal" data-bs-target="#forgotpassword_modal" data-bs-dismiss="modal">Forgot password?</a></span></p>
+                        <p><span><a href="" class="text-color style-none" data-bs-toggle="modal" data-bs-target="#forgotpassword_modal">Forgot password?</a></span></p>
                         <p>Don't have an account?</p>
-                        <p><span><a href="http://localhost/Helperland/CreateNewAccount.php" class="text-color style-none">Create an account<span></p>
+                        <p><span><a href="http://localhost/Helperland/CreateNewAccount.php" class="text-color style-none">Create an account</a><span></p>
                     </div>
                 </div>
             </div>

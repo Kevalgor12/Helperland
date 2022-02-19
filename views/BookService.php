@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="http://localhost/Helperland/assets/css/style.css">
 </head>
-<body>
+<body onload="filltabcolor()">
     
     <?php
         include("header_2.php");
@@ -29,9 +29,9 @@
                         <div class="faq-tab mb-60">
                             <ul class="nav nav-pills nav-fill mb-3 justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-SetupService-tab" data-bs-toggle="pill" 
+                                    <button class="nav-link active fill" id="pills-SetupService-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-SetupService" type="button" role="tab" aria-controls="pills-SetupService" 
-                                    aria aria-selected="true">
+                                    aria aria-selected="true" onclick="filltabcolor()">
                                         <img class="black" src="http://localhost/Helperland/assets/images/setup-service.png" alt="">
                                         <img class="white" src="http://localhost/Helperland/assets/images/setup-service-white.png" alt="">
                                         Setup Service
@@ -40,7 +40,7 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-SchedulePlan-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-SchedulePlan" type="button" role="tab" aria-controls="pills-SchedulePlan" 
-                                    aria aria-selected="false">
+                                    aria aria-selected="false" onclick="filltabcolor()">
                                         <img class="black" src="http://localhost/Helperland/assets/images/schedule.png" alt="">
                                         <img class="white" src="http://localhost/Helperland/assets/images/schedule-white.png" alt="">
                                         Schedule & Plan
@@ -49,7 +49,7 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-YourDetails-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-YourDetails" type="button" role="tab" aria-controls="pills-YourDetails" 
-                                    aria aria-selected="false">
+                                    aria aria-selected="false" onclick="filltabcolor()">
                                         <img class="black" src="http://localhost/Helperland/assets/images/details.png" alt="">
                                         <img class="white" src="http://localhost/Helperland/assets/images/details-white.png" alt="">
                                         Your Details
@@ -58,7 +58,7 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-MakePayment-tab" data-bs-toggle="pill" 
                                     data-bs-target="#pills-MakePayment" type="button" role="tab" aria-controls="pills-MakePayment" 
-                                    aria aria-selected="false">
+                                    aria aria-selected="false" onclick="filltabcolor()">
                                         <img class="black" src="http://localhost/Helperland/assets/images/payment.png" alt="">
                                         <img class="white" src="http://localhost/Helperland/assets/images/payment-white.png" alt="">
                                         Make Payment
@@ -66,34 +66,17 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-SetupService" role="tabpanel" aria-labelledby="pills-SetupService-tab">
-                                    <span class="text-1"><b>Enter your Postal Code</b></span>
+                                <div class="tab-pane fade active show" id="pills-SetupService" role="tabpanel" aria-labelledby="pills-SetupService-tab">
+                                    <span class="text-1">Enter your Postal Code</span>
                                     <div class="postalcode-check">
-                                        <input type="text" class="postalcode mt-3" name="postalcode" placeholder="Postal code">
-                                        <button type="submit" class="check-avail mt-3">Check Availability</button>
+                                        <input type="text" class="postalcode" name="postalcode" placeholder="Postal code">
+                                        <button name="submit" class="check-avail">check availability</button><br>
+                                        <label class="text-danger error-msg"></label>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="pills-SchedulePlan" role="tabpanel" aria-labelledby="pills-SchedulePlan-tab">
-                                    <span class="text-1"><b>Select number of rooms and bath</b></span>
-                                    <div>
-                                        <select name="bed" id="bed">
-                                            <option disabled selected hidden value="">0 bed</option>
-                                            <option value="1 bed">1 bed</option>
-                                            <option value="2 bed">2 bed</option>
-                                            <option value="3 bed">3 bed</option>
-                                            <option value="4 bed">4 bed</option>
-                                        </select>
-                                        <select name="bath" id="bath">
-                                            <option disabled selected hidden value="">0 bath</option>
-                                            <option value="1 bath">1 bath</option>
-                                            <option value="2 bath">2 bath</option>
-                                            <option value="3 bath">3 bath</option>
-                                            <option value="4 bath">4 bath</option>
-                                        </select>
-                                    </div>
-                                    <hr>
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-5 pe-0 ps-0">
                                             <span class="text-1"><b>When do you need the cleaner?</b></span>
                                             <div>
                                                 <input class="input-element" type="date" id="formdate" name="formdate" data placeholder="From Date">
@@ -110,11 +93,10 @@
                                             <span class="text-1"><b>How long do you need your cleaner to stay?</b></span>
                                             <div>
                                                 <select name="servicetime" id="servicetime">
-                                                    <option disabled selected hidden value="">3.0 Hrs</option>
-                                                    <option value="3.0 Hrs">3.0 Hrs</option>
-                                                    <option value="4.0 Hrs">4.0 Hrs</option>
-                                                    <option value="5.0 Hrs">5.0 Hrs</option>
-                                                    <option value="6.0 Hrs">6.0 Hrs</option>
+                                                    <option selected value="3.0">3.0 Hrs</option>
+                                                    <option value="4.0">4.0 Hrs</option>
+                                                    <option value="5.0">5.0 Hrs</option>
+                                                    <option value="6.0">6.0 Hrs</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -124,7 +106,7 @@
                                         <span class="text-1"><b>Extra Services</b></span>
                                         <div class="extra-service">
                                             <div class="extra-content">
-                                                <div class="extra-image">
+                                                <div class="extra-image" id="img1" onclick="img1()">
                                                     <img src="http://localhost/Helperland/assets/images/3.png">
                                                 </div>
                                                 <br>
@@ -134,7 +116,7 @@
                                                 </div>
                                             </div>
                                             <div class="extra-content">
-                                                <div class="extra-image">
+                                                <div class="extra-image" id="img2" onclick="img2()">
                                                   <img src="http://localhost/Helperland/assets/images/5.png">
                                                 </div>
                                                 <br>
@@ -144,7 +126,7 @@
                                                 </div>
                                             </div>
                                             <div class="extra-content">
-                                                <div class="extra-image">
+                                                <div class="extra-image" id="img3" onclick="img3()">
                                                     <img src="http://localhost/Helperland/assets/images/4.png">
                                                 </div>
                                                 <br>
@@ -154,7 +136,7 @@
                                                 </div>
                                             </div>
                                             <div class="extra-content">
-                                                <div class="extra-image">
+                                                <div class="extra-image" id="img4" onclick="img4()">
                                                     <img src="http://localhost/Helperland/assets/images/2.png">
                                                 </div>
                                                 <br>
@@ -164,7 +146,7 @@
                                                 </div>
                                             </div>
                                             <div class="extra-content">
-                                                <div class="extra-image">
+                                                <div class="extra-image" id="img5" onclick="img5()">
                                                     <img src="http://localhost/Helperland/assets/images/1.png">
                                                 </div>
                                                 <br>
@@ -178,18 +160,95 @@
                                     <hr>
                                     <div class="row">
                                         <span class="text-1"><b>Comments</b></span>
-                                        <div>
+                                        <div class="pe-0 ps-0">
                                             <textarea name="comments" class="service-comment" cols="50" rows="5"></textarea>
                                         </div>
-                                        <div>
-                                            <input type="checkbox" id="terms-conditions" name="terms-conditions" class="checkbox">
+                                        <div class="checkbox-content">
+                                            <input type="checkbox" class="checkbox" id="terms-conditions" name="terms-conditions">
                                             <label class="checkbox-text" for="terms-conditions"> I have pets at home</label><br>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="continue-right">
-                                            <button type="submit" class="continue mt-3"><b>Continue</b></button>
+                                            <button type="submit" class="continue"><b>Continue</b></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-YourDetails" role="tabpanel" aria-labelledby="pills-YourDetails-tab">
+                                    <span class="text-1"><b>Please enter your address so that your helper can find you.</b></span>
+                                    <div class="row address-radio-button">
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="address-left">
+                                            <button type="submit" class="add-new-address" onclick="showAddAddress()">+ Add new address</button>
+                                        </div>
+                                    </div>
+                                    <div class="add-address row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="text-danger error-message"></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="streetname">Street name</label><br>
+                                                <input class="input" type="text" name="streetname" placeholder="Street name">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="housenumber">House number</label><br>
+                                                <input class="input" type="text" name="housenumber" placeholder="House number">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="postalcode">Postal code</label><br>
+                                                <input class="input" type="text" name="postal_code" placeholder="360005">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="city">City</label><br>
+                                                <input class="input" type="text" name="city" placeholder="Bonn">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="phonenumber">Phone number</label><br>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1">+49</span>
+                                                    <input type="text" id="phonenumber" name="phonenumber" placeholder="9745643546">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" class="address-save">Save</button>
+                                            <button type="submit" class="address-cancel" onclick="hideAddAddress()">Cancel</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="continue-right">
+                                            <button type="submit" class="continue">Continue</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-MakePayment" role="tabpanel" aria-labelledby="pills-MakePayment-tab">
+                                    <span class="text-1"><b>Choose one of the following payment methods.</b></span>
+                                    <div>
+                                        <label for="promocode">Promo code (optional)</label><br>
+                                        <div class="promocode-check">
+                                            <input type="text" class="promocode" name="promocode" placeholder="Promo code (optional)">
+                                            <button name="submit" class="apply">Apply</button><br>
+                                            <label class="text-danger error-msg"></label>
+                                        </div>
+                                        <hr>
+                                        <div class="checkbox-content">
+                                            <input type="checkbox" class="checkbox" id="terms-conditions" name="terms-conditions">
+                                            <label class="checkbox-text" for="terms-conditions"> I accepted <span>terms and conditions</span>, the <span>cancellation policy</span> and the <span>privacy policy</span>. I confirm that Helperland starts to execute the contract before the expiry of the withdrawal period and I lose my right of withdrawal as a consumer with full performance of the contract.</label><br>
+                                        </div>
+                                        <div>
+                                            <div class="continue-right">
+                                                <button type="submit" class="complete-booking"><b>Complete Booking</b></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -204,8 +263,7 @@
                             <div class="payment-text1">
                                 <div class="row">
                                     <div class="textline-1">
-                                        <p class="text-1">01/01/2018 @ 4:00 pm</p>
-                                        <p class="text-1">1 bed, 1 bath.</p>
+                                        <p class="text-1 datetime"></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -215,10 +273,26 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 text-1">Basic</div>
-                                    <div class="col-4 text-1">3 Hrs</div>
+                                    <div class="col-4 text-1 basic">3 Hrs</div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-8 text-1">Inside cabinets(extra)</div>
+                                <div class="row extra img1-text">
+                                    <div class="col-8 text-1">Inside cabinets</div>
+                                    <div class="col-4 text-1">30 Mins</div>
+                                </div>
+                                <div class="row extra img2-text">
+                                    <div class="col-8 text-1">Inside fridge</div>
+                                    <div class="col-4 text-1">30 Mins</div>
+                                </div>
+                                <div class="row extra img3-text">
+                                    <div class="col-8 text-1">Inside oven</div>
+                                    <div class="col-4 text-1">30 Mins</div>
+                                </div>
+                                <div class="row extra img4-text">
+                                    <div class="col-8 text-1">Inside wash & dry</div>
+                                    <div class="col-4 text-1">30 Mins</div>
+                                </div>
+                                <div class="row extra img5-text">
+                                    <div class="col-8 text-1">Interior windows</div>
                                     <div class="col-4 text-1">30 Mins</div>
                                 </div>
                                 <hr class="underline mt-2 mb-2">
@@ -232,27 +306,16 @@
                                     <div class="col-8 text-1">Per cleaning</div>
                                     <div class="col-4 text-1">$87</div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-8 text-1">Discount</div>
-                                    <div class="col-4 text-1">- $27</div>
-                                </div>
                             </div>
                             <div class="payment-text3">
                                 <div class="row">
                                     <div class="text-4 col-8">Total Payment</div>
                                     <div class="text-5 col-4"><b>$63</b></div>
                                 </div>
-                                <div class="row">
-                                    <div class="text-1 col-8 pt-1 pb-1">Effective Price</div>
-                                    <div class="text-6 col-4"><b>$50.4</b></div>
-                                </div>
-                                <div class="row">
-                                    <span class="text-7"><span class="text-danger"><b>*</b></span>You will save 20% according to §35a EStG.</span>
-                                </div>
                             </div>
                             <div class="payment-text4">
                                 <img src="http://localhost/Helperland/assets/images/smiley.png" alt="smiley"> 
-                                <span class="text-8">
+                                <span class="text-6">
                                     See what is always included
                                 </span>
                             </div>
@@ -265,90 +328,42 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                            Which Helperland professional will come to my place?
+                                            What is included in the basic cleaning?
                                         </button>
                                     </h2>
                                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Living room, bedroom and bathroom, kitchen and common areas
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingTwo">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                            Which Helperland professional will come to my place?
+                                            Can I skip or move bookings?
                                         </button>
                                     </h2>
                                     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        You can change a booking free of charge 48 hours before an assignment. If you want to skip an already booked assignment, we will credit the value of the booking to your account. You can use the credit for a future booking.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingThree">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                            Which Helperland professional will come to my place?
+                                            Do I have to be at home during the cleaning?
                                         </button>
                                     </h2>
                                     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingFour">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                            Which Helperland professional will come to my place?
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingFive">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                                            Which Helperland professional will come to my place?
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingSix">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-                                            Which Helperland professional will come to my place?
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingSeven">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
-                                            Which Helperland professional will come to my place?
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            We recommend that you be at home for the first cleaning. This way you get to know your helper personally. You can also show him the rooms and respond to your wishes. Of course you can arrange an appointment or place for the key handover with your helper. With frequent bookings, some customers choose to leave a spare key to their cleaner.
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="for-more-help">
-                                <b>For more help</b>
+                                <a href="FAQ.php"><b>For more help</b></a>
                             </div>
                         </div>
                     </div>

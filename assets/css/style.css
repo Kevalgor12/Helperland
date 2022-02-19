@@ -75,8 +75,7 @@
 }
 
 .modal .modal-dialog .modal-content .modal-body .register-inputs .input-group .input-group-text {
-	background: transparent;
-	border: none;
+	margin: -1px -1px -1px 0;
 }
 
 .modal .modal-dialog .modal-content .modal-body .register-inputs .checkbox-content {
@@ -279,40 +278,66 @@
 }
 
 .navbar .navbar-nav li {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 0px 5px;
+	cursor: pointer;
 }
 
 .navbar .navbar-nav .rounded-link {
-	background-color: #29626D;
-    border: 1px solid white;
-    border-radius: 30px;
-    padding: 0px 25px;
-    margin: 0px 5px;
+	background-color: transparent;
+	border: 1px solid transparent;
+	border-radius: 30px;
+    padding: 0px 20px;
+    margin: auto;
+}
+
+.navbar .navbar-nav .rounded-link:hover {
+	background: transparent;
+	border: 1px solid white;
+	border-radius: 30px;
 }
 
 .navbar .navbar-nav .rounded-link-transparent {
 	background-color: transparent;
     border: 1px solid white;
     border-radius: 30px;
-    padding: 0px 25px;
-    margin: 0px 5px;
+    padding: 0px 20px;
+    margin: auto;
 }
 
-.navbar-bg-color .navbar-nav .rounded-link {
-	background-color: #29626D;
-    border: 1px solid white;
-    border-radius: 30px;
-    padding: 0px 25px;
-    margin: 0px 5px;
+.navbar .navbar-nav .rounded-link-transparent:hover {
+    background: #FFFFFF;
+	color: #29626D !important;
+	border-radius: 30px;
 }
 
-.navbar-bg-color .navbar-nav .rounded-link-transparent {
+.navbar.navbar-bg-color .navbar-nav .rounded-link {
 	background-color: transparent;
-    border: 1px solid white;
+    border: 1px solid transparent;
     border-radius: 30px;
-    padding: 0px 25px;
-    margin: 0px 5px;
+    padding: 0px 20px;
+    margin: auto;
+}
+
+.navbar.navbar-bg-color .navbar-nav .rounded-link:hover {
+	background: transparent;
+	border: 1px solid white;
+	color: #FFFFFF !important;
+	border-radius: 30px;
+}
+
+.navbar.navbar-bg-color .navbar-nav .rounded-link-transparent {
+	background-color: #29626D;
+	border: 1px solid white;
+    border-radius: 30px;
+    padding: 0px 20px;
+    margin: auto;
+}
+
+.navbar.navbar-bg-color .navbar-nav .rounded-link-transparent:hover {
+    background: #FFFFFF;
+	border: 1px solid white;
+	color: #29626D !important;
+	border-radius: 30px;
 }
 
 .navbar .navbar-nav li a {
@@ -394,7 +419,7 @@
 .home{
 	background: url("../images/Landing-Page-background-image.png") no-repeat center;
 	background-attachment: fixed;
-	height: 100vh;
+	height: auto;
 	min-height: 930px;
 	overflow: hidden;
     background-size: cover;
@@ -2161,7 +2186,23 @@ footer .privacy-policy button{
 	margin: auto;
 }
 
-.book-service .bookservice-content .bookservice-area .faq-tab .nav-link.active {
+.book-service .bookservice-content .bookservice-area .faq-tab .nav-link.active
+{
+	position: relative;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .nav-link.active::after {
+	content: "";
+	position: absolute;
+	height: 15px;
+	width: 15px;
+	bottom: -7px;
+	left: calc(50% - 10px);
+	transform: rotate(45deg);
+	background: #1D7A8C;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .nav-link.fill {
 	background: #1D7A8C;
 	font-family: 'Roboto';
 	font-size: 18px;
@@ -2170,7 +2211,7 @@ footer .privacy-policy button{
 	height: 67px;
 }
 
-.book-service .bookservice-content .bookservice-area .faq-tab .nav-link:not(.active) {
+.book-service .bookservice-content .bookservice-area .faq-tab .nav-link:not(.fill) {
 	background: #F3F3F3;
 	font-family: 'Roboto';
 	font-size: 18px;
@@ -2179,26 +2220,28 @@ footer .privacy-policy button{
 	height: 67px;
 }
 
-.book-service .bookservice-content .bookservice-area .faq-tab .nav-link.active .black {
+.book-service .bookservice-content .bookservice-area .faq-tab .nav-link.fill .black {
 	display: none;
 }
 
-.book-service .bookservice-content .bookservice-area .faq-tab .nav-link:not(.active) .white {
+.book-service .bookservice-content .bookservice-area .faq-tab .nav-link:not(.fill) .white {
 	display: none;
 }
 
-.book-service .bookservice-content .bookservice-area .faq-tab .nav-link.active .white {
+.book-service .bookservice-content .bookservice-area .faq-tab .nav-link.fill .white {
 	margin-right: 2px;
 }
 
-.book-service .bookservice-content .bookservice-area .faq-tab .nav-link:not(.active) .black {
+.book-service .bookservice-content .bookservice-area .faq-tab .nav-link:not(.fill) .black {
 	margin-right: 2px;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .text-1 {
 	font-family: 'Roboto';
 	font-size: 16px;
+	font-weight: bold;
 	color: #4F4F4F;
+	padding: 0 0;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .input-element {
@@ -2206,9 +2249,10 @@ footer .privacy-policy button{
 	height: 35px;
 	font-family: 'Roboto';
 	font-size: 14px;
-	height: 35px;
+	height: 46px;
 	color: #646464;
-	border: 1px solid #E1E1E1;
+	border: 1px solid #DEDDDD;
+	border-radius: 4px;
 	padding: 0px 10px;
 	margin: 16px 10px 0px 0px;
 }
@@ -2217,6 +2261,7 @@ footer .privacy-policy button{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 0 0;
 	flex-wrap: wrap;
 }
 .book-service .extra-service .extra-content {
@@ -2230,8 +2275,8 @@ footer .privacy-policy button{
 	height: 108px;
 	display: flex;
 	justify-content: center;
-	border: 1px solid;
-	border-radius: 64px;
+	border: 1px solid #C8C8C8;
+	border-radius: 54px;
 	margin: auto;
 }
 .book-service .extra-image img {
@@ -2257,29 +2302,43 @@ footer .privacy-policy button{
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .service-comment {
 	width: 100%;
-	border: 1px solid #C8C8C8;
+	border: 1px solid #DEDDDD;
 	border-radius: 4px;
 	margin: 10px 0px;
+	padding: 0 0;
 }
 
-.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .checkbox {
-	width: 18px;
-	height: 18px;
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .checkbox-content {
+	display: flex;
+	padding: 0 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .checkbox-content .checkbox {
+	min-width: 20px;
+	min-height: 20px;
 	border: 1px solid #C8C8C8;
 }
 
-.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .checkbox-text {
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .checkbox-content .checkbox-text {
 	font-family: 'Roboto';
-	font-size: 16px;
+	font-size: 14px;
 	color: #4F4F4F;
+	padding: 0 10px;
+	margin: 0 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .checkbox-content .checkbox-text span {
+	color: #1D7A8C;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .continue-right {
 	text-align: right;
+	padding: 0 0;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .continue {
 	font-family: 'Roboto';
+	font-weight: bold;
 	font-size: 20px;
 	color: #FFFFFF;
 	background: #1D7A8C;
@@ -2287,8 +2346,12 @@ footer .privacy-policy button{
 	border: 1px solid #1D7A8C;
 	width: 150px;
 	height: 46px;
+	margin: 20px 0;
 	text-align: center;
-	align-content: right;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .continue:hover {
+	background: #29626D;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .postalcode-check .postalcode {
@@ -2297,30 +2360,211 @@ footer .privacy-policy button{
 	color: #4F4F4F;
 	width: 250px;
 	height: 46px;
-	border-radius: 2px;
-	border: 1px solid #8D8D8D;
+	border-radius: 4px;
+	border: 1px solid #DEDDDD;
 	padding-left: 10px;
+	margin-top: 16px;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .postalcode-check .check-avail {
 	font-family: 'Roboto';
-	font-size: 14px;
+	font-size: 15px;
 	color: #FFFFFF;
 	background: #1D7A8C;
 	border-radius: 23px;
 	border: 1px solid #1D7A8C;
 	width: 150px;
 	height: 46px;
+	margin-top: 16px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .postalcode-check .check-avail:hover {
+	background: #29626D;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content select {
 	font-family: 'Roboto';
 	font-size: 14px;
-	height: 35px;
+	height: 46px;
 	color: #646464;
-	border: 1px solid #E1E1E1;
+	border: 1px solid #DEDDDD;
+	border-radius: 4px;
 	padding: 0px 10px;
 	margin: 16px 10px 16px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .row {
+	margin: 0 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .area-label {
+	position: relative;
+	padding: 10px 0px 10px 60px;
+	border: 1px solid #c8c8c8;
+	border-radius: 3px;
+	margin: 16px 0 10px 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .area-radio {
+	position: absolute;
+	top: 25px;
+	left: 32px;
+	margin: auto;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .address-left {
+	text-align: left;
+	padding: 0 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-new-address {
+	font-family: 'Roboto';
+	font-weight: bold;
+	font-size: 16px;
+	color: #1D7A8C;
+	background: #FFFFFF;
+	border-radius: 23px;
+	border: 2px solid #1D7A8C;
+	width: 180px;
+	height: 46px;
+	text-align: center;
+	align-content: left;
+	margin: 16px 0 10px 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-new-address:hover {
+	background: #1D7A8C;
+	color: #FFFFFF;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address {
+	background-color: #F8F8F8;
+	border: 1px solid #DEDDDD;
+	border-radius: 4px;
+	margin: 16px 0 10px 0;
+	display: none;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address label {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	margin: 20px 0 5px 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address .input {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	width: 100%;
+	height: 46px;
+	border: 1px solid #DEDDDD;
+	border-radius: 4px;
+	padding: 15px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address .input-group .input-group-text {
+	width: 54px;
+	height: 46px;
+	border: 1px solid #DEDDDD;
+	border-right: none;
+	border-radius: 4px 0 0 4px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address .input-group input {
+	width: calc(100% - 54px);
+	height: 46px;
+	margin: 0 0;
+	border: 1px solid #DEDDDD;
+	border-radius: 0 4px 4px 0;
+	padding-left: 15px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address .address-save {
+	background-color: #6BA7B3;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
+	width: 80px;
+	height: 46px;
+	border: 1px solid #6BA7B3;
+	border-radius: 23px;
+	margin: 20px 0 20px 12px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address .address-save:hover {
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address .address-cancel {
+	background-color: #F8F8F8;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	width: 100px;
+	height: 46px;
+	border: 1px solid #C6C6C6;
+	border-radius: 23px;
+	margin: 20px 0 20px 12px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address .address-cancel:hover {
+	border: 1px solid #1D7A8C;
+	color: #1D7A8C;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content label {
+	margin-top: 10px;
+	padding: 0 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .promocode-check .promocode {
+	font-family: 'Roboto';
+	font-size: 14px;
+	color: #4F4F4F;
+	width: 250px;
+	height: 46px;
+	border-radius: 4px;
+	border: 1px solid #DEDDDD;
+	padding-left: 10px;
+	margin-top: 16px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .promocode-check .apply {
+	font-family: 'Roboto';
+	font-size: 15px;
+	color: #1D7A8C;
+	background: #FFFFFF;
+	border-radius: 23px;
+	border: 1px solid #1D7A8C;
+	width: 100px;
+	height: 46px;
+	margin-top: 16px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .promocode-check .apply:hover
+{
+	background: #1D7A8C;
+	color: #FFFFFF;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .complete-booking {
+	font-family: 'Roboto';
+	font-weight: bold;
+	font-size: 20px;
+	color: #FFFFFF;
+	background: #1D7A8C;
+	border-radius: 23px;
+	border: 1px solid #1D7A8C;
+	width: 230px;
+	height: 46px;
+	margin: 20px 0;
+	text-align: center;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .complete-booking:hover {
+	background: #29626D;
 }
 
 .book-service .bookservice-content .bookservice-area .payment-summary .payment-card {
@@ -2335,7 +2579,7 @@ footer .privacy-policy button{
 	font-size: 18px;
 	text-align: left;
 	color: #FFFFFF;
-	padding: 15px 15px;
+	padding: 20px 20px;
 	background: #1D7A8C;
 	height: 67px;
 }
@@ -2350,6 +2594,10 @@ footer .privacy-policy button{
 	font-size: 16px;
 	color: #4F4F4F;
 	margin: 0px 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-card .extra {
+	display: none;
 }
 
 .book-service .bookservice-content .bookservice-area .payment-summary .payment-text1 .textline-1 {
@@ -2400,17 +2648,6 @@ footer .privacy-policy button{
 }
 
 .book-service .bookservice-content .bookservice-area .payment-summary .text-6 {
-	font-size: 20px;
-	color: #646464;
-}
-
-.book-service .bookservice-content .bookservice-area .payment-summary .text-7 {
-	font-size: 14px;
-	color: #646464;
-	margin: 10px 0px 0px 0px;
-}
-
-.book-service .bookservice-content .bookservice-area .payment-summary .text-8 {
 	font-size: 14px;
 	color: #8D8D8D;
 	margin: 0px 0px;
@@ -2470,8 +2707,12 @@ footer .privacy-policy button{
 	font-family: 'Roboto';
 	font-size: 16px;
 	text-align: left;
+	margin: 20px 0;
+}
+
+.book-service .bookservice-content .bookservice-area .payment-summary .questions .for-more-help a {
 	color: #1D7A8C;
-	margin: 18px 0px 55px 0px;
+	text-decoration: none;
 }
 
 /* book-service end page */

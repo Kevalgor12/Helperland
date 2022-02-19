@@ -149,8 +149,13 @@ class HelperlandController{
                     $serviceprovider = "http://localhost/Helperland/UpcomingService.php";
                     $customer = "http://localhost/Helperland/ServiceHistory.php";
                     $usertypeid = $this->model->check_usertype('user', $email);
-                    if($this->model->login_user('user', $email, $password) == 1)
+                    $row = $this->model->login_user('user', $email, $password);
+                    
+                    if($row != "")
                     {
+                        $_SESSION['userid'] = $row['UserId'];
+                        $_SESSION['username'] = $row['FirstName'];
+
                         if($usertypeid == 1)
                         {
                             header('Location:' . $serviceprovider);
@@ -190,8 +195,8 @@ class HelperlandController{
                 {
                     $to_email = $email;
                     $subject = "Simple Email Test via PHP";
-                    $body = "Hi, This is test email send by PHP Script. http://localhost/Helperland/ResetPassword.php";
-                    $headers = "From: sender email";
+                    $body = "Hi, User!!! </br> This is your reset password link. http://localhost/Helperland/ResetPassword.php";
+                    $headers = "From: kp916777@gmail.com";
                     $_SESSION['email'] = $_POST['email'];
 
                     if (mail($to_email, $subject, $body, $headers))
@@ -200,12 +205,22 @@ class HelperlandController{
                     }
                     else
                     {
-                        echo "Email sending failed...";
+                        echo "Msg Not Sent";
                     }
+                    // $success = mail($to_email, $subject, $body, $headers);
+                    // if (!$success) {
+                    //     echo error_get_last();
+                    // }
+                    // else{
+                    //     echo("No Error");
+                    // }
                 }
                 else
                 {
-                    echo 'Email not found.';
+                    echo    '<script>
+                                alert("Email not found.");
+                                location. href="http://localhost/Helperland/Login.php";
+                            </script>';
                 }
             }
         }
@@ -215,7 +230,7 @@ class HelperlandController{
     {
         if(isset($_POST['submit']))
         {
-            if(($_POST['password'] == "") && ($_POST['confirm-password'] == ""))
+            if(($_POST['password'] == "") || ($_POST['confirm-password'] == ""))
             {
                 echo 'fill the details';
             }
@@ -245,4 +260,56 @@ class HelperlandController{
         header('Location:' . $base_url);
     }
 
+    public function check_sp_availability() 
+    {
+        $postalcode = $_POST['zipcode'];
+        $count = $this->model->check_sp_availability('zipcode', $postalcode);
+
+        if($count != 0)
+        {
+            echo 1;
+        }
+        else
+        {
+            echo 0;
+        }
+    }
+
+    public function fill_radio_button_address()
+    {
+        $postalcode = $_POST['zipcode'];
+        $userid = $_SESSION['userid'];
+        $list = $this->model->fill_radio_button_address('useraddress', $postalcode, $userid);
+        $i=0;
+        foreach($list as $address)
+        {
+            ?>
+            <label class="area-label">
+                <input type="radio" class="area-radio" id="age<?php echo $i?>" name="age" value="30" onclick="getseladd(this.id)">
+                <span><b>Address:</b></span><?php echo " ".$address['AddressLine1']."  ".$address['AddressLine2'].", ".$address['City']."  ".$address['State']." - ".$address['PostalCode']." ";  ?><br>
+                <span><b>Telephone number:</b></span><?php echo " ".$address['Mobile']." "; ?>
+                </label>
+            <?php
+            $i++; 
+        }
+    }
+
+    public function insert_address()
+    {
+        $streetname = $_POST['streetname'];
+        $housenumber = $_POST['housenumber'];
+        $postalcode = $_POST['postalcode'];
+        $city = $_POST['city'];
+        $phonenumber = $_POST['phonenumber'];
+
+        $array = [
+            'userid' => $_SESSION['userid'],
+            'streetname' => $streetname,
+            'housenumber' => $housenumber,
+            'postalcode' => $postalcode,
+            'city' => $city,
+            'phonenumber' => $phonenumber,
+        ];
+        $this->model->insert_address('useraddress', $array);
+    }
 }

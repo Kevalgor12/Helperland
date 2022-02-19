@@ -13,25 +13,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link rounded-link" href="#">Book now</a>
+                    <a class="nav-link rounded-link-transparent" href="BookService.php">Book now</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-link-transparent" href="#">Prices & services</a>
+                    <a class="nav-link rounded-link" href="Prices.php">Prices & services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Warranty</a>
+                    <a class="nav-link rounded-link" href="#">Warranty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link rounded-link" href="#">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link rounded-link" href="Contact.php">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-link" href="#">Login</a>
+                    <a class="nav-link rounded-link-transparent" data-bs-toggle="modal" data-bs-target="#login_modal" href="">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-link" href="#">Become a Helper</a>
+                    <a class="nav-link rounded-link-transparent" href="ServiceProvider.php">Become a Helper</a>
                 </li>
             </ul>
         </div>

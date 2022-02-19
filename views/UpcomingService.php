@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $name = $_SESSION['name'];
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +23,7 @@
         <div class="max-width">
             <div class="upcoming-service-content">
                 <div class="user-name">
-                    <span>Welcome, <b><?php echo $name; ?></b></span>
+                    <span>Welcome, <b></b></span>
                 </div>
             </div>
             <div class="sidebar-table mx-auto">

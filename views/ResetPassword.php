@@ -25,7 +25,7 @@
                 <form method="POST" autocomplete="off" action="http://localhost/Helperland/?controller=Helperland&function=reset_password">
                     <div class="row">
                         <label for="password">New Password</label>
-                        <input type="password" class="input form-control" id="password" name="password" placeholder="Password">
+                        <input type="password" class="input form-control" id="password1" name="password" placeholder="Password">
                         <label for="confirm-password">Confirm Password</label>
                         <input type="password" class="input form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
                     </div>

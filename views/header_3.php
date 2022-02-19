@@ -33,19 +33,19 @@
                     <a class="nav-link" href="#">Notifications</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-link" href="#">Book now</a>
+                    <a class="nav-link rounded-link-transparent" href="BookService.php">Book now</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Prices & services</a>
+                    <a class="nav-link rounded-link" href="Prices.php">Prices & services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Warranty</a>
+                    <a class="nav-link rounded-link" href="#">Warranty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link rounded-link" href="#">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link rounded-link" href="Contact.php">Contact</a>
                 </li>
                 <li class="nav-item">
                     <div class="rectangle-line1">

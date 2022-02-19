@@ -1,9 +1,12 @@
 $(document).ready(function(){
     $(window).scroll(function(){
         
-        if(this.scrollY > 500){
+        if(this.scrollY > 500)
+        {
             $('.scroll-up-btn').addClass("show");
-        }else{
+        }
+        else
+        {
             $('.scroll-up-btn').removeClass("show");
         }
     });
@@ -14,17 +17,19 @@ $(document).ready(function(){
 
     $(window).scroll(function(){
         var scroll = $(window).scrollTop();
-        if (scroll > 50) {
+        if (scroll > 50)
+        {
             $(".homepage").addClass("navbar-bg-color");
         }
-  
-        else{
+        else
+        {
             $(".homepage").removeClass("navbar-bg-color");
         }
     });
 
     /**For sidebar toggle**/
-    jQuery(".sidebar-toggle").click(function(){
-        jQuery("#sidebar").toggleClass("show");
+    $(".sidebar-toggle").click(function(){
+        $("#sidebar").toggleClass("show");
     });
+
 })
