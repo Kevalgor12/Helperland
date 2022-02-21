@@ -312,4 +312,25 @@ class HelperlandController{
         ];
         $this->model->insert_address('useraddress', $array);
     }
+
+    public function add_service_request()
+    {
+        $postalcode = $_POST['postalcode'];
+        $servicehours = $_POST['servicehours'];
+        $extrahours = $_POST['extrahours'];
+        $servicehourlyrate = $_POST['servicehourlyrate'];
+        $totalpayment = $_POST['totalpayment'];
+        $comment = $_POST['comment'];
+
+        $array = [
+            'userid' => $_SESSION['userid'],
+            'postalcode' => $postalcode,
+            'servicehours' => $servicehours,
+            'extrahours' => $extrahours,
+            'servicehourlyrate' => $servicehourlyrate,
+            'totalpayment' => $totalpayment,
+            'comment' => $comment,
+        ];
+        $this->model->add_service_request('servicerequest', $array);
+    }
 }

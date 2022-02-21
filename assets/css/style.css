@@ -2574,6 +2574,10 @@ footer .privacy-policy button{
 	opacity: 1;
 }
 
+.book-service .bookservice-content .bookservice-area .payment-summary .payment-card .text-right {
+	text-align: right;
+}
+
 .book-service .bookservice-content .bookservice-area .payment-summary .payment-header {
 	font-family: 'Roboto';
 	font-size: 18px;

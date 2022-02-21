@@ -81,7 +81,6 @@
                                             <div>
                                                 <input class="input-element" type="date" id="formdate" name="formdate" data placeholder="From Date">
                                                 <select name="booktime" id="booktime">
-                                                    <option disabled selected hidden value="">2:00 PM</option>
                                                     <option value="3:00 PM">3:00 PM</option>
                                                     <option value="4:00 PM">4:00 PM</option>
                                                     <option value="5:00 PM">5:00 PM</option>
@@ -93,7 +92,7 @@
                                             <span class="text-1"><b>How long do you need your cleaner to stay?</b></span>
                                             <div>
                                                 <select name="servicetime" id="servicetime">
-                                                    <option selected value="3.0">3.0 Hrs</option>
+                                                    <option value="3.0">3.0 Hrs</option>
                                                     <option value="4.0">4.0 Hrs</option>
                                                     <option value="5.0">5.0 Hrs</option>
                                                     <option value="6.0">6.0 Hrs</option>
@@ -171,7 +170,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="continue-right">
-                                            <button type="submit" class="continue"><b>Continue</b></button>
+                                            <button type="submit" class="continue continue1 disabled"><b>Continue</b></button>
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +226,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="continue-right">
-                                            <button type="submit" class="continue">Continue</button>
+                                            <button type="submit" class="continue continue2 disabled">Continue</button>
                                         </div>
                                     </div>
                                 </div>
@@ -272,45 +271,45 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8 text-1">Basic</div>
-                                    <div class="col-4 text-1 basic">3 Hrs</div>
+                                    <div class="col-6 text-1">Basic</div>
+                                    <div class="col-6 text-1 basic text-right">3 Hrs</div>
                                 </div>
                                 <div class="row extra img1-text">
-                                    <div class="col-8 text-1">Inside cabinets</div>
-                                    <div class="col-4 text-1">30 Mins</div>
+                                    <div class="col-6 text-1">Inside cabinets</div>
+                                    <div class="col-6 text-1 text-right">30 Mins</div>
                                 </div>
                                 <div class="row extra img2-text">
-                                    <div class="col-8 text-1">Inside fridge</div>
-                                    <div class="col-4 text-1">30 Mins</div>
+                                    <div class="col-6 text-1">Inside fridge</div>
+                                    <div class="col-6 text-1 text-right">30 Mins</div>
                                 </div>
                                 <div class="row extra img3-text">
-                                    <div class="col-8 text-1">Inside oven</div>
-                                    <div class="col-4 text-1">30 Mins</div>
+                                    <div class="col-6 text-1">Inside oven</div>
+                                    <div class="col-6 text-1 text-right">30 Mins</div>
                                 </div>
                                 <div class="row extra img4-text">
-                                    <div class="col-8 text-1">Inside wash & dry</div>
-                                    <div class="col-4 text-1">30 Mins</div>
+                                    <div class="col-6 text-1">Inside wash & dry</div>
+                                    <div class="col-6 text-1 text-right">30 Mins</div>
                                 </div>
                                 <div class="row extra img5-text">
-                                    <div class="col-8 text-1">Interior windows</div>
-                                    <div class="col-4 text-1">30 Mins</div>
+                                    <div class="col-6 text-1">Interior windows</div>
+                                    <div class="col-6 text-1 text-right">30 Mins</div>
                                 </div>
                                 <hr class="underline mt-2 mb-2">
                                 <div class="row">
-                                    <div class="col-8 text-1"><b>Total Service Time</b></div>
-                                    <div class="col-4 text-3"><b>3.5 Hrs</b></div>
+                                    <div class="col-6 text-1"><b>Total Service Time</b></div>
+                                    <div class="col-6 text-3 text-right totaltime"><b></b></div>
                                 </div>
                             </div>
                             <div class="payment-text2">
                                 <div class="row">
-                                    <div class="col-8 text-1">Per cleaning</div>
-                                    <div class="col-4 text-1">$87</div>
+                                    <div class="col-6 text-1">Per cleaning</div>
+                                    <div class="col-6 text-1 text-right total-charge"></div>
                                 </div>
                             </div>
                             <div class="payment-text3">
-                                <div class="row">
-                                    <div class="text-4 col-8">Total Payment</div>
-                                    <div class="text-5 col-4"><b>$63</b></div>
+                                <div class="row align-items-center">
+                                    <div class="text-4 col-6">Total Payment</div>
+                                    <div class="text-5 col-6 text-right total-payment"><b></b></div>
                                 </div>
                             </div>
                             <div class="payment-text4">

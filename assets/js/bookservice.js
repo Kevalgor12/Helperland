@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+    totaltime();
+
     $(".check-avail").click(function(){ 
 
         var postalcode = $(".postalcode").val();
@@ -45,7 +48,7 @@ $(document).ready(function(){
         }
         else
         {
-            document.querySelector(".error-msg").innerHTML="";
+            document.querySelector(".error-message").innerHTML="";
             $.ajax({
                 type: "POST",
                 url: "http://localhost/Helperland/?controller=Helperland&function=insert_address",
@@ -58,13 +61,16 @@ $(document).ready(function(){
                        },
                 success: function (response) {
                     radio_button_addresslist(); 
+                    document.querySelector("#phonenumber").innerHTML = "";
                 }
             });
-
+            $("input[name='streetname']").val('');
+            $("input[name='housenumber']").val('');
+            $("input[name='postal_code']").val('');
+            $("input[name='city']").val('');
+            $("input[name='phonenumber']").val('');
             showAddAddress();
             hideAddAddress();
-
-            document.getElementsByName('streetname').values = "";
         }
     })
 
@@ -81,9 +87,40 @@ $(document).ready(function(){
         });
     }
 
-    $(".continue").click(function(){ 
+    $(".continue1").click(function(){ 
         switchtab("SchedulePlan","YourDetails");
     });
+
+    $(".continue2").click(function(){ 
+        switchtab("YourDetails","MakePayment");
+    });
+
+    $(".complete-booking").click(function(){ 
+
+        var postalcode = $(".postalcode").val();
+        var servicehours = parseFloat($(".basic").text());
+        var extrahours = parseFloat($(".totaltime").text()) - servicehours;
+        var servicehourlyrate = "25";
+        var totalpayment = parseFloat($(".total-payment").text());
+        var comment = $(".service-comment").text();
+
+        document.querySelector(".error-message").innerHTML="";
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=add_service_request",
+            data: {
+                    "postalcode" : postalcode,
+                    "servicehours" : servicehours,
+                    "extrahours" : extrahours,
+                    "servicehourlyrate" : servicehourlyrate,
+                    "totalpayment" : totalpayment,
+                    "comment" : comment,
+                   },
+            success: function (response) {
+                alert("Request submitted succefully.")
+            }
+        });
+    })
 
     document.querySelector(".basic").innerHTML=$("#servicetime option:selected").val() +" "+ "Hrs";
 
@@ -93,7 +130,6 @@ $(document).ready(function(){
 
     $("#servicetime").on("change", function () {
         totaltime();
-        totalpayment();
     });
 
     $("#formdate").click(function () { 
@@ -149,6 +185,7 @@ function img1()
     {
         deactiveExtraImage("img1");
     }
+    totaltime();
 }
 
 function img2()
@@ -161,6 +198,7 @@ function img2()
     {
         deactiveExtraImage("img2");
     }
+    totaltime();
 }
 
 function img3()
@@ -173,6 +211,7 @@ function img3()
     {
         deactiveExtraImage("img3");
     }
+    totaltime();
 }
 
 function img4()
@@ -185,6 +224,7 @@ function img4()
     {
         deactiveExtraImage("img4");
     }
+    totaltime();
 }
 
 function img5()
@@ -197,6 +237,7 @@ function img5()
     {
         deactiveExtraImage("img5");
     }
+    totaltime();
 }
 
 function activateExtraImage(imageid)
@@ -216,16 +257,13 @@ function deactiveExtraImage(imageid)
 }
 
     
+    document.querySelector(".totaltime").innerHTML=$("#servicetime  option:selected").val()+" "+"Hrs";
 
-    //total service time
-    document.querySelector(".totaltime").innerHTML=$("#servicetime  option:selected").val()+" " +"Hrs";
-           // document.querySelector(".totalpayment").innerHTML= "$0";
-           // totaltime();
     function totaltime()
     {
-        var total =parseFloat($("#servicetime  option:selected").val());
+        var totalhours = parseFloat($("#servicetime  option:selected").val());
 
-        if(document.querySelector(".extra-image-1").classList.contains("active"))
+        if(document.querySelector(".extra-content #img1").classList.contains("active"))
         {
             var ex1 = 0.5;
         }
@@ -233,7 +271,7 @@ function deactiveExtraImage(imageid)
         {
             var ex1 = 0;
         }
-        if(document.querySelector(".extra-image-2").classList.contains("active"))
+        if(document.querySelector(".extra-content #img2").classList.contains("active"))
         {
             var ex2 = 0.5;
         }
@@ -241,7 +279,7 @@ function deactiveExtraImage(imageid)
         {
             var ex2 = 0;
         }
-        if(document.querySelector(".extra-image-3").classList.contains("active"))
+        if(document.querySelector(".extra-content #img3").classList.contains("active"))
         {
             var ex3 = 0.5;
         }
@@ -249,7 +287,7 @@ function deactiveExtraImage(imageid)
         {
             var ex3 = 0;
         }
-        if(document.querySelector(".extra-image-4").classList.contains("active"))
+        if(document.querySelector(".extra-content #img4").classList.contains("active"))
         {
             var ex4 = 0.5;
         }
@@ -257,7 +295,7 @@ function deactiveExtraImage(imageid)
         {
             var ex4 = 0;
         }
-        if(document.querySelector(".extra-image-5").classList.contains("active"))
+        if(document.querySelector(".extra-content #img5").classList.contains("active"))
         {
             var ex5 = 0.5;
         }
@@ -265,13 +303,13 @@ function deactiveExtraImage(imageid)
         {
             var ex5 = 0;
         }
-        total = total + ex1 + ex2 + ex3 + ex4 + ex5;
-        document.querySelector(".totaltime").innerHTML=total +" "+ "Hrs";
-        tatpay = total*25;
-        document.querySelector(".totalpayment b").innerHTML= "$"+tatpay ;
-        charge =total*25;
-        document.querySelector(".charge").innerHTML= "$"+charge ;
-    
+        totalhours = totalhours + ex1 + ex2 + ex3 + ex4 + ex5;
+        extraservicehours = ex1 + ex2 + ex3 + ex4 + ex5;
+        document.querySelector(".totaltime").innerHTML=totalhours +" "+ "Hrs";
+        totalcharge = totalhours * 25;
+        document.querySelector(".total-charge").innerHTML= "$" + totalcharge;
+        totalpay =totalhours * 25;
+        document.querySelector(".total-payment").innerHTML= "$" + totalpay;
     }
 
 function showAddAddress()
@@ -279,6 +317,7 @@ function showAddAddress()
     let address = document.getElementsByClassName("add-address")[0];
     let button = document.getElementsByClassName("add-new-address")[0];
 
+    document.querySelector(".error-message").innerHTML="";
     address.style.display = "block";
     button.style.display = "none";
 }

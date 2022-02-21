@@ -31,7 +31,8 @@ class HelperlandModel
 
     public function insert_contactus($table, $array)
     {
-        $sql_qry = "INSERT INTO $table (Name, Email, Subject, PhoneNumber, Message, CreatedOn) VALUES (:Name, :Email, :Subject, :PhoneNumber, :Message, :CreatedOn)";
+        $sql_qry = "INSERT INTO $table (Name, Email, Subject, PhoneNumber, Message, CreatedOn) 
+                    VALUES (:Name, :Email, :Subject, :PhoneNumber, :Message, :CreatedOn)";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute($array);
     }
@@ -47,7 +48,8 @@ class HelperlandModel
 
     public function insert_user($table, $array)
     {
-        $sql_qry = "INSERT INTO $table (FirstName, LastName, Email, Password, Mobile, CreatedDate) VALUES (:FirstName, :LastName, :Email, :Password, :Mobile, :CreatedDate)";
+        $sql_qry = "INSERT INTO $table (FirstName, LastName, Email, Password, Mobile, CreatedDate) 
+                    VALUES (:FirstName, :LastName, :Email, :Password, :Mobile, :CreatedDate)";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute($array);
     }
@@ -96,20 +98,28 @@ class HelperlandModel
         return $row;
     }
 
-    public function get_State_from_zipcode($postalcode)
-    {
-        $sql_qry = "SELECT zipcode.ZipcodeValue, city.CityName, state.StateName  FROM zipcode RIGHT OUTER JOIN city ON zipcode.CityId = city.Id AND ZipcodeValue = $postalcode LEFT OUTER JOIN state ON state.Id = city.StateId";
-        $statement = $this->conn->prepare($sql_qry);
-        $statement->execute();
-        $row  = $statement->fetch(PDO::FETCH_ASSOC);
-        return $row;
-    }
-
-    // public function get
+    // public function get_State_from_zipcode($postalcode)
+    // {
+    //     $sql_qry = "SELECT zipcode.ZipcodeValue, city.CityName, state.StateName  FROM zipcode RIGHT OUTER JOIN city ON zipcode.CityId = city.Id AND ZipcodeValue = $postalcode LEFT OUTER JOIN state ON state.Id = city.StateId";
+    //     $statement = $this->conn->prepare($sql_qry);
+    //     $statement->execute();
+    //     $row  = $statement->fetch(PDO::FETCH_ASSOC);
+    //     return $row;
+    // }
 
     public function insert_address($table, $array)
     {
-        $sql_qry = "INSERT INTO $table (UserId, AddressLine1, AddressLine2, City, PostalCode, Mobile) VALUES (:userid, :streetname, :housenumber, :city, :postalcode, :phonenumber)";
+        $sql_qry = "INSERT INTO $table (UserId, AddressLine1, AddressLine2, City, PostalCode, Mobile) 
+                    VALUES (:userid, :streetname, :housenumber, :city, :postalcode, :phonenumber)";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute($array);
+    }
+
+    public function add_service_request($table,$array)
+    {
+        $sql_qry = "INSERT INTO $table(UserId, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, SubTotal, TotalCost, Comments, CreatedDate, ModifiedDate) 
+                    VALUES (:userid, :postalcode, :servicehourlyrate, :servicehours, :extrahours, :totalpayment, :totalpayment, :comment, now(), now())";
+
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute($array);
     }
