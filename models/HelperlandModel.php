@@ -48,8 +48,8 @@ class HelperlandModel
 
     public function insert_user($table, $array)
     {
-        $sql_qry = "INSERT INTO $table (FirstName, LastName, Email, Password, Mobile, CreatedDate) 
-                    VALUES (:FirstName, :LastName, :Email, :Password, :Mobile, :CreatedDate)";
+        $sql_qry = "INSERT INTO $table (FirstName, LastName, Email, Password, Mobile, UserTypeId, CreatedDate) 
+                    VALUES (:fname, :lname, :email, :password, :mobile, :usertypeid, now())";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute($array);
     }
@@ -115,13 +115,40 @@ class HelperlandModel
         $statement->execute($array);
     }
 
-    public function add_service_request($table,$array)
+    public function add_service_request($table, $array)
     {
-        $sql_qry = "INSERT INTO $table(UserId, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, SubTotal, TotalCost, Comments, CreatedDate, ModifiedDate) 
-                    VALUES (:userid, :postalcode, :servicehourlyrate, :servicehours, :extrahours, :totalpayment, :totalpayment, :comment, now(), now())";
-
+        $sql_qry = "INSERT INTO $table(UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, SubTotal, TotalCost, Comments) 
+                    VALUES (:userid, :servicedatetime, :postalcode, :servicehourlyrate, :servicehours, :extrahours, :subtotal, :totalpayment, :comment)";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute($array);
+        $requestid = $this->conn->lastInsertId();
+        return $requestid;
+    }
+
+    function add_booking_service_address($table, $bookrequestid_selectedaddressid_array)
+    {
+        $sql_qry = "INSERT INTO $table (ServiceRequestId, AddressLine1, AddressLine2, City, PostalCode)
+                    SELECT servicerequest.ServiceRequestId, useraddress.AddressLine1, useraddress.AddressLine2, useraddress.City, useraddress.PostalCode FROM servicerequest, useraddress
+                    WHERE servicerequest.ServiceRequestId = :requestid AND useraddress.AddressId = :selectedaddressid";
+        $statement= $this->conn->prepare($sql_qry);
+        $statement->execute($bookrequestid_selectedaddressid_array);
+    }
+
+    function add_extraservice($table, $bookrequestid_selectedaddressid_array, $array2)
+    {
+        $sql_qry = "INSERT INTO $table (ServiceRequestId, ServiceExtraId)
+                    VALUES (:requestid, :selectextraserviceid)";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute($bookrequestid_selectedaddressid_array, $array2);
+    }
+
+    public function send_service_request_mail_to_sp($table, $postalcode)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ZipCode = $postalcode AND UserTypeId = 1";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
     }
 }
 ?>

@@ -13,6 +13,33 @@
     <?php
         include("header_2.php");
     ?>
+    <div id="loader" class="d-none">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="request-success" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        Your request submitted successfully. 
+                    </div>
+                    <div class="modal-footer-text">
+                        <button name="submit" class="ok" ><a href="ServiceHistory.php" class="text-color style-none">Ok</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="titleimage">
         <img src="http://localhost/Helperland/assets/images/book-service-banner.jpg" alt="bookservice-banner">
@@ -105,7 +132,7 @@
                                         <span class="text-1"><b>Extra Services</b></span>
                                         <div class="extra-service">
                                             <div class="extra-content">
-                                                <div class="extra-image" id="img1" onclick="img1()">
+                                                <div class="extra-image" id="img1" onclick="img(1)">
                                                     <img src="http://localhost/Helperland/assets/images/3.png">
                                                 </div>
                                                 <br>
@@ -115,7 +142,7 @@
                                                 </div>
                                             </div>
                                             <div class="extra-content">
-                                                <div class="extra-image" id="img2" onclick="img2()">
+                                                <div class="extra-image" id="img2" onclick="img(2)">
                                                   <img src="http://localhost/Helperland/assets/images/5.png">
                                                 </div>
                                                 <br>
@@ -125,7 +152,7 @@
                                                 </div>
                                             </div>
                                             <div class="extra-content">
-                                                <div class="extra-image" id="img3" onclick="img3()">
+                                                <div class="extra-image" id="img3" onclick="img(3)">
                                                     <img src="http://localhost/Helperland/assets/images/4.png">
                                                 </div>
                                                 <br>
@@ -135,7 +162,7 @@
                                                 </div>
                                             </div>
                                             <div class="extra-content">
-                                                <div class="extra-image" id="img4" onclick="img4()">
+                                                <div class="extra-image" id="img4" onclick="img(4)">
                                                     <img src="http://localhost/Helperland/assets/images/2.png">
                                                 </div>
                                                 <br>
@@ -145,7 +172,7 @@
                                                 </div>
                                             </div>
                                             <div class="extra-content">
-                                                <div class="extra-image" id="img5" onclick="img5()">
+                                                <div class="extra-image" id="img5" onclick="img(5)">
                                                     <img src="http://localhost/Helperland/assets/images/1.png">
                                                 </div>
                                                 <br>
@@ -297,7 +324,7 @@
                                 <hr class="underline mt-2 mb-2">
                                 <div class="row">
                                     <div class="col-6 text-1"><b>Total Service Time</b></div>
-                                    <div class="col-6 text-3 text-right totaltime"><b></b></div>
+                                    <div class="col-6 text-3 text-right totaltime"></div>
                                 </div>
                             </div>
                             <div class="payment-text2">
@@ -309,7 +336,7 @@
                             <div class="payment-text3">
                                 <div class="row align-items-center">
                                     <div class="text-4 col-6">Total Payment</div>
-                                    <div class="text-5 col-6 text-right total-payment"><b></b></div>
+                                    <div class="text-5 col-6 text-right total-payment"></div>
                                 </div>
                             </div>
                             <div class="payment-text4">

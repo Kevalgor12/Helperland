@@ -53,6 +53,7 @@ class HelperlandController{
                 $lname = $_POST['lname'];
                 $mobile = $_POST['mobile'];
                 $email = $_POST['email'];
+                $usertypeid = 2;
                 $count = $this->model->check_email_existance('user', $email);
                 if($count == 0)
                 {
@@ -60,12 +61,12 @@ class HelperlandController{
                     {
                         $password = $_POST['password'];
                         $array = [
-                            'FirstName' => $fname,
-                            'LastName'  => $lname,
-                            'Email' => $email,
-                            'Mobile' => $mobile,
-                            'Password' => $password,
-                            'CreatedDate' => date('Y-m-d H:i:s'),
+                            'fname' => $fname,
+                            'lname'  => $lname,
+                            'email' => $email,
+                            'mobile' => $mobile,
+                            'password' => $password,
+                            'usertypeid' => $usertypeid,
                         ];
                         $this->model->insert_user('user', $array);
                         header('Location:' . $base_url);
@@ -97,6 +98,7 @@ class HelperlandController{
                 $lname = $_POST['lname'];
                 $mobile = $_POST['mobile'];
                 $email = $_POST['email'];
+                $usertypeid = 1;
                 $count = $this->model->check_email_existance('user', $email);
                 if($count == 0)
                 {
@@ -104,12 +106,12 @@ class HelperlandController{
                     {
                         $password = $_POST['password'];
                         $array = [
-                            'FirstName' => $fname,
-                            'LastName'  => $lname,
-                            'Email' => $email,
-                            'Mobile' => $mobile,
-                            'Password' => $password,
-                            'CreatedDate' => date('Y-m-d H:i:s'),
+                            'fname' => $fname,
+                            'lname'  => $lname,
+                            'email' => $email,
+                            'mobile' => $mobile,
+                            'password' => $password,
+                            'usertypeid' => $usertypeid,
                         ];
                         $this->model->insert_user('user', $array);
                         header('Location:' . $base_url);
@@ -155,6 +157,7 @@ class HelperlandController{
                     {
                         $_SESSION['userid'] = $row['UserId'];
                         $_SESSION['username'] = $row['FirstName'];
+                        $_SESSION['email'] = $row['Email'];
 
                         if($usertypeid == 1)
                         {
@@ -194,7 +197,7 @@ class HelperlandController{
                 if($count == 1)
                 {
                     $to_email = $email;
-                    $subject = "Simple Email Test via PHP";
+                    $subject = "Reset Password";
                     $body = "Hi, User!!! </br> This is your reset password link. http://localhost/Helperland/ResetPassword.php";
                     $headers = "From: kp916777@gmail.com";
                     $_SESSION['email'] = $_POST['email'];
@@ -219,7 +222,7 @@ class HelperlandController{
                 {
                     echo    '<script>
                                 alert("Email not found.");
-                                location. href="http://localhost/Helperland/Login.php";
+                                location. href="http://localhost/Helperland/";
                             </script>';
                 }
             }
@@ -285,7 +288,7 @@ class HelperlandController{
         {
             ?>
             <label class="area-label">
-                <input type="radio" class="area-radio" id="age<?php echo $i?>" name="age" value="30" onclick="getseladd(this.id)">
+                <input type="radio" class="area-radio" id="address<?php echo $i?>" name="address" value="<?php echo $address['AddressId'] ?>">
                 <span><b>Address:</b></span><?php echo " ".$address['AddressLine1']."  ".$address['AddressLine2'].", ".$address['City']."  ".$address['State']." - ".$address['PostalCode']." ";  ?><br>
                 <span><b>Telephone number:</b></span><?php echo " ".$address['Mobile']." "; ?>
                 </label>
@@ -316,21 +319,57 @@ class HelperlandController{
     public function add_service_request()
     {
         $postalcode = $_POST['postalcode'];
+        $date = $_POST['date'];
+        $time = $_POST['time'];
         $servicehours = $_POST['servicehours'];
         $extrahours = $_POST['extrahours'];
+        $selectextraserviceid[5] = $_POST['selectextraserviceid'];
         $servicehourlyrate = $_POST['servicehourlyrate'];
-        $totalpayment = $_POST['totalpayment'];
+        $subtotal = $_POST['subtotal'];
+        $totalpayment = $_POST['totalpay'];
         $comment = $_POST['comment'];
 
         $array = [
             'userid' => $_SESSION['userid'],
             'postalcode' => $postalcode,
+            'servicedatetime' => $date . " " . $time,
             'servicehours' => $servicehours,
             'extrahours' => $extrahours,
             'servicehourlyrate' => $servicehourlyrate,
+            'subtotal' => $subtotal,
             'totalpayment' => $totalpayment,
             'comment' => $comment,
         ];
-        $this->model->add_service_request('servicerequest', $array);
+        $requestid = $this->model->add_service_request('servicerequest', $array);
+        $selectedaddressid = $_POST['selectedaddressid'];
+        $bookrequestid_selectedaddressid_array = [
+            'requestid' => $requestid,
+            'selectedaddressid' => $selectedaddressid,
+        ];
+
+        $this->model->add_booking_service_address('servicerequestaddress', $bookrequestid_selectedaddressid_array);
+        for($i=0; $i<5 ; $i++)
+        {
+            if($selectextraserviceid[$i] != "")
+            {
+                $array2 = [
+                    'selectextraserviceid' => $selectextraserviceid[$i],
+                ];
+                $this->model->add_extraservice('servicerequestextra', $bookrequestid_selectedaddressid_array, $array2);
+            }
+        }
+        $row = $this->model->send_service_request_mail_to_sp('user', $postalcode);
+        
+        if($row != null)
+        {
+            foreach($row as $emaildata)
+            {
+                $to_email = $emaildata['Email'];
+                $subject = "New service request";
+                $body = "Hi, Service Provider!!! One service request is available in your area. Kindly check by login. http://localhost/Helperland/Home.php";
+                $headers = "From: kp916777@gmail.com";
+                mail($to_email, $subject, $body, $headers);
+            }
+        }
     }
 }

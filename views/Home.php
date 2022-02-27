@@ -5,10 +5,12 @@
 <section class="home" id="home">
   <div class="max-width">
     <div class="home-content">
-      <div class="text-1">Lorem ipsum text</div>
-      <div class="text-2"><img src="http://localhost/Helperland/assets/images/ic-check.png"> Lorem ipsum dolor sit amet, consectetur adipisicing</div>
-      <div class="text-2"><img src="http://localhost/Helperland/assets/images/ic-check.png"> Lorem ipsum dolor sit amet, consectetur adipisicing</div>
-      <div class="text-2"><img src="http://localhost/Helperland/assets/images/ic-check.png"> Lorem ipsum dolor sit amet, consectetur adipisicing</div>
+      <div class="text-1">Don't feel like doing housework?</div>
+      <div class="text-2">Fine! Book your cleaner now through Helperland and enjoy the benefits</div>
+      <div class="text-2"><img src="http://localhost/Helperland/assets/images/ic-check.png"> tested & insured helpers</div>
+      <div class="text-2"><img src="http://localhost/Helperland/assets/images/ic-check.png"> easy booking process</div>
+      <div class="text-2"><img src="http://localhost/Helperland/assets/images/ic-check.png"> friendly customer service</div>
+      <div class="text-2"><img src="http://localhost/Helperland/assets/images/ic-check.png"> secure online payment method</div>
     </div>
     <div class="button">
       <button class="button-cleaner mx-auto">Let's Book a Cleaner</button>

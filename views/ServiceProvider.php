@@ -30,7 +30,7 @@
                         <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
                         <div class="checkbox-content">
                             <div>
-                                <input type="checkbox" id="sendnewsletter" name="sendnewsletter" class="checkbox" required>
+                                <input type="checkbox" id="sendnewsletter" name="sendnewsletter" class="checkbox">
                             </div>
                             <div>
                                 <label for="sendnewsletter"> Send me newsletters from Helperland</label><br>

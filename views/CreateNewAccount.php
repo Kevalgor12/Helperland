@@ -63,10 +63,10 @@
                     <div class="row">
                         <button name="submit" class="submit space-bottom mx-auto"><b>Register</b></button>
                     </div>
-                    <div class="row">
-                        <p class="space-bottom">Already registered? <span><a href="" class="text-color style-none" data-bs-toggle="modal" data-bs-target="#login_modal" data-bs-dismiss="modal">Login now</span> </p>
-                    </div>
                 </form>
+                <div class="row">
+                    <p class="space-bottom">Already registered? <span><a href="" class="text-color style-none" data-bs-toggle="modal" data-bs-target="#login_modal" data-bs-dismiss="modal">Login now</span> </p>
+                </div>
             </div>
         </div>
     </section>

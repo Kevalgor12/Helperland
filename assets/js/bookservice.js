@@ -1,10 +1,23 @@
+var postalcode;
+var servicehours = 0;
+var extrahours = 0;
+var servicehourlyrate = 25;
+var subtotal = 0;
+var totalpay = 0;
+var comment;
+var date;
+var time;
+var selectedaddressid;
+selectextraserviceid = [];
+
 $(document).ready(function(){
 
+    
     totaltime();
 
     $(".check-avail").click(function(){ 
 
-        var postalcode = $(".postalcode").val();
+        postalcode = $(".postalcode").val();
 
         if(postalcode == "")
         {
@@ -76,7 +89,7 @@ $(document).ready(function(){
 
     function radio_button_addresslist()
     {
-        var postalcode = $(".postalcode").val();
+        postalcode = $(".postalcode").val();
         $.ajax({
             type: "POST",
             url:  "http://localhost/Helperland/?controller=Helperland&function=fill_radio_button_address",
@@ -87,8 +100,13 @@ $(document).ready(function(){
         });
     }
 
+    $(".address-radio-button").click(function (event) { 
+        selectedaddressid = event.target.value;
+    });
+
     $(".continue1").click(function(){ 
         switchtab("SchedulePlan","YourDetails");
+        comment = $(".service-comment").val();
     });
 
     $(".continue2").click(function(){ 
@@ -97,27 +115,29 @@ $(document).ready(function(){
 
     $(".complete-booking").click(function(){ 
 
-        var postalcode = $(".postalcode").val();
-        var servicehours = parseFloat($(".basic").text());
-        var extrahours = parseFloat($(".totaltime").text()) - servicehours;
-        var servicehourlyrate = "25";
-        var totalpayment = parseFloat($(".total-payment").text());
-        var comment = $(".service-comment").text();
-
         document.querySelector(".error-message").innerHTML="";
+
+        $("#loader").removeClass("d-none");
+
         $.ajax({
             type: "POST",
             url: "http://localhost/Helperland/?controller=Helperland&function=add_service_request",
             data: {
                     "postalcode" : postalcode,
+                    "date" : date,
+                    "time" : time,
                     "servicehours" : servicehours,
                     "extrahours" : extrahours,
                     "servicehourlyrate" : servicehourlyrate,
-                    "totalpayment" : totalpayment,
+                    "subtotal" : subtotal,
+                    "totalpay" : totalpay,
                     "comment" : comment,
+                    "selectedaddressid" : selectedaddressid,
+                    "selectextraserviceid" : selectextraserviceid,
                    },
             success: function (response) {
-                alert("Request submitted succefully.")
+                $("#loader").addClass("d-none");
+                $("#request-success").modal("toggle");
             }
         });
     })
@@ -128,16 +148,20 @@ $(document).ready(function(){
         document.querySelector(".basic").innerHTML=$("#servicetime option:selected").val() +" "+ "Hrs";
     });
 
-    $("#servicetime").on("change", function () {
+    $("#servicetime").change(function () {
         totaltime();
     });
 
-    $("#formdate").click(function () { 
-        document.querySelector(".datetime").innerHTML=$("#formdate").val() + " " + $("#booktime option:selected").val();
+    $("#formdate").change(function () { 
+        date = $("#formdate").val();
+        time = $("#booktime option:selected").val();
+        document.querySelector(".datetime").innerHTML=date + " " + time;
     });
 
     $("#booktime").click(function () { 
-        document.querySelector(".datetime").innerHTML=$("#formdate").val() + " " + $("#booktime option:selected").val();
+        date = $("#formdate").val();
+        time = $("#booktime option:selected").val();
+        document.querySelector(".datetime").innerHTML=date + " " + time;
     });
 })
 
@@ -175,69 +199,92 @@ function filltabcolor()
     }
 }
 
-function img1()
-{
-    if(!(document.getElementById("img1").classList.contains("active")))
-    {
-        activateExtraImage("img1");
-    }
-    else
-    {
-        deactiveExtraImage("img1");
-    }
-    totaltime();
-}
+// function img1()
+// {
+//     if(!(document.getElementById("img1").classList.contains("active")))
+//     {
+//         activateExtraImage("img1");
+//     }
+//     else
+//     {
+//         deactiveExtraImage("img1");
+//     }
+//     totaltime();
+// }
 
-function img2()
-{
-    if(!(document.getElementById("img2").classList.contains("active")))
-    {
-        activateExtraImage("img2");
-    }
-    else
-    {
-        deactiveExtraImage("img2");
-    }
-    totaltime();
-}
+// function img2()
+// {
+//     if(!(document.getElementById("img2").classList.contains("active")))
+//     {
+//         activateExtraImage("img2");
+//     }
+//     else
+//     {
+//         deactiveExtraImage("img2");
+//     }
+//     totaltime();
+// }
 
-function img3()
-{
-    if(!(document.getElementById("img3").classList.contains("active")))
-    {
-        activateExtraImage("img3");
-    }
-    else
-    {
-        deactiveExtraImage("img3");
-    }
-    totaltime();
-}
+// function img3()
+// {
+//     if(!(document.getElementById("img3").classList.contains("active")))
+//     {
+//         activateExtraImage("img3");
+//     }
+//     else
+//     {
+//         deactiveExtraImage("img3");
+//     }
+//     totaltime();
+// }
 
-function img4()
-{
-    if(!(document.getElementById("img4").classList.contains("active")))
-    {
-        activateExtraImage("img4");
-    }
-    else
-    {
-        deactiveExtraImage("img4");
-    }
-    totaltime();
-}
+// function img4()
+// {
+//     if(!(document.getElementById("img4").classList.contains("active")))
+//     {
+//         activateExtraImage("img4");
+//     }
+//     else
+//     {
+//         deactiveExtraImage("img4");
+//     }
+//     totaltime();
+// }
 
-function img5()
+// function img5()
+// {
+//     if(!(document.getElementById("img5").classList.contains("active")))
+//     {
+//         activateExtraImage("img5");
+//     }
+//     else
+//     {
+//         deactiveExtraImage("img5");
+//     }
+//     totaltime();
+// }
+
+let images = document.querySelectorAll(".extra-image");
+
+for (let i=1 ; i<=images.length ; i++)
 {
-    if(!(document.getElementById("img5").classList.contains("active")))
-    {
-        activateExtraImage("img5");
+    function img(i) 
+    { 
+        const index = selectextraserviceid.indexOf(i);
+
+        if(!(document.getElementById("img"+i).classList.contains("active")))
+        {
+            activateExtraImage("img"+i);
+            selectextraserviceid.push(i);
+        }
+        else
+        {
+            deactiveExtraImage("img"+i);
+            selectextraserviceid.splice(index, 1);
+        }
+        totaltime();
+        console.log(selectextraserviceid);
     }
-    else
-    {
-        deactiveExtraImage("img5");
-    }
-    totaltime();
 }
 
 function activateExtraImage(imageid)
@@ -261,7 +308,7 @@ function deactiveExtraImage(imageid)
 
     function totaltime()
     {
-        var totalhours = parseFloat($("#servicetime  option:selected").val());
+        servicehours = parseFloat($("#servicetime  option:selected").val());
 
         if(document.querySelector(".extra-content #img1").classList.contains("active"))
         {
@@ -303,12 +350,12 @@ function deactiveExtraImage(imageid)
         {
             var ex5 = 0;
         }
-        totalhours = totalhours + ex1 + ex2 + ex3 + ex4 + ex5;
-        extraservicehours = ex1 + ex2 + ex3 + ex4 + ex5;
-        document.querySelector(".totaltime").innerHTML=totalhours +" "+ "Hrs";
-        totalcharge = totalhours * 25;
-        document.querySelector(".total-charge").innerHTML= "$" + totalcharge;
-        totalpay =totalhours * 25;
+        servicehours = servicehours + ex1 + ex2 + ex3 + ex4 + ex5;
+        extrahours = ex1 + ex2 + ex3 + ex4 + ex5;
+        document.querySelector(".totaltime").innerHTML=servicehours +" "+ "Hrs";
+        subtotal = servicehours * 25;
+        document.querySelector(".total-charge").innerHTML= "$" + subtotal;
+        totalpay = servicehours * 25;
         document.querySelector(".total-payment").innerHTML= "$" + totalpay;
     }
 

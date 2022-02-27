@@ -37,8 +37,8 @@
                 </div>
                 <div class="customer-table">
                     <div class="row">
-                        <div class="col-md-6 service-history-text"><b>Service History</b></div>
-                        <div class="col-md-6 export-btn-text"><button class="button-export">Export</button></div>
+                        <div class="col-8 service-history-text"><b>Service History</b></div>
+                        <div class="col-4 export-btn-text"><button class="button-export">Export</button></div>
                     </div>
                     <table id="tableservice" class="table display dataTable">
                         <thead>
@@ -59,11 +59,11 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="row">
-                                        <div class="col-md-2">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div>
                                             <img class="round-border" src="http://localhost/Helperland/assets/images/cap.png" alt="cap">
                                         </div>
-                                        <div class="col-md-10">
+                                        <div class="ps-2">
                                             Lyum Watson
                                         </div>
                                     </div>
