@@ -134,12 +134,20 @@ class HelperlandModel
         $statement->execute($bookrequestid_selectedaddressid_array);
     }
 
-    function add_extraservice($table, $bookrequestid_selectedaddressid_array, $array2)
+    // function add_extraservice($array)
+    // {
+    //     $sql_qry = "INSERT INTO servicerequestextra (ServiceRequestId, ServiceExtraId)
+    //                 VALUES (:requestid, :selectextraserviceid)";
+    //     $statement = $this->conn->prepare($sql_qry);
+    //     $statement->execute($array);
+    // }
+
+    function add_extraservice($table, $requestid, $array2)
     {
         $sql_qry = "INSERT INTO $table (ServiceRequestId, ServiceExtraId)
-                    VALUES (:requestid, :selectextraserviceid)";
+                    VALUES ($requestid, :selectextraserviceid)";
         $statement = $this->conn->prepare($sql_qry);
-        $statement->execute($bookrequestid_selectedaddressid_array, $array2);
+        $statement->execute($array2);
     }
 
     public function send_service_request_mail_to_sp($table, $postalcode)

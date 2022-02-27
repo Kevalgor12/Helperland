@@ -258,7 +258,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="pills-MakePayment" role="tabpanel" aria-labelledby="pills-MakePayment-tab">
-                                    <span class="text-1"><b>Choose one of the following payment methods.</b></span>
+                                    <span class="text-1 temp"><b>Choose one of the following payment methods.</b></span>
                                     <div>
                                         <label for="promocode">Promo code (optional)</label><br>
                                         <div class="promocode-check">

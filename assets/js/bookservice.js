@@ -5,8 +5,8 @@ var servicehourlyrate = 25;
 var subtotal = 0;
 var totalpay = 0;
 var comment;
-var date;
-var time;
+var date = 0;
+var time = 0;
 var selectedaddressid;
 selectextraserviceid = [];
 
@@ -138,6 +138,7 @@ $(document).ready(function(){
             success: function (response) {
                 $("#loader").addClass("d-none");
                 $("#request-success").modal("toggle");
+                $('.temp').html(response);
             }
         });
     })

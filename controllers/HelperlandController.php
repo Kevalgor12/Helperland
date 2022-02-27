@@ -323,7 +323,7 @@ class HelperlandController{
         $time = $_POST['time'];
         $servicehours = $_POST['servicehours'];
         $extrahours = $_POST['extrahours'];
-        $selectextraserviceid[5] = $_POST['selectextraserviceid'];
+        $selectextraserviceid = $_POST['selectextraserviceid'];
         $servicehourlyrate = $_POST['servicehourlyrate'];
         $subtotal = $_POST['subtotal'];
         $totalpayment = $_POST['totalpay'];
@@ -348,16 +348,17 @@ class HelperlandController{
         ];
 
         $this->model->add_booking_service_address('servicerequestaddress', $bookrequestid_selectedaddressid_array);
-        for($i=0; $i<5 ; $i++)
+        if($selectextraserviceid != null)
         {
-            if($selectextraserviceid[$i] != "")
+            for($i=0; $i<sizeof($selectextraserviceid) ; $i++)
             {
                 $array2 = [
                     'selectextraserviceid' => $selectextraserviceid[$i],
                 ];
-                $this->model->add_extraservice('servicerequestextra', $bookrequestid_selectedaddressid_array, $array2);
+                $this->model->add_extraservice('servicerequestextra', $requestid, $array2);
             }
         }
+        
         $row = $this->model->send_service_request_mail_to_sp('user', $postalcode);
         
         if($row != null)
