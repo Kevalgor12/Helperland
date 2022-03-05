@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-xl fixed-top navbar-light navbar-upcoming-service">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="http://localhost/Helperland/">
             <img src="http://localhost/Helperland/assets/images/logo-small.png" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,14 +11,14 @@
                 <li class="nav-item d-xl-none">
                     <span>
                         Warm welcome, <br>
-                        <b><?php echo $name; ?></b>
+                        <b></b>
                     </span>
                 </li>
                 <li class="nav-item d-xl-none">
-                    <a class="nav-link active" href="#">Dashboard</a>
+                    <a class="nav-link active" onclick="dashboard()">Dashboard</a>
                 </li>
                 <li class="nav-item d-xl-none">
-                    <a class="nav-link" href="#">Service History</a>
+                    <a class="nav-link" onclick="history()">Service History</a>
                 </li>
                 <li class="nav-item d-xl-none">
                     <a class="nav-link" href="#">Service Schedule</a>
@@ -33,7 +33,7 @@
                     <a class="nav-link" href="#">Notifications</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-link-transparent" href="BookService.php">Book now</a>
+                    <a class="nav-link rounded-link-transparent" href="http://localhost/Helperland/?controller=Helperland&function=gotobookservicepage">Book now</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link rounded-link" href="Prices.php">Prices & services</a>
@@ -65,12 +65,17 @@
                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <li class="dropdown-item">
                             <span>
-                                <b><?php echo $name; ?></b>
+                                <b></b>
                             </span>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
-                                Profile
+                            <a class="dropdown-item dashboard-dropdown">
+                                My Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item setting-dropdown">
+                                My Settings
                             </a>
                         </li>
                         <li>

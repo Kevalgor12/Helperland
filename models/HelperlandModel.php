@@ -82,7 +82,7 @@ class HelperlandModel
 
     public function check_sp_availability($table, $postalcode)
     {
-        $sql_qry = "SELECT * FROM $table WHERE ZipcodeValue = '$postalcode'";
+        $sql_qry = "SELECT * FROM $table WHERE ZipCode = '$postalcode' AND UserTypeId = 1";
         $statement =  $this->conn->prepare($sql_qry);
         $statement->execute();
         $number_of_rows = $statement->fetchColumn();
@@ -117,8 +117,8 @@ class HelperlandModel
 
     public function add_service_request($table, $array)
     {
-        $sql_qry = "INSERT INTO $table(UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, SubTotal, TotalCost, Comments) 
-                    VALUES (:userid, :servicedatetime, :postalcode, :servicehourlyrate, :servicehours, :extrahours, :subtotal, :totalpayment, :comment)";
+        $sql_qry = "INSERT INTO $table(UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, HasPets, SubTotal, TotalCost, Comments) 
+                    VALUES (:userid, :servicedatetime, :postalcode, :servicehourlyrate, :servicehours, :extrahours, :haspet, :subtotal, :totalpayment, :comment)";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute($array);
         $requestid = $this->conn->lastInsertId();
@@ -157,6 +157,94 @@ class HelperlandModel
         $statement->execute();
         $row  = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $row;
+    }
+
+    public function fill_dashboard($table, $userid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE Status = 0 AND UserId = $userid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function get_sp_byid($table, $ServiceProviderId)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE UserId = $ServiceProviderId";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_details_user($table, $userid)
+    {
+        $sql_qry = "SELECT FirstName, LastName, Email, Mobile, DateOfBirth FROM $table WHERE UserId = $userid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function update_user_details($table, $userid, $array)
+    {
+        $sql_qry = "UPDATE $table
+                    SET FirstName = :fname, LastName = :lname , Mobile = :mobile, DateOfBirth = :dob
+                    WHERE UserId = $userid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute($array);
+    }
+
+    public function fill_addresses_user($table, $userid)
+    {
+        $sql_qry = "SELECT AddressId, AddressLine1, AddressLine2, City, State, PostalCode, Mobile FROM $table WHERE UserId = $userid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchALL(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_selected_useraddress($table, $selectedaddid)
+    {
+        $sql_qry = "SELECT AddressId, AddressLine1, AddressLine2, City, State, PostalCode, Mobile FROM $table WHERE AddressId = $selectedaddid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function update_selected_address($table, $selectedaddid, $array2)
+    {
+        $sql_qry = "UPDATE $table
+                    SET AddressLine1 = :streetname, AddressLine1 = :housenumber, City :city, PostalCode :postalcode, Mobile = :phonenumber
+                    WHERE AddressId = $selectedaddid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute($array2);
+    }
+
+    public function delete_selected_useraddress($table, $selectedaddid)
+    {
+        $sql_qry = "DELETE FROM $table WHERE AddressId = $selectedaddid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function check_password($table, $email, $oldpassword)
+    {
+        $sql_qry = "SELECT * FROM $table where Email = '$email' AND Password = '$oldpassword'";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $count = $statement->rowCount();
+        return $count;
+    }
+
+    public function update_password($table, $email, $newpassword)
+    {
+        $sql_qry = "UPDATE $table
+                    SET Password = '$newpassword'
+                    WHERE Email = '$email'";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
     }
 }
 ?>

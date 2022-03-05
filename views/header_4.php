@@ -3,7 +3,7 @@
         <button class="sidebar-toggle navbar-toggler me-2" type="button">
             <i class="fa fa-bars" aria-hidden="true"></i>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="http://localhost/Helperland/">
             <span class="navbar-title">helperland</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

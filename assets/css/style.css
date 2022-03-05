@@ -106,7 +106,12 @@
 }
 
 .modal-dialog {
-	max-width: 400px;
+	max-width: 450px;
+	margin: 20px auto;
+}
+
+.modal-dialog.address {
+	max-width: 700px;
 	margin: 20px auto;
 }
 
@@ -114,6 +119,21 @@
 	font-family: 'Roboto';
 	color: #646464;
 	padding: 15px 30px;
+}
+
+.modal .modal-dialog .modal-content .modal-header .round-border {
+	width: 60px;
+	height: 60px;
+	padding: 16px 7px;
+	border: 1.5px solid #9C9C9C;
+	border-radius: 50%;
+}
+
+.modal .modal-dialog .modal-content .modal-header .sp-details {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	margin-bottom: 0;
 }
 
 .modal .modal-dialog .modal-content .modal-header .fa-check-circle {
@@ -127,6 +147,85 @@
 	padding: 15px 30px;
 }
 
+.modal .modal-dialog .modal-content .modal-body .addresslable {
+	font-weight: 600;
+}
+
+.modal .modal-dialog .modal-content .modal-body .input {
+	width: 100%;
+	height: 46px;
+	padding: 0 12px;
+	border: 1px solid #E1E1E1;
+	border-radius: 3px;
+	margin: 5px 0 15px 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body .input-group .input-group-text {
+	width: 54px;
+	height: 46px;
+	border: 1px solid #E1E1E1;
+	border-right: none;
+	border-radius: 3px 0 0 3px;
+	margin: 5px 0 15px 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body .input-group input {
+	width: calc(100% - 54px);
+	height: 46px;
+	border: 1px solid #E1E1E1;
+	border-radius: 0 3px 3px 0;
+	padding-left: 15px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .btn-addresssave {
+	width: 100%;
+	height: 46px;
+	font-family: 'Roboto';
+	font-size: 16px;
+	font-weight: 400;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	border-radius: 23px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .btn-addresssave:hover {
+	background-color: #29626D;
+}
+
+.modal .modal-dialog .modal-content .modal-body .cancel-question {
+	width: 100%;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+}
+
+.modal .modal-dialog .modal-content .modal-body .why-cancel {
+	width: 100%;
+	height: 100px;
+	padding: 5px 10px;
+	margin: 15px 0;
+	border: 1px solid #E1E1E1;
+	border-radius: 3px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .btn-cancelnow, .btn-update {
+	width: 100%;
+	height: 46px;
+	font-family: 'Roboto';
+	font-size: 16px;
+	font-weight: 400;
+	color: #FFFFFF;
+	padding: 10px 5px;
+	background-color: #6DA9B5;
+	border: 1px solid #6DA9B5;
+	border-radius: 23px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .btn-cancelnow:hover, .btn-update:hover {
+	background-color: #1D7A8C;
+}
+
 .modal .modal-dialog .modal-content .modal-body .content {
 	padding: 30px 0;
 	font-family: 'Roboto';
@@ -136,15 +235,146 @@
 	text-align: center;
 }
 
+.modal .modal-dialog .modal-content .modal-body .register-inputs .service-datetime {
+	font-family: 'Roboto';
+	font-size: 20px;
+	font-weight: 600;
+	color: #4F4F4F;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .service-detail {
+	font-family: 'Roboto';
+	font-size: 16px;
+	font-weight: 450;
+	color: #4F4F4F;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .service-detail-text {
+	font-family: 'Roboto';
+	font-size: 16px;
+	font-weight: 300;
+	color: #4F4F4F;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .service-detail-euro {
+	font-family: 'Roboto';
+	font-size: 30px;
+	font-weight: 500;
+	color: #1D7A8C;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .fa-times-circle {
+	font-size: 26px;
+	color: red;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .fa-history {
+	transform: rotateY(180deg);
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-reschedule {
+	font-family: 'Roboto';
+	font-size: 14px;
+	padding: 5px 10px;
+	height: 35px;
+	border-radius: 17.5px;
+	color: #FFFFFF;
+	background: #1D7A8C;
+	border: 1px solid #1D7A8C;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-reschedule:hover {
+	background: #29626D;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-cancel {
+	font-family: 'Roboto';
+	font-size: 14px;
+	padding: 5px 10px;
+	height: 35px;
+	border-radius: 17.5px;
+	color: #FFFFFF;
+	background: #FF6B6B;
+	border: #FF6B6B;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-cancel:hover {
+	background: #fD4B4B;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .input-element {
+	width: 100%;
+	height: 45px;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	margin: 5px 0 15px 0;
+	padding: 0 0 0 5px;
+	border: 1px solid #E1E1E1;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs #booktime {
+	width: 100%;
+	height: 45px;
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	margin: 5px 0 15px 0;
+	border: 1px solid #E1E1E1;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .rate-service-text {
+	font-family: 'Roboto';
+	font-size: 18px;
+	font-weight: 600;
+	color: #4F4F4F;
+	margin-bottom: 10px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .subtext {
+	font-family: 'Roboto';
+	font-size: 16px;
+	font-weight: 300;
+	color: #4F4F4F;
+	margin: 10px 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .rate-feedback {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	width: 100%;
+	height: 60px;
+	margin-bottom: 15px;
+	padding: 5px 10px;
+	border: 1px solid #E1E1E1;
+	border-radius: 3px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-ratesp-submit {
+	width: auto;
+	height: 46px;
+	font-family: 'Roboto';
+	font-size: 16px;
+	font-weight: 400;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	padding: 5px 20px;
+	border-radius: 23px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-ratesp-submit:hover {
+	background-color: #29626D;
+}
+
 .modal .modal-dialog .modal-content .modal-body .register-inputs .input-group {
 	font-family: 'Roboto';
 	font-size: 16px;
 	opacity: 1;
 	letter-spacing: 0px;
 	margin: 20px 0px;
-	height: 48px;
-	border: 1px solid #C8C8C8;
-	border-radius: 4px;
+	height: 46px;
 }
 
 .modal .modal-dialog .modal-content .modal-body .register-inputs .input-group input {
@@ -154,11 +384,15 @@
 	letter-spacing: 0px;
 	padding-left: 10px;
 	height: 46px;
-	border: none;
+	border: 1px solid #C8C8C8;
+	border-radius: 3px 0 0 3px;
 }
 
 .modal .modal-dialog .modal-content .modal-body .register-inputs .input-group .input-group-text {
-	margin: -1px -1px -1px 0;
+	margin: 0 -1px -1px 0;
+	border: 1px solid #C8C8C8;
+	border-left: none;
+	border-radius: 0 3px 3px 0;
 }
 
 .modal .modal-dialog .modal-content .modal-body .register-inputs .checkbox-content {
@@ -393,6 +627,24 @@
 	cursor: pointer;
 }
 
+.navbar .dropdown-menu[data-bs-popper] {
+    top: 50px;
+    left: -85px;
+    margin-top: 0.125rem;
+	background-color: #FFFFFF !important;
+}
+
+.navbar .dropdown-menu li .dropdown-item {
+	text-align: left;
+	padding-left: 15px;
+	color: #000001 !important;
+	font-weight: 400px;
+}
+
+.navbar .dropdown-menu li .dropdown-item:active {
+	background-color: #E1E1E1;
+}
+
 .navbar .navbar-nav .rounded-link {
 	background-color: transparent;
 	border: 1px solid transparent;
@@ -576,7 +828,7 @@
 	text-align: center;
 	margin-top: 70px;
 }
-.home .button-cleaner{
+.home .button .button-cleaner{
 	background-color: #005F7199;
 	border-color: white;
 	border-width: 1px;
@@ -587,6 +839,10 @@
 	color: white;
 	font-size: 18px;
 	text-align: center;
+}
+.home .button .button-cleaner:hover{
+	background-color: #FFFFFF;
+	color: #1D7A8C;
 }
 .home .pay-service {
 	display: flex;
@@ -1524,14 +1780,14 @@ footer .privacy-policy button{
 
 .navbar-upcoming-service .rectangle-line1 {
 	width: 1px; 
-	height: 48px; 
+	height: 42px; 
 	background-color: white;
 	margin-left: 15px;
 }
 
 .navbar-upcoming-service .rectangle-line2 {
 	width: 1px; 
-	height: 48px; 
+	height: 42px; 
 	background-color: white;
 	margin-right: 15px;
 }
@@ -1715,9 +1971,10 @@ footer .privacy-policy button{
 }
 
 .service-history .sidebar-table .sidebar {
-	margin: 0;
+	margin: 0 20px;
 	padding: 0;
-	min-width: calc(262px);
+	min-width: calc(250px);
+	min-height: 360px;
 	text-align: left;
 	background-color: #1D7A8C;
 	margin-right: 31px;
@@ -1746,11 +2003,227 @@ footer .privacy-policy button{
 
 .service-history .sidebar-table .table {
 	border: 1.2px solid #E1E1E1 !important;
+	width: 100% !important;
+	border-bottom: none !important;
 }
 
 .service-history .sidebar-table .customer-table {
 	padding: 0px 20px;
 	width: 100%;
+}
+
+.service-history .sidebar-table .mysetting {
+	display: none;
+}
+
+.service-history .sidebar-table .mysetting .btn-setting {
+	width: 100%;
+	height: 50px;
+	background-color: #FFFFFF;
+	border: none;
+	border-bottom: 2px solid #E1E1E1;
+	color: #4F4F4F;
+	font-family: 'Roboto';
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.service-history .sidebar-table .mysetting .btn-setting.active {
+	color: #1D7A8C;
+	border-bottom: 2px solid #1D7A8C;
+	font-size: 18px;
+}
+
+.service-history .sidebar-table .mysetting .button-body .details-body {
+	font-family: 'Roboto';
+	color: #4F4F4F;
+	font-size: 16px;
+	margin: 15px 0;
+}
+
+.service-history .sidebar-table .mysetting .button-body .details-body label {
+	font-weight: 600;
+}
+
+.service-history .sidebar-table .mysetting .button-body .details-body .input {
+	width: 100%;
+	height: 46px;
+	padding: 0 12px;
+	border: 1px solid #E1E1E1;
+	border-radius: 3px;
+	margin: 5px 0 15px 0;
+}
+
+.service-history .sidebar-table .mysetting .button-body .details-body .input-group .input-group-text {
+	width: 54px;
+	height: 46px;
+	border: 1px solid #E1E1E1;
+	border-right: none;
+	border-radius: 3px 0 0 3px;
+	margin: 5px 0 15px 0;
+}
+
+.service-history .sidebar-table .mysetting .button-body .details-body .input-group input {
+	width: calc(100% - 54px);
+	height: 46px;
+	margin: 5px 0 15px 0;
+	border: 1px solid #E1E1E1;
+	border-radius: 0 3px 3px 0;
+	padding-left: 15px;
+}
+
+.service-history .sidebar-table .mysetting .button-body .details-body select {
+	color: #4F4F4F;
+	height: 46px;
+	border: 1px solid #E1E1E1;
+	margin: 5px 10px 15px 0;
+}
+
+.service-history .sidebar-table .mysetting .button-body .details-body .details-save {
+	height: 46px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	padding: 5px 20px;
+	margin: 20px 0;
+	border-radius: 23px;
+}
+
+.service-history .sidebar-table .mysetting .button-body .details-body .details-save:hover {
+	background-color: #29626D;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body {
+	font-family: 'Roboto';
+	color: #4F4F4F;
+	display: none;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .addnewaddress {
+	height: 46px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	padding: 5px 20px;
+	margin: 20px 0;
+	border-radius: 23px;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .addnewaddress:hover {
+	background-color: #29626D;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .address-table {
+	width: 100%;
+	margin: 15px 0;
+	border: 1px solid #E1E1E1;
+}
+
+@media (max-width: 576px) {
+	.service-history .sidebar-table .mysetting .button-body .address-body .address-table {
+		border: none !important;
+	}
+
+	.service-history .sidebar-table .mysetting .button-body .address-body .address-table thead {
+		display: none;
+	}
+
+	.service-history .sidebar-table .mysetting .button-body .address-body .address-table tbody tr {
+		max-width: 300px;
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		margin: 10px auto 40px auto;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		padding: 0 0 !important;
+	}
+	
+	.service-history .sidebar-table .mysetting .button-body .address-body .address-table tbody tr td {
+		text-align: center !important;
+		border: none !important;
+		padding: 15px 15px !important;
+	}
+
+	.service-history .sidebar-table .mysetting .button-body .address-body .address-table tbody tr td .addressline {
+		align-items: baseline;
+		padding: 0 0 !important;
+	}
+
+	.service-history .sidebar-table .mysetting .button-body .address-body .address-table .text-right div {
+		padding: 0 0 !important;
+	}
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .address-table .text-right {
+	text-align: right;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .address-table .text-right div {
+	padding: 0 45px;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .address-table .text-right .fa-edit, .fa-trash-alt {
+	color: #A7A2A2;
+	font-size: 20px;
+	font-weight: 100;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .address-table thead {
+	background-color: #E1E1E1;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .address-table thead th {
+	padding: 20px 60px !important;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .address-table tbody tr {
+	border-top: 1px solid #E1E1E1;
+}
+
+.service-history .sidebar-table .mysetting .button-body .address-body .address-table tbody tr td .addressline {
+	display: flex;
+	padding: 0 45px;
+}
+
+.service-history .sidebar-table .mysetting .button-body .password-body {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	font-weight: 500;
+	display: none;
+}
+
+.service-history .sidebar-table .mysetting .button-body .password-body .password-label {
+	margin: 15px 0 5px 0;
+}
+
+.service-history .sidebar-table .mysetting .button-body .password-body .password-input {
+	width: 300px;
+	height: 45px;
+	padding: 5px 10px;
+	border: 1px solid #E1E1E1;
+}
+
+.service-history .sidebar-table .mysetting .button-body .password-body .password-save {
+	height: 46px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	padding: 5px 20px;
+	margin: 20px 0;
+	border-radius: 23px;
+}
+
+.service-history .sidebar-table .mysetting .button-body .password-body .password-save:hover {
+	background-color: #29626D;
+}
+
+.service-history .sidebar-table .tabledashboard {
+	display: block;
+}
+
+.service-history .sidebar-table .history {
+	display: none;
 }
 
 .service-history .sidebar-table .customer-table .row {
@@ -1768,16 +2241,36 @@ footer .privacy-policy button{
 	text-align: right;
 }
 
+.service-history .sidebar-table .customer-table .export-btn-text .button-add-new-request {
+	font-family: 'Roboto';
+	font-size: 14px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border-radius: 17px;
+	border: 1px solid #146371;
+	width: 200px;
+	height: 34px;
+	text-align: center;
+}
+
+.service-history .sidebar-table .customer-table .export-btn-text .button-add-new-request:hover {
+	background-color: #146371;
+}
+
 .service-history .sidebar-table .customer-table .export-btn-text .button-export {
 	font-family: 'Roboto';
 	font-size: 14px;
 	color: #FFFFFF;
-	background-color: #146371;
+	background-color: #1D7A8C;
 	border-radius: 17px;
 	border: 1px solid #146371;
 	width: 70px;
 	height: 34px;
 	text-align: center;
+}
+
+.service-history .sidebar-table .customer-table .export-btn-text .button-export:hover {
+	background-color: #146371;
 }
 
 .service-history .sidebar-table .table thead {
@@ -1830,14 +2323,17 @@ footer .privacy-policy button{
 		margin: auto;
 		display: flex;
 		flex-direction: column;
-		margin-bottom: 40px;
-		border: 1px solid #E1E1E1;
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
+		margin: 10px auto 40px auto;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 	
 	.service-history .sidebar-table .table tbody tr td {
 		text-align: center !important;
 		border: none !important;
+	}
+
+	.service-history .sidebar-table .table tbody tr td div {
+		justify-content: center;
 	}
 }
 
@@ -1859,6 +2355,7 @@ footer .privacy-policy button{
     border-style: none;
 	vertical-align: middle;
 	border-bottom: 1.2px solid #E1E1E1 !important;
+	padding: 15px 15px !important;
 }
 
 .service-history .sidebar-table .customer-table .table tbody .round-border {
@@ -1871,6 +2368,36 @@ footer .privacy-policy button{
 	font-family: 'Roboto';
 	font-size: 23px;
 	color: #207C8E;
+}
+
+.service-history .sidebar-table .tabledashboard .table .btn-reschedule {
+	font-family: 'Roboto';
+	font-size: 14px;
+	padding: 5px 10px;
+	height: 35px;
+	border-radius: 17.5px;
+	color: #FFFFFF;
+	background: #1D7A8C;
+	border: 1px solid #1D7A8C;
+}
+
+.service-history .sidebar-table .tabledashboard .table .btn-reschedule:hover {
+	background: #29626D;
+}
+
+.service-history .sidebar-table .tabledashboard .table .btn-cancel {
+	font-family: 'Roboto';
+	font-size: 14px;
+	padding: 5px 10px;
+	height: 35px;
+	border-radius: 17.5px;
+	color: #FFFFFF;
+	background: #FF6B6B;
+	border: #FF6B6B;
+}
+
+.service-history .sidebar-table .tabledashboard .table .btn-cancel:hover {
+	background: #fD4B4B;
 }
 
 .service-history .sidebar-table .table .btn-completed {
@@ -1905,6 +2432,10 @@ footer .privacy-policy button{
 	border-radius: 17px;
 	background: #6DA9B5;
 	border: 1px solid #6DA9B5;
+}
+
+.service-history .sidebar-table .table .btn-ratesp:hover {
+	background: #448794;
 }
 
 .dataTables_length label {

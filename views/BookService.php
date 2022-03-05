@@ -11,7 +11,16 @@
 <body onload="filltabcolor()">
     
     <?php
-        include("header_2.php");
+        session_start();
+
+        if(isset($_SESSION['userid']))
+        {
+          include("header_3.php");
+        }
+        else
+        {
+          include("header_2.php");
+        }
     ?>
     <div id="loader" class="d-none">
         <div class="spinner">
@@ -108,10 +117,27 @@
                                             <div>
                                                 <input class="input-element" type="date" id="formdate" name="formdate" data placeholder="From Date">
                                                 <select name="booktime" id="booktime">
-                                                    <option value="3:00 PM">3:00 PM</option>
-                                                    <option value="4:00 PM">4:00 PM</option>
-                                                    <option value="5:00 PM">5:00 PM</option>
-                                                    <option value="6:00 PM">6:00 PM</option>
+                                                    <option value="8:00 PM">8:00 PM</option>
+                                                    <option value="8:30 PM">8:30 PM</option>
+                                                    <option value="9:00 PM">9:00 PM</option>
+                                                    <option value="9:30 PM">9:30 PM</option>
+                                                    <option value="10:00 PM">10:00 PM</option>
+                                                    <option value="10:30 PM">10:30 PM</option>
+                                                    <option value="11:00 PM">11:00 PM</option>
+                                                    <option value="11:30 PM">11:30 PM</option>
+                                                    <option value="12:00 PM">12:00 PM</option>
+                                                    <option value="12:30 PM">12:30 PM</option>
+                                                    <option value="13:00 PM">13:00 PM</option>
+                                                    <option value="13:30 PM">13:30 PM</option>
+                                                    <option value="14:00 PM">14:00 PM</option>
+                                                    <option value="14:30 PM">14:30 PM</option>
+                                                    <option value="15:00 PM">15:00 PM</option>
+                                                    <option value="15:30 PM">15:30 PM</option>
+                                                    <option value="16:00 PM">16:00 PM</option>
+                                                    <option value="16:30 PM">16:30 PM</option>
+                                                    <option value="17:00 PM">17:00 PM</option>
+                                                    <option value="17:30 PM">17:30 PM</option>
+                                                    <option value="18:00 PM">18:00 PM</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -120,9 +146,24 @@
                                             <div>
                                                 <select name="servicetime" id="servicetime">
                                                     <option value="3.0">3.0 Hrs</option>
+                                                    <option value="3.5">3.5 Hrs</option>
                                                     <option value="4.0">4.0 Hrs</option>
+                                                    <option value="4.5">4.5 Hrs</option>
                                                     <option value="5.0">5.0 Hrs</option>
+                                                    <option value="5.5">5.5 Hrs</option>
                                                     <option value="6.0">6.0 Hrs</option>
+                                                    <option value="6.5">6.5 Hrs</option>
+                                                    <option value="7.0">7.0 Hrs</option>
+                                                    <option value="7.5">7.5 Hrs</option>
+                                                    <option value="8.0">8.0 Hrs</option>
+                                                    <option value="8.5">8.5 Hrs</option>
+                                                    <option value="9.0">9.0 Hrs</option>
+                                                    <option value="9.5">9.5 Hrs</option>
+                                                    <option value="10.0">10.0 Hrs</option>
+                                                    <option value="10.5">10.5 Hrs</option>
+                                                    <option value="11.0">11.0 Hrs</option>
+                                                    <option value="11.5">11.5 Hrs</option>
+                                                    <option value="12.0">12.0 Hrs</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -190,7 +231,7 @@
                                             <textarea name="comments" class="service-comment" cols="50" rows="5"></textarea>
                                         </div>
                                         <div class="checkbox-content">
-                                            <input type="checkbox" class="checkbox" id="terms-conditions" name="terms-conditions">
+                                            <input type="checkbox" class="checkbox" id="pet" name="pet">
                                             <label class="checkbox-text" for="terms-conditions"> I have pets at home</label><br>
                                         </div>
                                     </div>
@@ -253,12 +294,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="continue-right">
-                                            <button type="submit" class="continue continue2 disabled">Continue</button>
+                                            <button type="submit" class="continue continue2" disabled>Continue</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="pills-MakePayment" role="tabpanel" aria-labelledby="pills-MakePayment-tab">
-                                    <span class="text-1 temp"><b>Choose one of the following payment methods.</b></span>
+                                    <span class="text-1"><b>Choose one of the following payment methods.</b></span>
                                     <div>
                                         <label for="promocode">Promo code (optional)</label><br>
                                         <div class="promocode-check">
@@ -273,7 +314,7 @@
                                         </div>
                                         <div>
                                             <div class="continue-right">
-                                                <button type="submit" class="complete-booking"><b>Complete Booking</b></button>
+                                                <button type="submit" class="complete-booking" disabled><b>Complete Booking</b></button>
                                             </div>
                                         </div>
                                     </div>

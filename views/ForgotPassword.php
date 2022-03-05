@@ -11,7 +11,7 @@
                 <div class="register-inputs me-0 ms-0">
                     <form method="POST" autocomplete="off" action="http://localhost/Helperland/?controller=Helperland&function=forgot_password">
                         <div class="input-group">
-                            <input type="email" class="form-control" id="email1" name="email" placeholder="Email Address" required>
+                            <input type="email" id="email1" name="email" placeholder="Email Address" required>
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
                         </div>
                         <button name="submit" class="btn-login">Send</button>

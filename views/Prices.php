@@ -202,7 +202,7 @@
     </section>
 
     <section class="price-why-helperland" id="price-why-helperland">
-        <div class="max-width">
+        <div class="max-width mx-auto">
             <div class="price-why-helperland-content">
                 <div class="text-center position-relative mb-75">
                     <h1 class="star-title">Why Helperland</h1>

@@ -1,6 +1,7 @@
 var postalcode;
 var servicehours = 0;
 var extrahours = 0;
+var haspet = 0;
 var servicehourlyrate = 25;
 var subtotal = 0;
 var totalpay = 0;
@@ -8,10 +9,9 @@ var comment;
 var date = 0;
 var time = 0;
 var selectedaddressid;
-selectextraserviceid = [];
+var selectextraserviceid = [];
 
 $(document).ready(function(){
-
     
     totaltime();
 
@@ -47,6 +47,17 @@ $(document).ready(function(){
         }
     });
 
+    $("#pet").click(function () { 
+        if(this.checked == true)
+        {
+            haspet = 1;
+        }
+        else
+        {
+            haspet = 0;
+        } 
+    });
+
     $(".address-save").click(function(){ 
 
         var streetname = $("input[name='streetname']").val();
@@ -74,7 +85,6 @@ $(document).ready(function(){
                        },
                 success: function (response) {
                     radio_button_addresslist(); 
-                    document.querySelector("#phonenumber").innerHTML = "";
                 }
             });
             $("input[name='streetname']").val('');
@@ -96,6 +106,17 @@ $(document).ready(function(){
             data: { "zipcode" : postalcode},
             success: function (response) {
                 document.querySelector(".address-radio-button").innerHTML=response;
+
+                $(".area-label").click(function () { 
+                    if('input[name="address"]:checked')
+                    {
+                        $(".continue2").removeAttr("disabled");
+                    }
+                    else
+                    {
+                        $(".continue2").attr("disabled", true);
+                    } 
+                });
             }
         });
     }
@@ -113,6 +134,17 @@ $(document).ready(function(){
         switchtab("YourDetails","MakePayment");
     });
 
+    $("#terms-conditions").click(function () {   
+        if(this.checked == true)
+        {
+            $(".complete-booking").removeAttr("disabled");
+        }
+        else
+        {
+            $(".complete-booking").attr("disabled", true);
+        }
+    });
+
     $(".complete-booking").click(function(){ 
 
         document.querySelector(".error-message").innerHTML="";
@@ -128,6 +160,7 @@ $(document).ready(function(){
                     "time" : time,
                     "servicehours" : servicehours,
                     "extrahours" : extrahours,
+                    "haspet" : haspet,
                     "servicehourlyrate" : servicehourlyrate,
                     "subtotal" : subtotal,
                     "totalpay" : totalpay,
@@ -138,7 +171,6 @@ $(document).ready(function(){
             success: function (response) {
                 $("#loader").addClass("d-none");
                 $("#request-success").modal("toggle");
-                $('.temp').html(response);
             }
         });
     })
@@ -284,7 +316,6 @@ for (let i=1 ; i<=images.length ; i++)
             selectextraserviceid.splice(index, 1);
         }
         totaltime();
-        console.log(selectextraserviceid);
     }
 }
 
@@ -304,61 +335,49 @@ function deactiveExtraImage(imageid)
     document.querySelector("."+imageid+"-text").style.display = "none";
 }
 
-    
-    document.querySelector(".totaltime").innerHTML=$("#servicetime  option:selected").val()+" "+"Hrs";
+document.querySelector(".totaltime").innerHTML = $("#servicetime  option:selected").val() + " " + "Hrs";
 
-    function totaltime()
-    {
-        servicehours = parseFloat($("#servicetime  option:selected").val());
+function totaltime() {
+    servicehours = parseFloat($("#servicetime  option:selected").val());
 
-        if(document.querySelector(".extra-content #img1").classList.contains("active"))
-        {
-            var ex1 = 0.5;
-        }
-        else
-        {
-            var ex1 = 0;
-        }
-        if(document.querySelector(".extra-content #img2").classList.contains("active"))
-        {
-            var ex2 = 0.5;
-        }
-        else
-        {
-            var ex2 = 0;
-        }
-        if(document.querySelector(".extra-content #img3").classList.contains("active"))
-        {
-            var ex3 = 0.5;
-        }
-        else
-        {
-            var ex3 = 0;
-        }
-        if(document.querySelector(".extra-content #img4").classList.contains("active"))
-        {
-            var ex4 = 0.5;
-        }
-        else
-        {
-            var ex4 = 0;
-        }
-        if(document.querySelector(".extra-content #img5").classList.contains("active"))
-        {
-            var ex5 = 0.5;
-        }
-        else
-        {
-            var ex5 = 0;
-        }
-        servicehours = servicehours + ex1 + ex2 + ex3 + ex4 + ex5;
-        extrahours = ex1 + ex2 + ex3 + ex4 + ex5;
-        document.querySelector(".totaltime").innerHTML=servicehours +" "+ "Hrs";
-        subtotal = servicehours * 25;
-        document.querySelector(".total-charge").innerHTML= "$" + subtotal;
-        totalpay = servicehours * 25;
-        document.querySelector(".total-payment").innerHTML= "$" + totalpay;
+    if (document.querySelector(".extra-content #img1").classList.contains("active")) {
+        var ex1 = 0.5;
     }
+    else {
+        var ex1 = 0;
+    }
+    if (document.querySelector(".extra-content #img2").classList.contains("active")) {
+        var ex2 = 0.5;
+    }
+    else {
+        var ex2 = 0;
+    }
+    if (document.querySelector(".extra-content #img3").classList.contains("active")) {
+        var ex3 = 0.5;
+    }
+    else {
+        var ex3 = 0;
+    }
+    if (document.querySelector(".extra-content #img4").classList.contains("active")) {
+        var ex4 = 0.5;
+    }
+    else {
+        var ex4 = 0;
+    }
+    if (document.querySelector(".extra-content #img5").classList.contains("active")) {
+        var ex5 = 0.5;
+    }
+    else {
+        var ex5 = 0;
+    }
+    servicehours = servicehours + ex1 + ex2 + ex3 + ex4 + ex5;
+    extrahours = ex1 + ex2 + ex3 + ex4 + ex5;
+    document.querySelector(".totaltime").innerHTML = servicehours + " " + "Hrs";
+    subtotal = servicehours * 25;
+    document.querySelector(".total-charge").innerHTML = "$" + subtotal;
+    totalpay = servicehours * 25;
+    document.querySelector(".total-payment").innerHTML = "$" + totalpay;
+}
 
 function showAddAddress()
 {

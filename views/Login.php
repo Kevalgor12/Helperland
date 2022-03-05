@@ -15,11 +15,11 @@
                 <div class="register-inputs me-0 ms-0">
                     <form method="POST" autocomplete="off" action="http://localhost/Helperland/?controller=Helperland&function=login_user">
                         <div class="input-group">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                            <input type="email" id="email" name="email" placeholder="Email" required>
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                         </div>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            <input type="password" id="password" name="password" placeholder="Password" required>
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                         </div>
                         <div class="checkbox-content">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="modal-footer-text">
                     <div>
-                        <p><span><a href="" class="text-color style-none" data-bs-toggle="modal" data-bs-target="#forgotpassword_modal">Forgot password?</a></span></p>
+                        <p><span><a href="" class="text-color style-none" data-bs-toggle="modal" data-bs-target="#forgotpassword_modal" onclick="forgotpasswordmodal()">Forgot password?</a></span></p>
                         <p>Don't have an account?</p>
                         <p><span><a href="http://localhost/Helperland/CreateNewAccount.php" class="text-color style-none">Create an account</a><span></p>
                     </div>
