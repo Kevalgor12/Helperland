@@ -222,24 +222,18 @@ class HelperlandController
 
     public function gotobookservicepage()
     {
-        if(isset($_SESSION['usertypeid']))
-        {
-            if($_SESSION['usertypeid'] == 2)
-            {
-                $base_url ="http://localhost/Helperland/bookservice";
+        if (isset($_SESSION['usertypeid'])) {
+            if ($_SESSION['usertypeid'] == 2) {
+                $base_url = "http://localhost/Helperland/bookservice";
+                header('Location:' . $base_url);
+            } else {
+                $_SESSION['login_alert'] = "0";
+                $base_url = "http://localhost/Helperland/";
                 header('Location:' . $base_url);
             }
-            else
-            {
-                $_SESSION['login_alert']="0";
-                $base_url ="http://localhost/Helperland/";
-                header('Location:' . $base_url);
-            }
-        }
-        else
-        {
-            $_SESSION['login_alert']="1";
-            $base_url ="http://localhost/Helperland/";
+        } else {
+            $_SESSION['login_alert'] = "1";
+            $base_url = "http://localhost/Helperland/";
             header('Location:' . $base_url);
         }
     }
@@ -256,12 +250,9 @@ class HelperlandController
         $postalcode = $_POST['zipcode'];
         $count = $this->model->check_sp_availability('user', $postalcode);
 
-        if ($count != 0)
-        {
+        if ($count != 0) {
             echo 1;
-        }
-        else
-        {
+        } else {
             echo 0;
         }
     }
@@ -272,13 +263,13 @@ class HelperlandController
         $userid = $_SESSION['userid'];
         $list = $this->model->fill_radio_button_address('useraddress', $postalcode, $userid);
         foreach ($list as $address) {
-            ?>
-                <label class="area-label">
-                    <input type="radio" class="area-radio" id="<?php echo $address['AddressId'] ?>" name="address" value="<?php echo $address['AddressId'] ?>">
-                    <span><b>Address:</b></span><?php echo " " . $address['AddressLine1'] . "  " . $address['AddressLine2'] . ", " . $address['City'] . "  " . $address['State'] . " - " . $address['PostalCode'] . " ";  ?><br>
-                    <span><b>Telephone number:</b></span><?php echo " " . $address['Mobile'] . " "; ?>
-                </label>
-            <?php
+?>
+            <label class="area-label">
+                <input type="radio" class="area-radio" id="<?php echo $address['AddressId'] ?>" name="address" value="<?php echo $address['AddressId'] ?>">
+                <span><b>Address:</b></span><?php echo " " . $address['AddressLine1'] . "  " . $address['AddressLine2'] . ", " . $address['City'] . "  " . $address['State'] . " - " . $address['PostalCode'] . " ";  ?><br>
+                <span><b>Telephone number:</b></span><?php echo " " . $address['Mobile'] . " "; ?>
+            </label>
+        <?php
         }
     }
 
@@ -293,8 +284,7 @@ class HelperlandController
         $city = $_POST['city'];
         $phonenumber = $_POST['phonenumber'];
 
-        if($selectedaddid == "")
-        {
+        if ($selectedaddid == "") {
             $array = [
                 'userid' => $_SESSION['userid'],
                 'streetname' => $streetname,
@@ -304,10 +294,7 @@ class HelperlandController
                 'phonenumber' => $phonenumber,
             ];
             $this->model->insert_address('useraddress', $array);
-        }
-
-        else
-        {
+        } else {
             $array2 = [
                 'selectedaddid' => $selectedaddid,
                 'userid' => $_SESSION['userid'],
@@ -379,102 +366,198 @@ class HelperlandController
 
     public function fill_dashboard()
     {
-        $row = $this->model->fill_dashboard($_SESSION['UserId']);
+        $userid = $_SESSION['userid'];
+        $row = $this->model->fill_dashboard('servicerequest', $userid);
 
-        function HourMinuteToDecimal($hour_minute) 
+        function HourMinuteToDecimal($time)
         {
+            $starttime = explode(':', $time);
+            return $starttime[0] * 60 + $starttime[1];
+        }
+        function DecimalToHoursMins($totalminutes)
+        {
+            $hour = (int)($totalminutes / 60);
+            $minute = round($totalminutes % 60);
+            if ($hour < 10) {
+                $hour = "0" . $hour;
+            }
+            if ($minute < 10) {
+                $minute = "0" . $minute;
+            }
+            return $hour . ":" . $minute;
+        }
+        if ($row != "") {
+        ?>
+            <div class="row">
+                <div class="col-8 service-history-text"><b>Current Service request</b></div>
+                <div class="col-4 export-btn-text"><a href="http://localhost/Helperland/?controller=Helperland&function=gotobookservicepage"><button class="button-add-new-request">Add New Service Request</button></a></div>
+            </div>
+            <table id="dashtable" class="table display dataTable">
+                <thead>
+                    <tr>
+                        <th>Service Id <img class="sort-img" alt=""></th>
+                        <th>Service Date <img class="sort-img" alt=""></th>
+                        <th>Service Provider <img class="sort-img" alt=""></th>
+                        <th>Payment <img class="sort-img" alt=""></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <?php
+                    foreach ($row as $dashboard) {
+                        $serviceprovider = $this->model->get_sp_byid('user', $dashboard['ServiceProviderId']);
+                        $date = substr($dashboard['ServiceStartDate'], 0, 10);
+                        $time = substr($dashboard['ServiceStartDate'], 11, 5);
+                        $totalminutes = HourMinuteToDecimal($time) + (($dashboard['ServiceHours'] + $dashboard['ExtraHours']) * 60);
+                        $totaltime = DecimalToHoursMins($totalminutes);
+                        
+                        ?>
+                        <tr id="<?php echo $dashboard['ServiceRequestId']; ?>" data-bs-toggle="modal" data-bs-target="#request_detail_modal">
+                            <td>
+                                <span><?php echo $dashboard['ServiceRequestId']; ?></span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="http://localhost/Helperland/assets/images/calendar2.png" alt="calendar"> &nbsp; <span><b><?php echo $date; ?></b></span> <br>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="http://localhost/Helperland/assets/images/layer-14.png" alt="clock"> &nbsp; <span><?php echo $time . "-" . $totaltime ?></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-left">
+                                    <?php
+                                    if (isset($serviceprovider['FirstName'])) {
+                                    ?>
+                                        <div>
+                                            <img class="round-border" src="http://localhost/Helperland/assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="ps-2">
+                                            <?php
+                                            if (isset($serviceprovider['FirstName'])) {
+                                                echo $serviceprovider['FirstName'];
+                                            }
+                                            ?>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="txt-color">
+                                    €<b><?php echo $dashboard['TotalCost']; ?></b>
+                                </div>
+                            </td>
+                            <td>
+                                <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="btn-reschedule" data-bs-toggle="modal" data-bs-target="#reschedule_modal">reschedule</button>
+                                <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="btn-cancel" data-bs-toggle="modal" data-bs-target="#cancel_bookingrequest_modal">Cancel</button>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        <?php
+        } else {
+        ?>
+            <div class="text-center">
+                <h4>No history Found</h4>
+            </div>
+        <?php
+        }
+    }
+
+    public function service_history()
+    {
+        $userid = $_SESSION['userid'];
+        $row = $this->model->service_history($userid);
+        function HourMinuteToDecimal($time) {
             $t = explode(':', $hour_minute);
             return $t[0] * 60 + $t[1];
         }
         function DecimalToHoursMins($mins)
         {
-            $h = (int)($mins/60);
-            $m = round($mins%60);
-            if($h < 10)
-            {
-                $h = "0".$h;
-            }
-            if($m < 10)
-            {
-                $m = "0".$m;
-            }
+            $h=(int)($mins/60);
+            $m=round($mins%60);
+            if($h<10){$h="0".$h;}
+            if($m<10){$m="0".$m;}
             return $h.":".$m;
         }
         if($row != NULL)
-        {  
-            foreach($row as $dashboard)
+        {
+            
+            foreach($row as $history)
+           {
+            $SP = $this->model->getUserbyId($history['ServiceProviderId']);
+            $dt=substr($history['ServiceStartDate'],0,10);
+            $tm=substr($history['ServiceStartDate'],11,5);
+            $totalmins=HourMinuteToDecimal($tm)+ (($history['ServiceHours']+$history['ExtraHours'])*60);
+            $totime=DecimalToHoursMins($totalmins);
+            $rates=$this->model->rateByreqId($history['ServiceRequestId']);
+            if($rates == NULL)
             {
-                $serviceprovider = $this->model->get_sp_byid($dashboard['ServiceProviderId']);
-                $date = substr($dashboard['ServiceStartDate'], 0, 10);
-                $time = substr($dashboard['ServiceStartDate'], 11, 5);
-                $totalminutes = HourMinuteToDecimal($time) + (($dashboard['ServiceHours'] + $dashboard['ExtraHours']) * 60);
-                $totaltime = DecimalToHoursMins($totalminutes);
-                $j = 0;
-                // if($rates==NULL)
-                // {
-                //     $avrrate=0;
-                // }
-                // else
-                // {
-                //     foreach($rates as $rate)
-                //     {
-                //         $totalrate+=$rate['Ratings'];
-                //         $j++;
-                //     }
-                //     if($j == 0)
-                //     {
-                //         $avrrate=$totalrate;
-                //     }
-                //     else
-                //     {
-                //         $avrrate=$totalrate/$j;
-                //     }
-                // }
+                $rates['Ratings']=0;
+            }    
+             ?>
+            <tr class="t-row" >
+                <td><p><?php echo $history['ServiceRequestId']; ?></p></td>
+                <td>
+                    <p class="date"><img src="./assets/Image/calendar.png"> <?php echo $dt; ?></p>
+                    <p><?php echo $tm."-".$totime ?></p>
+                </td>
+                <td> 
+                    <div class="a flex-wrap row"> 
+                        <?php
+                        if(isset($SP['FirstName']))
+                        {
+                        ?>
+                            <div class=""><img src="./assets/Image/forma-1-copy-19.png"></div>
+                            <div>
+                                <p class="lum-watson"><?php if(isset($SP['FirstName'])){echo $SP['FirstName'];} ?> </p>
+                                <div class="row">
+                                    <div class="rateyo" id= "rating"  data-rateyo-rating=" <?php echo $rates['Ratings']; ?>"></div>
+                                    <div><?php echo $rates['Ratings']; ?></div>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </td>
+                <td>
+                    <p class="euro d-flex justify-content-center">&euro; <?php echo $history['TotalCost']; ?></p>
+                </td>
+                <td><?php 
+                if(isset($history['Status']))
+                {
+                    if($history['Status']==2)
+                    {?>
+                        <div class="status-completed text-center" >Completed</div> <?php
+                    }
+                    else
+                    {?>
+                        <div class="status-cancelled text-center" >Cancelled</div>
+                    <?php
+
+                    }
+                }
                 ?>
-                    <tr data-bs-toggle="modal" data-bs-target="#request_detail_modal">
-                                <td>
-                                    <span>123</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="http://localhost/Helperland/assets/images/calendar2.png" alt="calendar"> &nbsp; <span><b>11/02/2018</b></span> <br>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <img src="http://localhost/Helperland/assets/images/layer-14.png" alt="clock"> &nbsp; <span>12:00 - 18:00</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center justify-content-left">
-                                        <div>
-                                            <img class="round-border" src="http://localhost/Helperland/assets/images/cap.png" alt="cap">
-                                        </div>
-                                        <div class="ps-2">
-                                            Lyum Watson
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="txt-color">
-                                        €<b>63</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="btn-reschedule" data-bs-toggle="modal" data-bs-target="#reschedule_modal">reschedule</button>
-                                    <button class="btn-cancel" data-bs-toggle="modal" data-bs-target="#cancel_bookingrequest_modal">Cancel</button>
-                                </td>
-                            </tr>
-                <?php
-            }
-           
+                </td>
+                <td><button type="button" id="<?php echo $history['ServiceRequestId']; ?>"  class="btn rate-sp" data-toggle="modal" data-target="#ratesp_modal" <?php if($history['Status']==3){ echo "disabled";} ?> >Rate SP</button></td>
+            </tr>
+            
+            <?php
+             
+           }
         }
         else
         { ?>
           <div class="text-center"><h4>No history Found</h4></div>
         <?php
         }
-
-
-    
+        
     }
 
     public function fill_details_user()
@@ -591,44 +674,44 @@ class HelperlandController
 
         if ($list != "") {
             ?>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="text-danger error-message"></label>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="text-danger error-message"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="addresslable" for="streetname">Street name</label><br>
+                    <input class="input" type="text" name="streetname" placeholder="Street name" value="<?php echo $list['AddressLine1'] ?>">
+                </div>
+                <div class="col-md-6">
+                    <label class="addresslable" for="housenumber">House number</label><br>
+                    <input class="input" type="text" name="housenumber" placeholder="House number" value="<?php echo $list['AddressLine2'] ?>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="addresslable" for="postalcode">Postal code</label><br>
+                    <input class="input" type="text" name="postal_code" placeholder="360005" value="<?php echo $list['PostalCode'] ?>">
+                </div>
+                <div class="col-md-6">
+                    <label class="addresslable" for="city">City</label><br>
+                    <input class="input" type="text" name="city" placeholder="Bonn" value="<?php echo $list['City'] ?>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="addresslable" for="phonenumber">Phone number</label><br>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">+49</span>
+                        <input class="input" type="text" name="phonenumber" placeholder="9745643546" value="<?php echo $list['Mobile'] ?>">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="addresslable" for="streetname">Street name</label><br>
-                        <input class="input" type="text" name="streetname" placeholder="Street name" value="<?php echo $list['AddressLine1'] ?>">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="addresslable" for="housenumber">House number</label><br>
-                        <input class="input" type="text" name="housenumber" placeholder="House number" value="<?php echo $list['AddressLine2'] ?>">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="addresslable" for="postalcode">Postal code</label><br>
-                        <input class="input" type="text" name="postal_code" placeholder="360005" value="<?php echo $list['PostalCode'] ?>">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="addresslable" for="city">City</label><br>
-                        <input class="input" type="text" name="city" placeholder="Bonn" value="<?php echo $list['City'] ?>">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="addresslable" for="phonenumber">Phone number</label><br>
-                        <div class="input-group">
-                            <span class="input-group-text" id="basic-addon1">+49</span>
-                            <input class="input" type="text" name="phonenumber" placeholder="9745643546" value="<?php echo $list['Mobile'] ?>">
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <button name="submit" class="btn-addresssave">save</button>
-                </div>
-            <?php
+            </div>
+            <div>
+                <button name="submit" class="btn-addresssave">save</button>
+            </div>
+<?php
         }
     }
 
@@ -647,28 +730,20 @@ class HelperlandController
 
         $count = $this->model->check_password('user', $email, $oldpassword);
 
-        echo $email." ".$oldpassword." ".$newpassword." ".$confirmpassword." ".$count;
+        echo $email . " " . $oldpassword . " " . $newpassword . " " . $confirmpassword . " " . $count;
 
-        if($count == 1)
-        {
-            if($newpassword == $confirmpassword)
-            {
+        if ($count == 1) {
+            if ($newpassword == $confirmpassword) {
                 $this->model->update_password('user', $email, $newpassword);
-            }
-            else
-            {
+            } else {
                 echo    '<script>
                                 alert("password is not same.");
                             </script>';
             }
-            
-        }
-        else 
-        {
+        } else {
             echo    '<script>
                                 alert("old password is incorrect.");
                             </script>';
         }
-        
     }
 }

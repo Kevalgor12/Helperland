@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     var selectedaddid;
+    fill_dashboard();
 
     function fill_dashboard() 
     {  
@@ -10,6 +11,23 @@ $(document).ready(function () {
             data: "data",
             success: function (response) {
                 $(".fill_dashboard").html(response);
+                $('#dashtable').DataTable({
+                    paging: true,
+                    "pagingType": "full_numbers",
+                    // bFilter: false,
+                    ordering: true,
+                    searching: false,
+                    info: true,
+                    "columnDefs": [
+                        { "orderable": false, "targets": 4 }
+                    ],
+                    "oLanguage": {
+                        "sInfo": "Total Records: TOTAL"
+                    },
+                    "dom": '<"top">rt<"bottom"lip><"clear">',
+                    responsive: true,
+                    "order": []
+                });
             }
         });
     }

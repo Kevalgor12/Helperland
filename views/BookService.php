@@ -117,27 +117,27 @@
                                             <div>
                                                 <input class="input-element" type="date" id="formdate" name="formdate" data placeholder="From Date">
                                                 <select name="booktime" id="booktime">
-                                                    <option value="8:00 PM">8:00 PM</option>
-                                                    <option value="8:30 PM">8:30 PM</option>
-                                                    <option value="9:00 PM">9:00 PM</option>
-                                                    <option value="9:30 PM">9:30 PM</option>
-                                                    <option value="10:00 PM">10:00 PM</option>
-                                                    <option value="10:30 PM">10:30 PM</option>
-                                                    <option value="11:00 PM">11:00 PM</option>
-                                                    <option value="11:30 PM">11:30 PM</option>
-                                                    <option value="12:00 PM">12:00 PM</option>
-                                                    <option value="12:30 PM">12:30 PM</option>
-                                                    <option value="13:00 PM">13:00 PM</option>
-                                                    <option value="13:30 PM">13:30 PM</option>
-                                                    <option value="14:00 PM">14:00 PM</option>
-                                                    <option value="14:30 PM">14:30 PM</option>
-                                                    <option value="15:00 PM">15:00 PM</option>
-                                                    <option value="15:30 PM">15:30 PM</option>
-                                                    <option value="16:00 PM">16:00 PM</option>
-                                                    <option value="16:30 PM">16:30 PM</option>
-                                                    <option value="17:00 PM">17:00 PM</option>
-                                                    <option value="17:30 PM">17:30 PM</option>
-                                                    <option value="18:00 PM">18:00 PM</option>
+                                                    <option value="8:00">8:00</option>
+                                                    <option value="8:30">8:30</option>
+                                                    <option value="9:00">9:00</option>
+                                                    <option value="9:30">9:30</option>
+                                                    <option value="10:00">10:00</option>
+                                                    <option value="10:30">10:30</option>
+                                                    <option value="11:00">11:00</option>
+                                                    <option value="11:30">11:30</option>
+                                                    <option value="12:00">12:00</option>
+                                                    <option value="12:30">12:30</option>
+                                                    <option value="13:00">13:00</option>
+                                                    <option value="13:30">13:30</option>
+                                                    <option value="14:00">14:00</option>
+                                                    <option value="14:30">14:30</option>
+                                                    <option value="15:00">15:00</option>
+                                                    <option value="15:30">15:30</option>
+                                                    <option value="16:00">16:00</option>
+                                                    <option value="16:30">16:30</option>
+                                                    <option value="17:00">17:00</option>
+                                                    <option value="17:30">17:30</option>
+                                                    <option value="18:00">18:00</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -232,7 +232,7 @@
                                         </div>
                                         <div class="checkbox-content">
                                             <input type="checkbox" class="checkbox" id="pet" name="pet">
-                                            <label class="checkbox-text" for="terms-conditions"> I have pets at home</label><br>
+                                            <label class="checkbox-text" for="pet"> I have pets at home</label><br>
                                         </div>
                                     </div>
                                     <hr>

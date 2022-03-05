@@ -1,6 +1,7 @@
 var postalcode;
 var servicehours = 0;
 var extrahours = 0;
+var totalhours = 0;
 var haspet = 0;
 var servicehourlyrate = 25;
 var subtotal = 0;
@@ -370,12 +371,12 @@ function totaltime() {
     else {
         var ex5 = 0;
     }
-    servicehours = servicehours + ex1 + ex2 + ex3 + ex4 + ex5;
+    totalhours = servicehours + ex1 + ex2 + ex3 + ex4 + ex5;
     extrahours = ex1 + ex2 + ex3 + ex4 + ex5;
-    document.querySelector(".totaltime").innerHTML = servicehours + " " + "Hrs";
-    subtotal = servicehours * 25;
+    document.querySelector(".totaltime").innerHTML = totalhours + " " + "Hrs";
+    subtotal = totalhours * 25;
     document.querySelector(".total-charge").innerHTML = "$" + subtotal;
-    totalpay = servicehours * 25;
+    totalpay = totalhours * 25;
     document.querySelector(".total-payment").innerHTML = "$" + totalpay;
 }
 

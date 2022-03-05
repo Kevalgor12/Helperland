@@ -336,56 +336,8 @@ session_start();
                     <a href="#my-ratings">Invoices</a>
                     <a href="#block-customer">Notifications</a>
                 </div>
-                <div class="customer-table tabledashboard">
-                    <div class="row">
-                        <div class="col-8 service-history-text"><b>Current Service request</b></div>
-                        <div class="col-4 export-btn-text"><a href="http://localhost/Helperland/?controller=Helperland&function=gotobookservicepage"><button class="button-add-new-request">Add New Service Request</button></a></div>
-                    </div>
-                    <table id="dashtable" class="table display dataTable">
-                        <thead>
-                            <tr>
-                                <th>Service Id <img class="sort-img" alt=""></th>
-                                <th>Service Date <img class="sort-img" alt=""></th>
-                                <th>Service Provider <img class="sort-img" alt=""></th>
-                                <th>Payment <img class="sort-img" alt=""></th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="fill_dashboard">
-                            <tr data-bs-toggle="modal" data-bs-target="#request_detail_modal">
-                                <td>
-                                    <span>123</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="http://localhost/Helperland/assets/images/calendar2.png" alt="calendar"> &nbsp; <span><b>11/02/2018</b></span> <br>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <img src="http://localhost/Helperland/assets/images/layer-14.png" alt="clock"> &nbsp; <span>12:00 - 18:00</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center justify-content-left">
-                                        <div>
-                                            <img class="round-border" src="http://localhost/Helperland/assets/images/cap.png" alt="cap">
-                                        </div>
-                                        <div class="ps-2">
-                                            Lyum Watson
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="txt-color">
-                                        €<b>63</b>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="btn-reschedule" data-bs-toggle="modal" data-bs-target="#reschedule_modal">reschedule</button>
-                                    <button class="btn-cancel" data-bs-toggle="modal" data-bs-target="#cancel_bookingrequest_modal">Cancel</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="customer-table tabledashboard fill_dashboard">                            
+                        
                 </div>
                 <div class="customer-table history">
                     <div class="row">
