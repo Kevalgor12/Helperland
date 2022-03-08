@@ -1,7 +1,10 @@
 $(document).ready(function () {
 
+    var selectedrequestid;
     var selectedaddid;
+    
     fill_dashboard();
+    fill_history();
 
     function fill_dashboard() 
     {  
@@ -11,6 +14,31 @@ $(document).ready(function () {
             data: "data",
             success: function (response) {
                 $(".fill_dashboard").html(response);
+                $(".rateyo").rateYo({
+                    starWidth: "16px",
+                    ratedFill: "#FFD600",
+                    readOnly: true,
+                });
+                $(".tr").click(function (e) { 
+                    selectedrequestid = this.id;
+                    fill_selected_pending_request(); 
+                    $("#request_detail_modal").modal("toggle"); 
+                });
+                $(".btn-reschedule").click(function (e) { 
+                    e.stopPropagation();
+                    $("#request_detail_modal").modal("hide"); 
+                    $(".error-reschdule").html("");
+                    selectedrequestid = e.target.id;
+                    $("#reschedule_modal").modal("toggle");
+                });
+                $(".btn-cancel").click(function (e) { 
+                    e.stopPropagation();
+                    $("#request_detail_modal").modal("hide"); 
+                    $(".error-cancelrequest").html("");
+                    $(".why-cancel").val("");
+                    selectedrequestid = e.target.id;
+                    $("#cancel_bookingrequest_modal").modal("toggle");
+                });
                 $('#dashtable').DataTable({
                     paging: true,
                     "pagingType": "full_numbers",
@@ -32,7 +60,229 @@ $(document).ready(function () {
         });
     }
 
+    function fill_selected_pending_request()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=fill_selected_pending_request",
+            data: {
+                    "selectedrequestid" : selectedrequestid,
+                  },
+            success: function (response) {
+                $(".fill-selected-request").html(response);
+                $(".btn-reschedule").click(function (e) { 
+                    e.stopPropagation();
+                    $("#request_detail_modal").modal("hide"); 
+                    $(".error-reschdule").html("");
+                    selectedrequestid = e.target.id;
+                    $("#reschedule_modal").modal("toggle");
+                });
+                $(".btn-cancel").click(function (e) { 
+                    e.stopPropagation();
+                    $("#request_detail_modal").modal("hide"); 
+                    $(".error-cancelrequest").html("");
+                    $(".why-cancel").val("");
+                    selectedrequestid = e.target.id;
+                    $("#cancel_bookingrequest_modal").modal("toggle");
+                });
+            }
+        });
+    }
+
+    function fill_data_reschedule_modal()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=fill_data_reschedule_modal",
+            data: "data",
+            success: function (response) {
+                $(".fill-reschedule").html(response);
+            }
+        });
+    }
+
+    function fill_history() 
+    {  
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=fill_service_history",            
+            data: "data",
+            success: function (response) {
+                $(".fill_history").html(response);
+                $(".rateyo").rateYo({
+                    starWidth: "16px",
+                    ratedFill: "#FFD600",
+                    readOnly: true
+                });
+                $(".btn-ratesp").click(function (e) { 
+                    selectedrequestid = e.target.id;
+                    fill_sp_ratings();
+                    $("#ratesp_modal").modal("toggle");
+                });
+                $('#tableservice').DataTable({
+                    paging: true,
+                    "pagingType": "full_numbers",
+                    // bFilter: false,
+                    ordering: true,
+                    searching: false,
+                    info: true,
+                    "columnDefs": [
+                        { "orderable": false, "targets": 4 },
+                        { "orderable": false, "targets": 5 }
+                    ],
+                    "oLanguage": {
+                        "sInfo": "Total Records: TOTAL"
+                    },
+                    "dom": '<"top">rt<"bottom"lip><"clear">',
+                    responsive: true,
+                    "order": []
+                });
+            }
+        });
+    }
+
+    function fill_sp_ratings()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=fill_sp_ratings",
+            data: {
+                    "selectedrequestid" : selectedrequestid,
+                  },
+            success: function (response) {
+                var ontimearrival = 0;
+                var friendly = 0;
+                var quality = 0;
+                $(".fill-sp-rating").html(response);
+                $(".customstar").rateYo({
+                    starWidth: "20px",
+                    ratedFill: "#FFD600",
+                    readOnly: true,
+                   });
+                $(".ontime-arrival").rateYo({ starWidth: "18px", ratedFill: "#FFD600" }).on("rateyo.change", function (e, data) { 
+                    ontimearrival = data.rating;
+                });
+                $(".friendly").rateYo({ starWidth: "18px", ratedFill: "#FFD600" }).on("rateyo.change", function (e, data) {
+                    friendly = data.rating;
+                });
+                $(".quality").rateYo({ starWidth: "18px", ratedFill: "#FFD600", }).on("rateyo.change", function (e, data) {
+                    quality = data.rating;
+                });
+                $(".btn-ratesp-submit").click(function (e) { 
+                    selectedrequestid = e.target.id;
+                    var feedback = $(".rate-feedback").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/Helperland/?controller=Helperland&function=submit_rating",
+                        data: {
+                            "selectedrequestid": selectedrequestid,
+                            "ontimearrival": ontimearrival,
+                            "friendly": friendly,
+                            "quality": quality,
+                            "feedback": feedback
+                        },
+                        success: function (response) {
+                            $("#ratesp_modal").modal("hide");
+                            fill_history();
+                        }
+                    });
+                });
+            }
+        });
+    }
+
+    $(".btn-update").click(function (e) { 
+
+        var servicedate = $(".servicedate").val();
+        var servicetime = $(".servicetime").val();
+
+        if(servicedate == "" || servicetime == "")
+        {
+            $(".error-reschdule").html("fill all details.");
+        }
+        else
+        {
+            $(".error-reschdule").html("");
+            $.ajax({
+                type: "POST",
+                url:  "http://localhost/Helperland/?controller=Helperland&function=reschedule_servicerequest",
+                data: {
+                    "selectedrequestid" : selectedrequestid,
+                    "servicedate" :servicedate,
+                    "servicetime" :servicetime,
+                },
+                
+                success: function (response) {
+                    $("#reschedule_modal").modal("hide");
+                    swal({
+                        position: 'center',
+                        icon: 'success',
+                        text: 'request rescheduled successfully.',
+                        buttons: false,
+                        timer: 2000,
+                      })
+                      fill_dashboard();
+                }
+            }); 
+        }
+    });
+
+    $(".btn-cancelnow").click(function () { 
+
+        var cancelreason = $(".why-cancel").val();
+
+        if (cancelreason == "") {
+            $(".error-cancelrequest").html("kindly tell us reason for cancellation.");
+        }
+        else {
+            swal({
+                title: "Are you sure?",
+                text: "Once cancelled, You won't be able to revert this!!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $("#loader").removeClass("d-none");
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost/Helperland/?controller=Helperland&function=cancel_servicerequest",
+                        data: {
+                            "selectedrequestid": selectedrequestid,
+                            "cancelreason": cancelreason,
+                        },
+                        success: function (response) {
+                            $("#loader").addClass("d-none");
+                            $("#cancel_bookingrequest_modal").modal("hide");
+                            swal({
+                                position: 'center',
+                                icon: 'success',
+                                text: 'service request cancelled successfully.',
+                                buttons: false,
+                                timer: 2000,
+                            });
+                            fill_dashboard();
+                            fill_history();
+                        }
+                    });
+                } else {
+                    $("#cancel_bookingrequest_modal").modal("hide");
+                    swal({
+                        position: 'center',
+                        icon: 'error',
+                        text: 'service request cancelation has been cancelled.',
+                        buttons: false,
+                        timer: 2000,
+                    })
+                }
+            });
+        }
+    });
+
     $(".servicehistory").click(function (e) { 
+        fill_history();
         $(".dashboard").removeClass("active");
         $(".servicehistory").addClass("active");
         $(".mysetting").hide();
@@ -41,6 +291,7 @@ $(document).ready(function () {
     });
 
     $(".dashboard").click(function (e) { 
+        fill_dashboard();
         $(".dashboard").addClass("active");
         $(".servicehistory").removeClass("active");
         $(".mysetting").hide();
@@ -296,7 +547,7 @@ $(document).ready(function () {
             } else {
                 swal({
                     position: 'center',
-                    icon: 'success',
+                    icon: 'error',
                     text: 'address deletion has been cancelled.',
                     buttons: false,
                     timer: 2000,

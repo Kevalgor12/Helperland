@@ -168,12 +168,107 @@ class HelperlandModel
         return $row;
     }
 
-    public function get_sp_byid($table, $ServiceProviderId)
+    public function get_sp_byid($table, $serviceproviderid)
     {
-        $sql_qry = "SELECT * FROM $table WHERE UserId = $ServiceProviderId";
+        $sql_qry = "SELECT * FROM $table WHERE UserId = $serviceproviderid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
         $row  = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_selected_pending_request($table, $selectedrequestid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ServiceRequestId = $selectedrequestid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_selected_pending_request_extraservice($table, $selectedrequestid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ServiceRequestId = $selectedrequestid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetchALL(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_selected_pending_request_useraddress($table, $selectedrequestid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ServiceRequestId = $selectedrequestid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_average_rating_of_sp($table, $serviceproviderid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE RatingTo = $serviceproviderid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetchALL(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_data_reschedule_modal($table, $selectedrequestid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ServiceRequestId = $selectedrequestid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    function reschedule_servicerequest($table, $datetime, $selectedrequestid)
+    {
+        $sql_query = "UPDATE $table SET ServiceStartDate = '$datetime' WHERE  ServiceRequestId = '$selectedrequestid'";
+        $statement= $this->conn->prepare($sql_query);
+        $statement->execute();
+    }
+
+    function cancel_servicerequest($table, $selectedrequestid)
+    {
+        $sql_query = "UPDATE $table SET Status = -1 WHERE  ServiceRequestId = '$selectedrequestid'";
+        $statement= $this->conn->prepare($sql_query);
+        $statement->execute();  
+    }
+
+    function get_ratings_of_sp($table, $selectedrequestid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ServiceRequestId = $selectedrequestid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    function submit_rating($table, $array, $israted)
+    {
+        if($israted == "")
+        {
+            $sql_query = "INSERT INTO $table (ServiceRequestId, RatingFrom, RatingTo, Ratings, Comments, RatingDate, OnTimeArrival, Friendly, QualityOfService)
+            VALUES (:ServiceRequestId, :RatingFrom, :RatingTo, :Ratings, :Comments, now(), :OnTimeArrival, :Friendly, :QualityOfService)";
+            $statement= $this->conn->prepare($sql_query);
+            $statement->execute($array);
+        }
+        else
+        {
+            $sql_query = "UPDATE $table SET Ratings = '".$array['Ratings']."', Comments = '".$array['Comments']."', RatingDate = now(), OnTimeArrival = '".$array['OnTimeArrival']."', Friendly = '".$array['Friendly']."', QualityOfService = '".$array['QualityOfService']."'  WHERE  ServiceRequestId = '".$array['ServiceRequestId']."' ";
+            $statement= $this->conn->prepare($sql_query);
+            $statement->execute();
+        }
+        
+    }
+
+    public function fill_service_history($table, $userid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE Status IN (-1,1) AND UserId = $userid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row  = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
 

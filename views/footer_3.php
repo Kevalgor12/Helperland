@@ -42,6 +42,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script src="http://localhost/Helperland/assets/js/main.js"></script>
     <script src="http://localhost/Helperland/assets/js/datatable.js"></script>
     <script src="http://localhost/Helperland/assets/js/customer.js"></script>

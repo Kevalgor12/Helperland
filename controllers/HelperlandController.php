@@ -1,6 +1,25 @@
 <?php
+
 class HelperlandController
 {
+    public function HourMinuteToDecimal($time)
+    {
+        $starttime = explode(':', $time);
+        return $starttime[0] * 60 + $starttime[1];
+    }
+    public function DecimalToHoursMins($totalminutes)
+    {
+        $hour = (int)($totalminutes / 60);
+        $minute = round($totalminutes % 60);
+        if ($hour < 10) {
+            $hour = "0" . $hour;
+        }
+        if ($minute < 10) {
+            $minute = "0" . $minute;
+        }
+        return $hour . ":" . $minute;
+    }
+
     public function __construct()
     {
         include('models/HelperlandModel.php');
@@ -145,7 +164,7 @@ class HelperlandController
                     if ($row != "") {
                         $_SESSION['userid'] = $row['UserId'];
                         $_SESSION['usertypeid'] = $row['UserTypeId'];
-                        $_SESSION['username'] = $row['FirstName'];
+                        $_SESSION['username'] = $row['FirstName'] . " " . $row['LastName'];
                         $_SESSION['email'] = $row['Email'];
 
                         if ($usertypeid == 1) {
@@ -369,23 +388,6 @@ class HelperlandController
         $userid = $_SESSION['userid'];
         $row = $this->model->fill_dashboard('servicerequest', $userid);
 
-        function HourMinuteToDecimal($time)
-        {
-            $starttime = explode(':', $time);
-            return $starttime[0] * 60 + $starttime[1];
-        }
-        function DecimalToHoursMins($totalminutes)
-        {
-            $hour = (int)($totalminutes / 60);
-            $minute = round($totalminutes % 60);
-            if ($hour < 10) {
-                $hour = "0" . $hour;
-            }
-            if ($minute < 10) {
-                $minute = "0" . $minute;
-            }
-            return $hour . ":" . $minute;
-        }
         if ($row != "") {
         ?>
             <div class="row">
@@ -403,18 +405,370 @@ class HelperlandController
                     </tr>
                 </thead>
                 <tbody>
-        <?php
+                    <?php
+
                     foreach ($row as $dashboard) {
-                        $serviceprovider = $this->model->get_sp_byid('user', $dashboard['ServiceProviderId']);
+                        if ($dashboard['ServiceProviderId'] != "") {
+                            $serviceprovider = $this->model->get_sp_byid('user', $dashboard['ServiceProviderId']);
+                            $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $dashboard['ServiceProviderId']);
+                            $i = 0;
+                            $totalratings = 0;
+                            if ($allratingsofsp == "") {
+                                $averagerating = 0;
+                            } else {
+                                foreach ($allratingsofsp as $allrate) {
+                                    $totalratings += $allrate['Ratings'];
+                                    $i++;
+                                }
+                                if ($i > 0) {
+                                    $averagerating = $totalratings / $i;
+                                }
+                            }
+                        }
                         $date = substr($dashboard['ServiceStartDate'], 0, 10);
                         $time = substr($dashboard['ServiceStartDate'], 11, 5);
-                        $totalminutes = HourMinuteToDecimal($time) + (($dashboard['ServiceHours'] + $dashboard['ExtraHours']) * 60);
-                        $totaltime = DecimalToHoursMins($totalminutes);
-                        
-                        ?>
-                        <tr id="<?php echo $dashboard['ServiceRequestId']; ?>" data-bs-toggle="modal" data-bs-target="#request_detail_modal">
+                        $totalminutes = $this->HourMinuteToDecimal($time) + (($dashboard['ServiceHours'] + $dashboard['ExtraHours']) * 60);
+                        $totaltime = $this->DecimalToHoursMins($totalminutes);
+
+                    ?>
+                        <tr class="tr" id="<?php echo $dashboard['ServiceRequestId']; ?>">
                             <td>
                                 <span><?php echo $dashboard['ServiceRequestId']; ?></span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="http://localhost/Helperland/assets/images/calendar2.png" alt="calendar"> &nbsp; <span><b><?php echo $date; ?></b></span> <br>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="http://localhost/Helperland/assets/images/layer-14.png" alt="clock"> &nbsp; <span><?php echo $time . "-" . $totaltime ?></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-left">
+                                    <?php
+                                    if (isset($serviceprovider['FirstName'])) {
+                                    ?>
+                                        <div>
+                                            <img class="round-border" src="http://localhost/Helperland/assets/images/cap.png" alt="cap">
+                                        </div>
+                                        <div class="ps-2">
+                                            <?php
+                                            echo $serviceprovider['FirstName'];
+                                            ?>
+                                            <div class="d-flex align-items-center">
+                                                <div class="rateyo customstar" id="rating" data-rateyo-rating=" <?php echo $averagerating; ?>"></div>
+                                                <div> <?php echo round($averagerating, 1);
+                                                        $averagerating = 0 ?></div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                        $serviceprovider = null;
+                                    }
+                                    ?>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="txt-color">
+                                    €<b><?php echo $dashboard['TotalCost']; ?></b>
+                                </div>
+                            </td>
+                            <td>
+                                <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="btn-reschedule">reschedule</button>
+                                <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="btn-cancel">Cancel</button>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        <?php
+        } else {
+        ?>
+            <div class="text-center">
+                <h4>No history Found</h4>
+            </div>
+        <?php
+        }
+    }
+
+    public function fill_selected_pending_request()
+    {
+        $selectedrequestid = $_POST['selectedrequestid'];
+
+        $row = $this->model->fill_selected_pending_request('servicerequest', $selectedrequestid);
+        $extraservice = $this->model->fill_selected_pending_request_extraservice('servicerequestextra', $selectedrequestid);
+        $address = $this->model->fill_selected_pending_request_useraddress('servicerequestaddress', $selectedrequestid);
+
+        if ($row != "") {
+
+            $startdate = substr($row['ServiceStartDate'], 0, 10);
+            $starttime = substr($row['ServiceStartDate'], 11, 5);
+            $duration = $row['ServiceHours'] + $row['ExtraHours'];
+
+        ?>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="service-datetime"><?php echo $startdate ?> &nbsp; <?php echo $starttime ?> </span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Duration: </span>
+                </div>
+                <div class="ps-2 service-detail-text">
+                    <span> <?php echo $duration ?> Hrs</span>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Service Id: </span>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span> <?php echo $row['ServiceRequestId'] ?></span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Extras: </span>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span>
+                        <?php
+                        if ($extraservice != "") {
+                            foreach ($extraservice as $extra) {
+                                if ($extra['ServiceExtraId'] == 1) {
+                                    $extraservicename[] = 'Inside cabinets';
+                                }
+                                if ($extra['ServiceExtraId'] == 2) {
+                                    $extraservicename[] = 'Inside fridge';
+                                }
+                                if ($extra['ServiceExtraId'] == 3) {
+                                    $extraservicename[] = 'Inside oven';
+                                }
+                                if ($extra['ServiceExtraId'] == 4) {
+                                    $extraservicename[] = 'Laundry wash & dry';
+                                }
+                                if ($extra['ServiceExtraId'] == 5) {
+                                    $extraservicename[] = 'Interior windows';
+                                }
+                            }
+                            echo implode(', ', $extraservicename);
+                        }
+                        ?>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Net Amount: </span>
+                </div>
+                <div class="service-detail-euro ps-2">
+                    <span> &euro; <?php echo $row['TotalCost'] ?> </span>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Service Address: </span>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span>
+                        <?php
+                        if ($address != "") {
+                            echo $address['AddressLine1'] . " " . $address['AddressLine2'] . ", " . $address['City'] . " - " . $address['PostalCode'];
+                        }
+                        ?>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Billing Address: </span>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span>
+                        <?php
+                        if ($address != "") {
+                            echo $address['AddressLine1'] . " " . $address['AddressLine2'] . ", " . $address['City'] . " - " . $address['PostalCode'];
+                        }
+                        ?>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Phone: </span>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span>
+                        <?php
+                        if ($address != "") {
+                            echo $address['Mobile'];
+                        }
+                        ?>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Email: </span>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span>
+                        <?php
+                        if ($address != "") {
+                            echo $address['Email'];
+                        }
+                        ?>
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="service-detail">Comments: </span>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span> <?php echo $row['Comments'] ?> </span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <?php
+                    if ($row['HasPets'] == 1) {
+                    ?>
+                        <span><i class="fas fa-check-circle"></i> </span>
+                    <?php
+                    } else {
+                    ?>
+                        <span><i class="fas fa-times-circle"></i> </span>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span> I don't have pets at home</span>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center">
+                <div>
+                    <button name="submit" id="<?php echo $row['ServiceRequestId']; ?>" class="btn-reschedule"><i class="fas fa-history"></i>&nbsp; Reschedule</button>
+                </div>
+                <div class="ps-2">
+                    <button name="submit" id="<?php echo $row['ServiceRequestId']; ?>" class="btn-cancel"><i class="fas fa-times"></i>&nbsp; Cancel</button>
+                </div>
+            </div>
+        <?php
+        }
+    }
+
+    public function fill_data_reschedule_modal()
+    {
+        $selectedrequestid = $_POST['selectedrequestid'];
+        $row = $this->model->fill_data_reschedule_modal('servicerequest', $selectedrequestid);
+
+        if ($row != "") {
+
+        ?>
+            <div class="col-sm-6">
+                <input class="input-element" type="date" id="formdate" name="formdate" data placeholder="From Date">
+            </div>
+            <div class="col-sm-6">
+                <select name="booktime" id="booktime">
+                    <option value="3:00 PM">3:00 PM</option>
+                    <option value="4:00 PM">4:00 PM</option>
+                    <option value="5:00 PM">5:00 PM</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                </select>
+            </div>
+        <?php
+        }
+    }
+
+    public function reschedule_servicerequest()
+    {
+        $selectedrequestid = $_POST['selectedrequestid'];
+        $date = $_POST['servicedate'];
+        $time = $_POST['servicetime'];
+        $datetime = $date . " " . $time;
+        $this->model->reschedule_servicerequest('servicerequest', $datetime, $selectedrequestid);
+    }
+
+    public function cancel_servicerequest()
+    {
+        $selectedrequestid = $_POST['selectedrequestid'];
+        $cancelreason = $_POST['cancelreason'];
+        $this->model->cancel_servicerequest('servicerequest', $selectedrequestid);
+        $serviceprovider = $this->model->fill_data_reschedule_modal('servicerequest', $selectedrequestid);
+
+        if ($serviceprovider['ServiceProviderId'] != "") {
+            $serviceproviderdetails = $this->model->get_sp_byid('user', $serviceprovider['ServiceProviderId']);
+
+            $to_email = $serviceproviderdetails['Email'];
+            $subject = "Reset Password";
+            $body = "Hi, " . $serviceproviderdetails['FirstName'] . " " . $serviceproviderdetails['LastName'] . "!!! servicerequestid" . " " . $selectedrequestid . " " . "is cancelled. reason for cancellation :" . " " . $cancelreason;
+            $headers = "From: kp916777@gmail.com";
+            $_SESSION['email'] = $_POST['email'];
+
+            mail($to_email, $subject, $body, $headers);
+        }
+    }
+
+    public function fill_service_history()
+    {
+        $userid = $_SESSION['userid'];
+        $row = $this->model->fill_service_history('servicerequest', $userid);
+
+        if ($row != NULL) {
+        ?>
+            <div class="row">
+                <div class="col-8 service-history-text"><b>Service History</b></div>
+                <div class="col-4 export-btn-text"><button class="button-export">Export</button></div>
+            </div>
+            <table id="tableservice" class="table display dataTable">
+                <thead>
+                    <tr>
+                        <th>Service Id <img class="sort-img" alt=""></th>
+                        <th>Service Date <img class="sort-img" alt=""></th>
+                        <th>Service Provider <img class="sort-img" alt=""></th>
+                        <th>Payment <img class="sort-img" alt=""></th>
+                        <th>Status</th>
+                        <th>Rate SP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    foreach ($row as $history) {
+                        if ($history['ServiceProviderId'] != "") {
+                            $serviceprovider = $this->model->get_sp_byid('user', $history['ServiceProviderId']);
+                            $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $history['ServiceProviderId']);
+                            $i = 0;
+                            $totalratings = 0;
+                            if ($allratingsofsp == "") {
+                                $averagerating = 0;
+                            } else {
+                                foreach ($allratingsofsp as $allrate) {
+                                    $totalratings += $allrate['Ratings'];
+                                    $i++;
+                                }
+                                if ($i > 0) {
+                                    $averagerating = $totalratings / $i;
+                                }
+                            }
+                        }
+                        $date = substr($history['ServiceStartDate'], 0, 10);
+                        $time = substr($history['ServiceStartDate'], 11, 5);
+                        $totalminutes = $this->HourMinuteToDecimal($time) + (($history['ServiceHours'] + $history['ExtraHours']) * 60);
+                        $totaltime = $this->DecimalToHoursMins($totalminutes);
+
+                    ?>
+                        <tr>
+                            <td>
+                                <span><?php echo $history['ServiceRequestId']; ?></span>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -438,23 +792,45 @@ class HelperlandController
                                                 echo $serviceprovider['FirstName'];
                                             }
                                             ?>
+                                            <div class="d-flex align-items-center">
+                                                <div class="rateyo customstar" id="rating" data-rateyo-rating=" <?php echo $averagerating; ?>"></div>
+                                                <div> <?php echo round($averagerating, 1);
+                                                        $averagerating = 0 ?></div>
+                                            </div>
                                         </div>
                                     <?php
+                                        $serviceprovider = "";
                                     }
                                     ?>
                                 </div>
                             </td>
                             <td>
                                 <div class="txt-color">
-                                    €<b><?php echo $dashboard['TotalCost']; ?></b>
+                                    €<b><?php echo $history['TotalCost']; ?></b>
                                 </div>
                             </td>
                             <td>
-                                <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="btn-reschedule" data-bs-toggle="modal" data-bs-target="#reschedule_modal">reschedule</button>
-                                <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="btn-cancel" data-bs-toggle="modal" data-bs-target="#cancel_bookingrequest_modal">Cancel</button>
+                                <?php
+                                if (isset($history['Status'])) {
+                                    if ($history['Status'] == 1) {
+                                ?>
+                                        <button class="btn-completed" disabled>Completed</button>
+                                    <?php
+                                    } else if ($history['Status'] == -1) {
+                                    ?>
+                                        <button class="btn-cancelled" disabled>Cancelled</button>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <button id="<?php echo $history['ServiceRequestId']; ?>" class="btn-ratesp" <?php if ($history['Status'] == -1) {
+                                                                                                                echo 'disabled';
+                                                                                                            } ?>>Rate SP</button>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>
@@ -469,95 +845,124 @@ class HelperlandController
         }
     }
 
-    public function service_history()
+    public function fill_sp_ratings()
+    {
+        $selectedrequestid = $_POST['selectedrequestid'];
+        $serviceprovider = $this->model->fill_data_reschedule_modal('servicerequest', $selectedrequestid);
+        $rates = $this->model->get_ratings_of_sp('rating', $selectedrequestid);
+
+        if ($serviceprovider['ServiceProviderId'] != "") {
+            $serviceproviderdetails = $this->model->get_sp_byid('user', $serviceprovider['ServiceProviderId']);
+            $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $serviceprovider['ServiceProviderId']);
+            $i = 0;
+            $totalratings = 0;
+            if ($allratingsofsp == "") {
+                $averagerating = 0;
+            } else {
+                foreach ($allratingsofsp as $allrate) {
+                    $totalratings += $allrate['Ratings'];
+                    $i++;
+                }
+                if ($i > 0) {
+                    $averagerating = $totalratings / $i;
+                }
+            }
+        }
+        ?>
+        <div class="modal-header">
+            <h3 class="modal-title" id="staticBackdropLabel">
+                <div class="d-flex align-items-center justify-content-left">
+                    <div>
+                        <img class="round-border" src="http://localhost/Helperland/assets/images/cap.png" alt="cap">
+                    </div>
+                    <div class="ps-2">
+                        <p class="sp-details"><?php echo $serviceproviderdetails['FirstName']." ".$serviceproviderdetails['LastName'] ?></p>
+                        <div class="sp-details d-flex align-items-center">
+                            <div class="rateyo customstar ps-0" id="rating" data-rateyo-rating=" <?php echo $averagerating; ?>"></div>
+                            <div> <?php echo round($averagerating, 1);
+                                    $averagerating = 0 ?></div>
+                        </div>
+                    </div>
+                </div>
+            </h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="register-inputs me-0 ms-0">
+                <label class="rate-service-text">Rate your service provider</label>
+                <div class="row align-items-center">
+                    <div class="col-sm-5">
+                        <label class="subtext">On time arrival</label>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="rateyo ontime-arrival" id="rating" data-rateyo-rating=" <?php if ($rates != "") {
+                                                                                                echo $rates['OnTimeArrival'];
+                                                                                            } else {
+                                                                                                echo '0';
+                                                                                            } ?>"></div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-sm-5">
+                        <label class="subtext">Friendly</label>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="rateyo friendly" id="rating" data-rateyo-rating=" <?php if ($rates != "") {
+                                                                                            echo $rates['Friendly'];
+                                                                                        } else {
+                                                                                            echo '0';
+                                                                                        } ?>"></div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-sm-5">
+                        <label class="subtext">Quality of service</label>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="rateyo quality" id="rating" data-rateyo-rating=" <?php if ($rates != "") {
+                                                                                            echo $rates['QualityOfService'];
+                                                                                        } else {
+                                                                                            echo '0';
+                                                                                        } ?>"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="subtext">Feedback on service provider</label>
+                </div>
+                <div class="row me-0 ms-0">
+                    <textarea class="rate-feedback" name="feedback"></textarea>
+                </div>
+                <button name="submit" class="btn-ratesp-submit" id="<?php echo $selectedrequestid; ?>">Submit</button>
+            </div>
+        </div>
+        <?php
+    }
+
+    public function submit_rating()
     {
         $userid = $_SESSION['userid'];
-        $row = $this->model->service_history($userid);
-        function HourMinuteToDecimal($time) {
-            $t = explode(':', $hour_minute);
-            return $t[0] * 60 + $t[1];
-        }
-        function DecimalToHoursMins($mins)
-        {
-            $h=(int)($mins/60);
-            $m=round($mins%60);
-            if($h<10){$h="0".$h;}
-            if($m<10){$m="0".$m;}
-            return $h.":".$m;
-        }
-        if($row != NULL)
-        {
-            
-            foreach($row as $history)
-           {
-            $SP = $this->model->getUserbyId($history['ServiceProviderId']);
-            $dt=substr($history['ServiceStartDate'],0,10);
-            $tm=substr($history['ServiceStartDate'],11,5);
-            $totalmins=HourMinuteToDecimal($tm)+ (($history['ServiceHours']+$history['ExtraHours'])*60);
-            $totime=DecimalToHoursMins($totalmins);
-            $rates=$this->model->rateByreqId($history['ServiceRequestId']);
-            if($rates == NULL)
-            {
-                $rates['Ratings']=0;
-            }    
-             ?>
-            <tr class="t-row" >
-                <td><p><?php echo $history['ServiceRequestId']; ?></p></td>
-                <td>
-                    <p class="date"><img src="./assets/Image/calendar.png"> <?php echo $dt; ?></p>
-                    <p><?php echo $tm."-".$totime ?></p>
-                </td>
-                <td> 
-                    <div class="a flex-wrap row"> 
-                        <?php
-                        if(isset($SP['FirstName']))
-                        {
-                        ?>
-                            <div class=""><img src="./assets/Image/forma-1-copy-19.png"></div>
-                            <div>
-                                <p class="lum-watson"><?php if(isset($SP['FirstName'])){echo $SP['FirstName'];} ?> </p>
-                                <div class="row">
-                                    <div class="rateyo" id= "rating"  data-rateyo-rating=" <?php echo $rates['Ratings']; ?>"></div>
-                                    <div><?php echo $rates['Ratings']; ?></div>
-                                </div>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </td>
-                <td>
-                    <p class="euro d-flex justify-content-center">&euro; <?php echo $history['TotalCost']; ?></p>
-                </td>
-                <td><?php 
-                if(isset($history['Status']))
-                {
-                    if($history['Status']==2)
-                    {?>
-                        <div class="status-completed text-center" >Completed</div> <?php
-                    }
-                    else
-                    {?>
-                        <div class="status-cancelled text-center" >Cancelled</div>
-                    <?php
+        $selectedrequestid = $_POST['selectedrequestid'];
+        $ontimearrival = $_POST['ontimearrival'];
+        $friendly = $_POST['friendly'];
+        $quality = $_POST['quality'];
+        $feedback = $_POST['feedback'];
 
-                    }
-                }
-                ?>
-                </td>
-                <td><button type="button" id="<?php echo $history['ServiceRequestId']; ?>"  class="btn rate-sp" data-toggle="modal" data-target="#ratesp_modal" <?php if($history['Status']==3){ echo "disabled";} ?> >Rate SP</button></td>
-            </tr>
-            
-            <?php
-             
-           }
-        }
-        else
-        { ?>
-          <div class="text-center"><h4>No history Found</h4></div>
-        <?php
-        }
-        
+        $israted = $this->model->get_ratings_of_sp('rating', $selectedrequestid);
+        $serviceprovider = $this->model->fill_data_reschedule_modal('servicerequest', $selectedrequestid);
+        $averagerating = ($ontimearrival + $friendly + $quality) / 3;
+
+        $array = [
+            'ServiceRequestId' => $selectedrequestid,
+            'RatingFrom' => $userid,
+            'RatingTo' => $serviceprovider['ServiceProviderId'],
+            'Ratings' => $averagerating,
+            'OnTimeArrival' => $ontimearrival,
+            'Friendly' => $friendly,
+            'QualityOfService' => $quality,
+            'Comments' => $feedback,
+        ];
+
+        $this->model->submit_rating('rating', $array, $israted);
     }
 
     public function fill_details_user()

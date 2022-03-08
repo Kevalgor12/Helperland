@@ -268,6 +268,11 @@
 	color: red;
 }
 
+.modal .modal-dialog .modal-content .modal-body .register-inputs .fa-check-circle {
+	font-size: 26px;
+	color: #5BCF5B;
+}
+
 .modal .modal-dialog .modal-content .modal-body .register-inputs .fa-history {
 	transform: rotateY(180deg);
 }
@@ -2368,6 +2373,11 @@ footer .privacy-policy button{
 	font-family: 'Roboto';
 	font-size: 23px;
 	color: #207C8E;
+}
+
+.service-history .sidebar-table .table .customstar {
+	padding: 0 0;
+	margin: 3px 0;
 }
 
 .service-history .sidebar-table .tabledashboard .table .btn-reschedule {
