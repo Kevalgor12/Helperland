@@ -481,6 +481,13 @@ $(document).ready(function () {
                         "phonenumber": phonenumber
                     },
                     success: function (response) {
+                        swal({
+                            position: 'center',
+                            icon: 'success',
+                            text: 'address updated successfully.',
+                            buttons: false,
+                            timer: 2000,
+                        });
                         $(".addresses").click();
                         $("#addedit_address_modal").modal("hide");
                     }
@@ -512,6 +519,13 @@ $(document).ready(function () {
                         "phonenumber": phonenumber
                     },
                     success: function (response) {
+                        swal({
+                            position: 'center',
+                            icon: 'success',
+                            text: 'address inserted successfully.',
+                            buttons: false,
+                            timer: 2000,
+                        });
                         $(".addresses").click();
                         $("#addedit_address_modal").modal("hide");
                     }
