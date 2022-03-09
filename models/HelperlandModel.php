@@ -308,13 +308,23 @@ class HelperlandModel
         return $row;
     }
 
-    public function update_selected_address($table, $selectedaddid, $array2)
+    function insert_update_useraddress($array, $edit)
     {
-        $sql_qry = "UPDATE $table
-                    SET AddressLine1 = :streetname, AddressLine1 = :housenumber, City :city, PostalCode :postalcode, Mobile = :phonenumber
-                    WHERE AddressId = $selectedaddid";
-        $statement = $this->conn->prepare($sql_qry);
-        $statement->execute($array2);
+        if($edit == 0)
+        {
+            $sql_query = "INSERT INTO useraddress(UserId,AddressLine1, AddressLine2, City, PostalCode, Mobile)
+                        VALUES (:UserId,:AddressLine1, :AddressLine2, :City, :PostalCode, :Mobile)";
+            $statement= $this->conn->prepare($sql_query);
+            $statement->execute($array);
+        }
+        else
+        {
+            $sql_query = "UPDATE useraddress
+                        SET AddressLine1 = :AddressLine1, AddressLine2 = :AddressLine2 , City = :City, PostalCode = :PostalCode, Mobile = :Mobile
+                        WHERE AddressId = :AddressId";
+            $statement = $this->conn->prepare($sql_query);
+            $statement->execute($array);
+        }
     }
 
     public function delete_selected_useraddress($table, $selectedaddid)

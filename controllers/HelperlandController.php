@@ -294,37 +294,21 @@ class HelperlandController
 
     public function insert_address()
     {
-        // this is for update selected address
-        $selectedaddid = $_POST['selectedaddid'];
-
         $streetname = $_POST['streetname'];
         $housenumber = $_POST['housenumber'];
         $postalcode = $_POST['postalcode'];
         $city = $_POST['city'];
         $phonenumber = $_POST['phonenumber'];
 
-        if ($selectedaddid == "") {
-            $array = [
-                'userid' => $_SESSION['userid'],
-                'streetname' => $streetname,
-                'housenumber' => $housenumber,
-                'postalcode' => $postalcode,
-                'city' => $city,
-                'phonenumber' => $phonenumber,
-            ];
-            $this->model->insert_address('useraddress', $array);
-        } else {
-            $array2 = [
-                'selectedaddid' => $selectedaddid,
-                'userid' => $_SESSION['userid'],
-                'streetname' => $streetname,
-                'housenumber' => $housenumber,
-                'postalcode' => $postalcode,
-                'city' => $city,
-                'phonenumber' => $phonenumber,
-            ];
-            $this->model->update_selected_address('useraddress', $selectedaddid, $array2);
-        }
+        $array = [
+            'userid' => $_SESSION['userid'],
+            'streetname' => $streetname,
+            'housenumber' => $housenumber,
+            'postalcode' => $postalcode,
+            'city' => $city,
+            'phonenumber' => $phonenumber,
+        ];
+        $this->model->insert_address('useraddress', $array);
     }
 
     public function add_service_request()
@@ -876,7 +860,7 @@ class HelperlandController
                         <img class="round-border" src="http://localhost/Helperland/assets/images/cap.png" alt="cap">
                     </div>
                     <div class="ps-2">
-                        <p class="sp-details"><?php echo $serviceproviderdetails['FirstName']." ".$serviceproviderdetails['LastName'] ?></p>
+                        <p class="sp-details"><?php echo $serviceproviderdetails['FirstName'] . " " . $serviceproviderdetails['LastName'] ?></p>
                         <div class="sp-details d-flex align-items-center">
                             <div class="rateyo customstar ps-0" id="rating" data-rateyo-rating=" <?php echo $averagerating; ?>"></div>
                             <div> <?php echo round($averagerating, 1);
@@ -1067,57 +1051,84 @@ class HelperlandController
                         </div>
                     </td>
                 </tr>
-            <?php
+        <?php
             }
         }
     }
 
     public function fill_selected_useraddress()
     {
-        $selectedaddid = $_POST['selectedaddid'];
-        $list = $this->model->fill_selected_useraddress("useraddress", $selectedaddid);
-
-        if ($list != "") {
-            ?>
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="text-danger error-message"></label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="addresslable" for="streetname">Street name</label><br>
-                    <input class="input" type="text" name="streetname" placeholder="Street name" value="<?php echo $list['AddressLine1'] ?>">
-                </div>
-                <div class="col-md-6">
-                    <label class="addresslable" for="housenumber">House number</label><br>
-                    <input class="input" type="text" name="housenumber" placeholder="House number" value="<?php echo $list['AddressLine2'] ?>">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="addresslable" for="postalcode">Postal code</label><br>
-                    <input class="input" type="text" name="postal_code" placeholder="360005" value="<?php echo $list['PostalCode'] ?>">
-                </div>
-                <div class="col-md-6">
-                    <label class="addresslable" for="city">City</label><br>
-                    <input class="input" type="text" name="city" placeholder="Bonn" value="<?php echo $list['City'] ?>">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="addresslable" for="phonenumber">Phone number</label><br>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">+49</span>
-                        <input class="input" type="text" name="phonenumber" placeholder="9745643546" value="<?php echo $list['Mobile'] ?>">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button name="submit" class="btn-addresssave">save</button>
-            </div>
-<?php
+        if (isset($_POST['selectedaddid'])) {
+            $list = $this->model->fill_selected_useraddress("useraddress", $_POST['selectedaddid']);
         }
+        ?>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="text-danger error-message"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="addresslable" for="streetname">Street name</label><br>
+                <input class="input" type="text" name="streetname" placeholder="Street name" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['AddressLine1']; } ?>">
+            </div>
+            <div class="col-md-6">
+                <label class="addresslable" for="housenumber">House number</label><br>
+                <input class="input" type="text" name="housenumber" placeholder="House number" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['AddressLine2']; } ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="addresslable" for="postalcode">Postal code</label><br>
+                <input class="input" type="text" name="postal_code" placeholder="360005" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['PostalCode']; } ?>">
+            </div>
+            <div class="col-md-6">
+                <label class="addresslable" for="city">City</label><br>
+                <input class="input" type="text" name="city" placeholder="Bonn" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['City']; } ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="addresslable" for="phonenumber">Phone number</label><br>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">+49</span>
+                    <input class="input" type="text" name="phonenumber" placeholder="9745643546" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['Mobile']; } ?>">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button name="submit" <?php if(isset($_POST['selectedaddid'])) { ?> id="<?php echo $list['AddressId']; ?>" <?php } ?> class="btn-addresssave">save</button>
+        </div>
+        <?php
+    }
+
+    public function insert_update_useraddress()
+    {
+        if(isset($_POST['selectedaddid']))
+        {
+            $edit = 1; //to update
+            $array = [
+                'AddressId' => $_POST['selectedaddid'],
+                'AddressLine1' => $_POST['housenumber'],
+                'AddressLine2' => $_POST['streetname'],
+                'City' => $_POST['city'],
+                'PostalCode' => $_POST['postalcode'],
+                'Mobile' => $_POST['phonenumber'],
+            ];
+        }
+        else
+        {
+            $edit = 0; //to insert
+            $array = [
+                'AddressLine1' => $_POST['housenumber'],
+                'AddressLine2' => $_POST['streetname'],
+                'City' => $_POST['city'],
+                'PostalCode' => $_POST['postalcode'],
+                'Mobile' => $_POST['phonenumber'],
+                'UserId' => $_SESSION['userid'],
+            ];
+        }
+        $this->model->insert_update_useraddress($array, $edit);
     }
 
     public function delete_selected_useraddress()

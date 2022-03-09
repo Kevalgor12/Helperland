@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var selectedrequestid;
-    var selectedaddid;
+    var selectedaddid = "";
     
     fill_dashboard();
     fill_history();
@@ -398,7 +398,6 @@ $(document).ready(function () {
             data: "data",
             success: function (response) {
                 $(".user_addresses").html(response);
-                // $(".btn-addresssave").click();
                 $(".address-edit").click(function (e) {
                     selectedaddid = e.target.id;
                     $("#addedit_address_modal").modal("toggle");
@@ -413,8 +412,154 @@ $(document).ready(function () {
             }
         });
     });
-
     
+    $(".addnewaddress").click(function () {
+        selectedaddid = "";
+        $("#addedit_address_modal").modal("toggle");
+        $(".add_edit_address").text("Add Address");
+        $(".error-message").text("");
+        selected_useraddress_edit();
+    });
+
+    function selected_useraddress_edit()
+    {
+        if (selectedaddid != "") {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/Helperland/?controller=Helperland&function=fill_selected_useraddress",
+                data: {
+                    "selectedaddid": selectedaddid,
+                },
+                success: function (response) {
+                    $(".addedit_selected_useraddress").html(response);
+                    $(".btn-addresssave").click(function () { 
+                        selectedaddid = this.id;
+                        insert_update_useraddress();
+                    });
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/Helperland/?controller=Helperland&function=fill_selected_useraddress",
+                success: function (response) {
+                    $(".addedit_selected_useraddress").html(response);
+                    $(".btn-addresssave").click(function () { 
+                        insert_update_useraddress();
+                    });
+                }
+            });
+        }
+    }
+
+    function insert_update_useraddress() {
+        if (selectedaddid != "") {
+
+            var streetname = $("input[name='streetname']").val();
+            var housenumber = $("input[name='housenumber']").val();
+            var postal_code = $("input[name='postal_code']").val();
+            var city = $("input[name='city']").val();
+            var phonenumber = $("input[name='phonenumber']").val();
+
+            if (streetname == "" || housenumber == "" || postal_code == "" || city == "" || phonenumber == "") {
+                document.querySelector(".error-message").innerHTML = "please fill all the details.";
+            }
+
+            else {
+                document.querySelector(".error-message").innerHTML = "";
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/Helperland/?controller=Helperland&function=insert_update_useraddress",
+                    data: {
+                        "selectedaddid": selectedaddid,
+                        "housenumber": housenumber,
+                        "streetname": streetname,
+                        "city": city,
+                        "postalcode": postal_code,
+                        "phonenumber": phonenumber
+                    },
+                    success: function (response) {
+                        $(".addresses").click();
+                        $("#addedit_address_modal").modal("hide");
+                    }
+                });
+            }
+        }
+        else {
+
+            var streetname = $("input[name='streetname']").val();
+            var housenumber = $("input[name='housenumber']").val();
+            var postal_code = $("input[name='postal_code']").val();
+            var city = $("input[name='city']").val();
+            var phonenumber = $("input[name='phonenumber']").val();
+
+            if (streetname == "" || housenumber == "" || postal_code == "" || city == "" || phonenumber == "") {
+                document.querySelector(".error-message").innerHTML = "please fill all the details.";
+            }
+
+            else {
+                document.querySelector(".error-message").innerHTML = "";
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/Helperland/?controller=Helperland&function=insert_update_useraddress",
+                    data: {
+                        "housenumber": housenumber,
+                        "streetname": streetname,
+                        "city": city,
+                        "postalcode": postal_code,
+                        "phonenumber": phonenumber
+                    },
+                    success: function (response) {
+                        $(".addresses").click();
+                        $("#addedit_address_modal").modal("hide");
+                    }
+                });
+            }
+        }
+    }
+
+    function selected_useraddress_delete()
+    {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, You won't be able to revert this!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/Helperland/?controller=Helperland&function=delete_selected_useraddress",
+                    data: {
+                        "selectedaddid": selectedaddid,
+                    },
+                    success: function (response) {
+                        swal({
+                            position: 'center',
+                            icon: 'success',
+                            text: 'address deleted successfully.',
+                            buttons: false,
+                            timer: 2000,
+                          })
+                        $(".addresses").click();
+                    }
+                });
+            } else {
+                swal({
+                    position: 'center',
+                    icon: 'error',
+                    text: 'address deletion has been cancelled.',
+                    buttons: false,
+                    timer: 2000,
+                  })
+                $(".addresses").click();
+            }
+        });  
+    }
 
     $(".password").click(function () { 
         $(".details").removeClass("active");
@@ -461,99 +606,4 @@ $(document).ready(function () {
             });
         }
     });
-    
-    $(".addnewaddress").click(function () {
-        $("#addedit_address_modal").modal("toggle");
-        $(".add_edit_address").text("Add Address");
-        $(".error-message").text("");
-    });
-
-    $(".btn-addresssave").click(function () { 
-
-        var streetname = $("input[name='streetname']").val();
-        var housenumber = $("input[name='housenumber']").val();
-        var postal_code = $("input[name='postal_code']").val();
-        var city = $("input[name='city']").val();
-        var phonenumber = $("input[name='phonenumber']").val();
-
-        if(streetname == "" || housenumber == "" || postal_code == "" || city == "" || phonenumber == "")
-        {
-            document.querySelector(".error-message").innerHTML="please fill all the details.";
-        }
-        else
-        {
-            document.querySelector(".error-message").innerHTML="";
-            $.ajax({
-                type: "POST",
-                url: "http://localhost/Helperland/?controller=Helperland&function=insert_address",
-                data: {
-                        "selectedaddid" : selectedaddid,
-                        "housenumber" : housenumber,
-                        "streetname" : streetname,
-                        "city" : city,
-                        "postalcode" : postal_code,
-                        "phonenumber" : phonenumber
-                       },
-                success: function (response) {
-                    $(".addresses").click();
-                    $("#addedit_address_modal").modal("hide");
-                }
-            });
-        }     
-    });
-
-    function selected_useraddress_edit()
-    {
-        $.ajax({
-            type: "POST",
-            url: "http://localhost/Helperland/?controller=Helperland&function=fill_selected_useraddress",
-            data: {
-                    "selectedaddid" : selectedaddid,
-                   },
-            success: function (response) {
-                $(".addedit_selected_useraddress").html(response);
-            }
-        });
-    }
-
-    function selected_useraddress_delete()
-    {
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, You won't be able to revert this!!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if (willDelete) {
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost/Helperland/?controller=Helperland&function=delete_selected_useraddress",
-                    data: {
-                        "selectedaddid": selectedaddid,
-                    },
-                    success: function (response) {
-                        swal({
-                            position: 'center',
-                            icon: 'success',
-                            text: 'address deleted successfully.',
-                            buttons: false,
-                            timer: 2000,
-                          })
-                        $(".addresses").click();
-                    }
-                });
-            } else {
-                swal({
-                    position: 'center',
-                    icon: 'error',
-                    text: 'address deletion has been cancelled.',
-                    buttons: false,
-                    timer: 2000,
-                  })
-                $(".addresses").click();
-            }
-        });  
-    }
 })

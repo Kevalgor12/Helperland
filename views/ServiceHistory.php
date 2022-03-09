@@ -129,43 +129,7 @@ session_start();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body addedit_selected_useraddress">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="text-danger error-message"></label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="addresslable" for="streetname">Street name</label><br>
-                            <input class="input" type="text" name="streetname" placeholder="Street name">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="addresslable" for="housenumber">House number</label><br>
-                            <input class="input" type="text" name="housenumber" placeholder="House number">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="addresslable" for="postalcode">Postal code</label><br>
-                            <input class="input" type="text" name="postal_code" placeholder="360005">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="addresslable" for="city">City</label><br>
-                            <input class="input" type="text" name="city" placeholder="Bonn">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="addresslable" for="phonenumber">Phone number</label><br>
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1">+49</span>
-                                <input class="input" type="text" name="phonenumber" placeholder="9745643546">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button name="submit" class="btn-addresssave">save</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>
