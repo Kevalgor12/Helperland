@@ -29,7 +29,6 @@ class HelperlandController
 
     public function Helperland()
     {
-        $data = ['title' => 'Home'];
         include("./views/Home.php");
     }
 
@@ -156,7 +155,7 @@ class HelperlandController
                                 location. href="http://localhost/Helperland/#login_modal";
                             </script>';
                 } else {
-                    $serviceprovider = "http://localhost/Helperland/UpcomingService.php";
+                    $serviceprovider = "http://localhost/Helperland/UserServiceProvider.php";
                     $customer = "http://localhost/Helperland/ServiceHistory.php";
                     $usertypeid = $this->model->check_usertype('user', $email);
                     $row = $this->model->login_user('user', $email, $password);
@@ -372,11 +371,11 @@ class HelperlandController
         $userid = $_SESSION['userid'];
         $row = $this->model->fill_dashboard('servicerequest', $userid);
 
-        if ($row != "") {
+        if ($row != NULL) {
         ?>
             <div class="row">
-                <div class="col-8 service-history-text"><b>Current Service request</b></div>
-                <div class="col-4 export-btn-text"><a href="http://localhost/Helperland/?controller=Helperland&function=gotobookservicepage"><button class="button-add-new-request">Add New Service Request</button></a></div>
+                <div class="col-md-8 service-history-text"><b>Current Service request</b></div>
+                <div class="col-md-4 export-btn-text"><a href="http://localhost/Helperland/?controller=Helperland&function=gotobookservicepage"><button class="button-add-new-request">Add New Service Request</button></a></div>
             </div>
             <table id="dashtable" class="table display dataTable">
                 <thead>
@@ -392,13 +391,17 @@ class HelperlandController
                     <?php
 
                     foreach ($row as $dashboard) {
+
+                        $totalratings = 0;
+                        $averagerating = 0;
+
                         if ($dashboard['ServiceProviderId'] != "") {
-                            $serviceprovider = $this->model->get_sp_byid('user', $dashboard['ServiceProviderId']);
+                            $serviceprovider = $this->model->get_sp_or_customer_byid('user', $dashboard['ServiceProviderId']);
                             $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $dashboard['ServiceProviderId']);
                             $i = 0;
-                            $totalratings = 0;
+                            
                             if ($allratingsofsp == "") {
-                                $averagerating = 0;
+                                
                             } else {
                                 foreach ($allratingsofsp as $allrate) {
                                     $totalratings += $allrate['Ratings'];
@@ -689,10 +692,10 @@ class HelperlandController
         $serviceprovider = $this->model->fill_data_reschedule_modal('servicerequest', $selectedrequestid);
 
         if ($serviceprovider['ServiceProviderId'] != "") {
-            $serviceproviderdetails = $this->model->get_sp_byid('user', $serviceprovider['ServiceProviderId']);
+            $serviceproviderdetails = $this->model->get_sp_or_customer_byid('user', $serviceprovider['ServiceProviderId']);
 
             $to_email = $serviceproviderdetails['Email'];
-            $subject = "Reset Password";
+            $subject = "Cancel request";
             $body = "Hi, " . $serviceproviderdetails['FirstName'] . " " . $serviceproviderdetails['LastName'] . "!!! servicerequestid" . " " . $selectedrequestid . " " . "is cancelled. reason for cancellation :" . " " . $cancelreason;
             $headers = "From: kp916777@gmail.com";
             $_SESSION['email'] = $_POST['email'];
@@ -709,8 +712,8 @@ class HelperlandController
         if ($row != NULL) {
         ?>
             <div class="row">
-                <div class="col-8 service-history-text"><b>Service History</b></div>
-                <div class="col-4 export-btn-text"><button class="button-export">Export</button></div>
+                <div class="col-md-8 service-history-text"><b>Service History</b></div>
+                <div class="col-md-4 export-btn-text"><button class="button-export">Export</button></div>
             </div>
             <table id="tableservice" class="table display dataTable">
                 <thead>
@@ -728,7 +731,7 @@ class HelperlandController
 
                     foreach ($row as $history) {
                         if ($history['ServiceProviderId'] != "") {
-                            $serviceprovider = $this->model->get_sp_byid('user', $history['ServiceProviderId']);
+                            $serviceprovider = $this->model->get_sp_or_customer_byid('user', $history['ServiceProviderId']);
                             $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $history['ServiceProviderId']);
                             $i = 0;
                             $totalratings = 0;
@@ -836,11 +839,11 @@ class HelperlandController
         $rates = $this->model->get_ratings_of_sp('rating', $selectedrequestid);
 
         if ($serviceprovider['ServiceProviderId'] != "") {
-            $serviceproviderdetails = $this->model->get_sp_byid('user', $serviceprovider['ServiceProviderId']);
+            $serviceproviderdetails = $this->model->get_sp_or_customer_byid('user', $serviceprovider['ServiceProviderId']);
             $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $serviceprovider['ServiceProviderId']);
             $i = 0;
             $totalratings = 0;
-            if ($allratingsofsp == "") {
+            if ($allratingsofsp == null) {
                 $averagerating = 0;
             } else {
                 foreach ($allratingsofsp as $allrate) {
@@ -1146,20 +1149,14 @@ class HelperlandController
 
         $count = $this->model->check_password('user', $email, $oldpassword);
 
-        echo $email . " " . $oldpassword . " " . $newpassword . " " . $confirmpassword . " " . $count;
-
         if ($count == 1) {
             if ($newpassword == $confirmpassword) {
                 $this->model->update_password('user', $email, $newpassword);
             } else {
-                echo    '<script>
-                                alert("password is not same.");
-                            </script>';
+                echo '0';
             }
         } else {
-            echo    '<script>
-                                alert("old password is incorrect.");
-                            </script>';
+            echo '1';
         }
     }
 }

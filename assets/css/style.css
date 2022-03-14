@@ -1835,18 +1835,16 @@ footer .privacy-policy button{
 .upcoming-service .sidebar-table {
 	display: flex;
 	justify-content: center;
-	margin-top: 31px;
-	margin-bottom: 15px;
+	margin: 31px 20px 15px 20px;
 }
 
 .upcoming-service .sidebar-table .sidebar {
-	margin: 0;
+	margin: 0 20px;
 	padding: 0;
-	width: 262px;
+	min-width: calc(250px);
 	text-align: left;
 	background-color: #1D7A8C;
 	margin-right: 15px;
-	margin-bottom: 15px;
 }
 
 .upcoming-service .sidebar-table .sidebar a {
@@ -1869,8 +1867,140 @@ footer .privacy-policy button{
 	color: white;
 }
 
+.upcoming-service .sidebar-table .customer-table {
+	width: 100%;
+	padding: 0 20px;
+}
+
+.upcoming-service .sidebar-table .customer-table .row {
+    padding-bottom: 10px;
+}
+
+.upcoming-service .sidebar-table .customer-table .payment-filter {
+	font-family: 'Roboto';
+	color: #646464;
+	font-size: 16px;
+	text-align: left;
+}
+
+.upcoming-service .sidebar-table .customer-table .payment-filter select {
+	font-family: 'Roboto';
+	color: #646464;
+	font-size: 16px;
+	border: 1px solid #E1E1E1;
+	border-radius: 3px;
+	padding-left: 5px;
+	height: 34px;
+}
+
+.upcoming-service .sidebar-table .customer-table .export-btn-text {
+	text-align: right;
+}
+
+.upcoming-service .sidebar-table .customer-table .export-btn-text .button-export {
+	font-family: 'Roboto';
+	font-size: 14px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border-radius: 17px;
+	border: 1px solid #146371;
+	width: 70px;
+	height: 34px;
+	text-align: center;
+}
+
+.upcoming-service .sidebar-table .customer-table .export-btn-text .button-export:hover {
+	background-color: #146371;
+}
+
+.upcoming-service .sidebar-table .sp-dashboard-body {
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp-newservice-request-body {
+	display: block;
+}
+
+.upcoming-service .sidebar-table .sp-upcoming-service-body {
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp-service-schedule-body {
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp-service-history-body {
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp-ratings-body {
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body {
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer {
+	font-family: 'Roboto';
+	color: #4F4F4F;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card {
+	min-width: 280px;
+	border: 1px solid #E1E1E1;
+	padding: 30px 0;
+	border-radius: 0px;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .customer-image {
+	margin: auto;
+	width: 80px;
+	height: 80px;
+	border: 1px solid #9C9C9C;
+	border-radius: 50%;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .customer-image img {
+	width: 48px;
+	height: 32px;
+	margin: 24px 16px;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .customer-name {
+	font-size: 20px;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .block-unblock-button {
+	text-align: center;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .block-unblock-button .block-button {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
+	width: 80px;
+	height: 34px;
+	border-radius: 17px;
+	background: #FF6B6B;
+	border: 1px solid #FF6B6B;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .block-unblock-button .block-button:hover {
+	background: #fD4B4B;
+}
+
+.upcoming-service .sidebar-table .sp-notifications-body {
+	display: none;
+}
+
 .upcoming-service .sidebar-table .table {
-	width: 845px;
+	width: 100%;
 	border: 1.2px solid #E1E1E1 !important;
 }
 
@@ -1882,6 +2012,10 @@ footer .privacy-policy button{
 	opacity: 1;
 	letter-spacing: 0px;
 	background: #F9F9F9 !important;
+}
+
+.upcoming-service .sidebar-table .table tbody {
+	border: none;
 }
 
 .upcoming-service .sidebar-table .table.dataTable thead .sorting{
@@ -1921,6 +2055,22 @@ footer .privacy-policy button{
 	background: #FFFFFF !important;
 }
 
+.upcoming-service .sidebar-table .table .btn-accept {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
+	text-align: center;
+	width: 80px;
+	height: 34px;
+	border-radius: 17px;
+	background: #1D7A8C;
+	border: 1px solid #1D7A8C;
+}
+
+.upcoming-service .sidebar-table .table .btn-accept:hover {
+	background-color: #29626D;
+}
+
 .upcoming-service .sidebar-table .table .btn-cancel {
 	font-family: 'Roboto';
 	font-size: 16px;
@@ -1931,6 +2081,73 @@ footer .privacy-policy button{
 	border-radius: 17px;
 	background: #FF6B6B;
 	border: 1px solid #FF6B6B;
+}
+
+.upcoming-service .sidebar-table .table .btn-cancel:hover {
+	background: #fD4B4B;
+}
+
+.upcoming-service .sidebar-table .table .btn-complete {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
+	text-align: center;
+	width: 100px;
+	height: 34px;
+	border-radius: 17px;
+	background: #1D7A8C;
+	border: 1px solid #1D7A8C;
+}
+
+.upcoming-service .sidebar-table .table .btn-complete:hover {
+	background-color: #29626D;
+}
+
+@media (max-width: 768px) {
+	.upcoming-service .sidebar-table .table {
+		border: none !important;
+	}
+
+	.upcoming-service .sidebar-table .table thead {
+		display: none;
+	}
+
+	.upcoming-service .sidebar-table .table tbody tr {
+		max-width: 300px;
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		margin: 10px auto 40px auto;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	}
+	
+	.upcoming-service .sidebar-table .table tbody tr td {
+		text-align: center !important;
+		border: none !important;
+	}
+
+	.upcoming-service .sidebar-table .table tbody tr td div {
+		justify-content: center;
+		padding: 0 0 !important;
+	}
+
+	.upcoming-service .sidebar-table .table tbody tr td .serviceaddress {
+		text-align: left;
+	}
+
+	.upcoming-service .sidebar-table .customer-table .row {
+		padding: 0 0;
+	}
+
+	.upcoming-service .sidebar-table .customer-table .payment-filter {
+		text-align: center;
+		padding-bottom: 15px;
+	}
+	
+	.upcoming-service .sidebar-table .customer-table .export-btn-text {
+		text-align: center;
+		padding-bottom: 15px;
+	}
 }
 
 /* upcoming-service end page */
@@ -2339,6 +2556,20 @@ footer .privacy-policy button{
 
 	.service-history .sidebar-table .table tbody tr td div {
 		justify-content: center;
+	}
+
+	.service-history .sidebar-table .customer-table .row {
+		padding: 0 0;
+	}
+
+	.service-history .sidebar-table .customer-table .service-history-text {
+		text-align: center;
+		padding-bottom: 15px;
+	}
+	
+	.service-history .sidebar-table .customer-table .export-btn-text {
+		text-align: center;
+		padding-bottom: 15px;
 	}
 }
 

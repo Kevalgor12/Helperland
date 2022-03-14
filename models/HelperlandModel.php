@@ -155,7 +155,7 @@ class HelperlandModel
         $sql_qry = "SELECT * FROM $table WHERE ZipCode = $postalcode AND UserTypeId = 1";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $row  = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -164,16 +164,16 @@ class HelperlandModel
         $sql_qry = "SELECT * FROM $table WHERE Status = 0 AND UserId = $userid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $row  = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
 
-    public function get_sp_byid($table, $serviceproviderid)
+    public function get_sp_or_customer_byid($table, $serviceproviderid)
     {
         $sql_qry = "SELECT * FROM $table WHERE UserId = $serviceproviderid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $row  = $statement->fetch(PDO::FETCH_ASSOC);
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -182,7 +182,7 @@ class HelperlandModel
         $sql_qry = "SELECT * FROM $table WHERE ServiceRequestId = $selectedrequestid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $row  = $statement->fetch(PDO::FETCH_ASSOC);
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -191,7 +191,7 @@ class HelperlandModel
         $sql_qry = "SELECT * FROM $table WHERE ServiceRequestId = $selectedrequestid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $row  = $statement->fetchALL(PDO::FETCH_ASSOC);
+        $row = $statement->fetchALL(PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -200,7 +200,7 @@ class HelperlandModel
         $sql_qry = "SELECT * FROM $table WHERE ServiceRequestId = $selectedrequestid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $row  = $statement->fetch(PDO::FETCH_ASSOC);
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -209,7 +209,7 @@ class HelperlandModel
         $sql_qry = "SELECT * FROM $table WHERE RatingTo = $serviceproviderid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $row  = $statement->fetchALL(PDO::FETCH_ASSOC);
+        $row = $statement->fetchALL(PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -224,7 +224,7 @@ class HelperlandModel
 
     function reschedule_servicerequest($table, $datetime, $selectedrequestid)
     {
-        $sql_query = "UPDATE $table SET ServiceStartDate = '$datetime' WHERE  ServiceRequestId = '$selectedrequestid'";
+        $sql_query = "UPDATE $table SET ServiceStartDate = '$datetime' WHERE ServiceRequestId = '$selectedrequestid'";
         $statement= $this->conn->prepare($sql_query);
         $statement->execute();
     }
@@ -268,7 +268,7 @@ class HelperlandModel
         $sql_qry = "SELECT * FROM $table WHERE Status IN (-1,1) AND UserId = $userid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $row  = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -349,6 +349,85 @@ class HelperlandModel
                     SET Password = '$newpassword'
                     WHERE Email = '$email'";
         $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function fill_sp_newservicerequest_table($table, $serviceproviderid, $zipcode)
+    {
+        // $sql_qry = "SELECT * FROM $table WHERE COALESCE(ServiceProviderId,-1) IN ($userid, -1) AND Status = 0 AND ZipCode = $zipcode AND SPAcceptedDate IS NULL";
+        $sql_qry = "SELECT * FROM $table WHERE (ServiceProviderId IS NULL OR ServiceProviderId = $serviceproviderid) AND Status = 0 AND ZipCode = '$zipcode' AND SPAcceptedDate IS NULL";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function get_requests_for_that_date($table, $serviceproviderid, $date, $nextdate)
+    {
+        $sql_qry = "SELECT * FROM 
+                    (SELECT * FROM $table 
+                    WHERE ServiceProviderId = $serviceproviderid AND SPAcceptedDate IS NOT NULL AND ServiceStartDate BETWEEN '$date' AND '$nextdate' AND Status = 0) as t1";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function acceptrequest($table, $serviceproviderid, $selectedrequestid)
+    {
+        $sql_qry = "UPDATE $table SET SPAcceptedDate = now(), ServiceProviderId = $serviceproviderid WHERE ServiceRequestId = '$selectedrequestid'";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function fill_sp_upcomingservice_table($table, $serviceproviderid, $zipcode)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ServiceProviderId = $serviceproviderid AND Status = 0 AND ZipCode = '$zipcode' AND SPAcceptedDate IS NOT NULL";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    function completerequest($table, $selectedrequestid)
+    {
+        $sql_query = "UPDATE $table SET Status = 1 WHERE  ServiceRequestId = '$selectedrequestid'";
+        $statement= $this->conn->prepare($sql_query);
+        $statement->execute();  
+    }
+
+    public function fill_sp_servicehistory_table($table, $serviceproviderid, $zipcode)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE ServiceProviderId = $serviceproviderid AND Status = 1 AND ZipCode = '$zipcode' AND SPAcceptedDate IS NOT NULL";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_customer_card($table, $serviceproviderid)
+    {
+        $sql_qry = "SELECT DISTINCT UserId FROM $table WHERE ServiceProviderId = $serviceproviderid AND Status = 1";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function check_block_unblock($table, $selectedcustomerid, $serviceproviderid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE UserId = $serviceproviderid AND TargetUserId = $selectedcustomerid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function block_customer($table, $selectedcustomerid, $serviceproviderid)
+    {
+        $sql_qry = "INSERT INTO $table(UserId, TargetUserId, IsBlocked)
+                    VALUES ($serviceproviderid, $selectedcustomerid, 1)";
+        $statement= $this->conn->prepare($sql_qry);
         $statement->execute();
     }
 }

@@ -11,7 +11,10 @@
 <body onload="filltabcolor()">
     
     <?php
-        session_start();
+        if(!isset($_SESSION))
+        {
+            session_start();
+        }
 
         if(isset($_SESSION['userid']))
         {
@@ -115,8 +118,8 @@
                                         <div class="col-md-5 pe-0 ps-0">
                                             <span class="text-1"><b>When do you need the cleaner?</b></span>
                                             <div>
-                                                <input class="input-element" type="date" id="formdate" name="formdate" data placeholder="From Date">
-                                                <select name="booktime" id="booktime">
+                                                <input class="input-element" type="date" id="formdate" name="formdate" data placeholder="From Date" required>
+                                                <select name="booktime" id="booktime" required>
                                                     <option value="8:00">8:00</option>
                                                     <option value="8:30">8:30</option>
                                                     <option value="9:00">9:00</option>
@@ -144,7 +147,7 @@
                                         <div class="col-md-7">
                                             <span class="text-1"><b>How long do you need your cleaner to stay?</b></span>
                                             <div>
-                                                <select name="servicetime" id="servicetime">
+                                                <select name="servicetime" id="servicetime" required>
                                                     <option value="3.0">3.0 Hrs</option>
                                                     <option value="3.5">3.5 Hrs</option>
                                                     <option value="4.0">4.0 Hrs</option>
@@ -238,7 +241,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="continue-right">
-                                            <button type="submit" class="continue continue1 disabled"><b>Continue</b></button>
+                                            <button type="submit" class="continue continue1"><b>Continue</b></button>
                                         </div>
                                     </div>
                                 </div>
@@ -445,7 +448,7 @@
             </div>
         </div>
     </section>
-
 <?php
     include("footer_2.php");
 ?>
+<script src="http://localhost/Helperland/assets/js/checklogin.js"></script>

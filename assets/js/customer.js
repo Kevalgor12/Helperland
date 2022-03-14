@@ -2,6 +2,29 @@ $(document).ready(function () {
 
     var selectedrequestid;
     var selectedaddid = "";
+
+    $(document).on ('click', '.tr', function (e) {
+        selectedrequestid = this.id;
+        fill_selected_pending_request(); 
+        $("#request_detail_modal").modal("toggle"); 
+    });
+
+    $(document).on ('click', '.btn-reschedule', function (e) {
+        e.stopPropagation();
+        $("#request_detail_modal").modal("hide"); 
+        $(".error-reschdule").html("");
+        selectedrequestid = e.target.id;
+        $("#reschedule_modal").modal("toggle");
+    });
+
+    $(document).on ('click', '.btn-cancel', function (e) {
+        e.stopPropagation();
+        $("#request_detail_modal").modal("hide"); 
+        $(".error-cancelrequest").html("");
+        $(".why-cancel").val("");
+        selectedrequestid = e.target.id;
+        $("#cancel_bookingrequest_modal").modal("toggle");
+    });
     
     fill_dashboard();
     fill_history();
@@ -19,26 +42,6 @@ $(document).ready(function () {
                     ratedFill: "#FFD600",
                     readOnly: true,
                 });
-                $(".tr").click(function (e) { 
-                    selectedrequestid = this.id;
-                    fill_selected_pending_request(); 
-                    $("#request_detail_modal").modal("toggle"); 
-                });
-                $(".btn-reschedule").click(function (e) { 
-                    e.stopPropagation();
-                    $("#request_detail_modal").modal("hide"); 
-                    $(".error-reschdule").html("");
-                    selectedrequestid = e.target.id;
-                    $("#reschedule_modal").modal("toggle");
-                });
-                $(".btn-cancel").click(function (e) { 
-                    e.stopPropagation();
-                    $("#request_detail_modal").modal("hide"); 
-                    $(".error-cancelrequest").html("");
-                    $(".why-cancel").val("");
-                    selectedrequestid = e.target.id;
-                    $("#cancel_bookingrequest_modal").modal("toggle");
-                });
                 $('#dashtable').DataTable({
                     paging: true,
                     "pagingType": "full_numbers",
@@ -50,7 +53,11 @@ $(document).ready(function () {
                         { "orderable": false, "targets": 4 }
                     ],
                     "oLanguage": {
-                        "sInfo": "Total Records: TOTAL"
+                        "sLengthMenu": "Display _MENU_ records per page",
+                        "sZeroRecords": "Nothing found - sorry",
+                        "sInfo": "Showing _START_ to _END_ of _TOTAL_ records",
+                        "sInfoEmpty": "Showing 0 to 0 of 0 records",
+                        "sInfoFiltered": "(filtered from _MAX_ total records)"
                     },
                     "dom": '<"top">rt<"bottom"lip><"clear">',
                     responsive: true,
@@ -70,21 +77,6 @@ $(document).ready(function () {
                   },
             success: function (response) {
                 $(".fill-selected-request").html(response);
-                $(".btn-reschedule").click(function (e) { 
-                    e.stopPropagation();
-                    $("#request_detail_modal").modal("hide"); 
-                    $(".error-reschdule").html("");
-                    selectedrequestid = e.target.id;
-                    $("#reschedule_modal").modal("toggle");
-                });
-                $(".btn-cancel").click(function (e) { 
-                    e.stopPropagation();
-                    $("#request_detail_modal").modal("hide"); 
-                    $(".error-cancelrequest").html("");
-                    $(".why-cancel").val("");
-                    selectedrequestid = e.target.id;
-                    $("#cancel_bookingrequest_modal").modal("toggle");
-                });
             }
         });
     }
@@ -131,7 +123,11 @@ $(document).ready(function () {
                         { "orderable": false, "targets": 5 }
                     ],
                     "oLanguage": {
-                        "sInfo": "Total Records: TOTAL"
+                        "sLengthMenu": "Display _MENU_ records per page",
+                        "sZeroRecords": "Nothing found - sorry",
+                        "sInfo": "Showing _START_ to _END_ of _TOTAL_ records",
+                        "sInfoEmpty": "Showing 0 to 0 of 0 records",
+                        "sInfoFiltered": "(filtered from _MAX_ total records)"
                     },
                     "dom": '<"top">rt<"bottom"lip><"clear">',
                     responsive: true,
@@ -158,14 +154,14 @@ $(document).ready(function () {
                     starWidth: "20px",
                     ratedFill: "#FFD600",
                     readOnly: true,
-                   });
+                });
                 $(".ontime-arrival").rateYo({ starWidth: "18px", ratedFill: "#FFD600" }).on("rateyo.change", function (e, data) { 
                     ontimearrival = data.rating;
                 });
                 $(".friendly").rateYo({ starWidth: "18px", ratedFill: "#FFD600" }).on("rateyo.change", function (e, data) {
                     friendly = data.rating;
                 });
-                $(".quality").rateYo({ starWidth: "18px", ratedFill: "#FFD600", }).on("rateyo.change", function (e, data) {
+                $(".quality").rateYo({ starWidth: "18px", ratedFill: "#FFD600" }).on("rateyo.change", function (e, data) {
                     quality = data.rating;
                 });
                 $(".btn-ratesp-submit").click(function (e) { 
@@ -221,8 +217,8 @@ $(document).ready(function () {
                         text: 'request rescheduled successfully.',
                         buttons: false,
                         timer: 2000,
-                      })
-                      fill_dashboard();
+                    })
+                    fill_dashboard();
                 }
             }); 
         }
@@ -606,16 +602,36 @@ $(document).ready(function () {
                         "confirmpassword" : confirmpassword,
                       },
                 success: function (response) {
-                    swal({
-                        icon: "success",
-                        text: "Your password is updated successfully.",
-                    }).then(function() {
+                    if (response == "0") {
                         swal({
-                            text: "Oops!!! you are looged out.. please login again.",
-                        }).then(function() {
-                            window.location = "http://localhost/Helperland/?controller=Helperland&function=logout";
+                            position: 'center',
+                            icon: 'warning',
+                            text: 'Password and Confirm Password must be same.',
+                            buttons: false,
+                            timer: 2000,
                         });
-                    });
+                    }
+                    else if (response == "1") {
+                        swal({
+                            position: 'center',
+                            icon: 'warning',
+                            text: 'You entered wrong Old Password',
+                            buttons: false,
+                            timer: 2000,
+                        });
+                    }
+                    else {
+                        swal({
+                            position: 'center',
+                            icon: 'success',
+                            text: 'Your password is updated successfully.',
+                            buttons: false,
+                            timer: 2000,
+                        });
+                        $("input[name='oldpassword']").val("");
+                        $("input[name='newpassword']").val("");
+                        $("input[name='confirmpassword']").val("");
+                    }
                 }
             });
         }

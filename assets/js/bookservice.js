@@ -127,8 +127,10 @@ $(document).ready(function(){
     });
 
     $(".continue1").click(function(){ 
-        switchtab("SchedulePlan","YourDetails");
-        comment = $(".service-comment").val();
+        if(date != 0 && time != 0 && servicehours != 0){
+            switchtab("SchedulePlan","YourDetails");
+            comment = $(".service-comment").val();
+        }
     });
 
     $(".continue2").click(function(){ 

@@ -46,5 +46,6 @@
     <script src="http://localhost/Helperland/assets/js/main.js"></script>
     <script src="http://localhost/Helperland/assets/js/datatable.js"></script>
     <script src="http://localhost/Helperland/assets/js/customer.js"></script>
+    <script src="http://localhost/Helperland/assets/js/serviceprovider.js"></script>
 </body>
 </html>
