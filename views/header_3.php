@@ -63,18 +63,19 @@
                         <img src="http://localhost/Helperland/assets/images/user.png" alt="user">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <li class="dropdown-item">
-                            <span>
-                                <b></b>
+                        <li>
+                            <span class="dropdown-item-text">
+                                Welcome,<br>
+                                <b><?php echo $_SESSION['username'] ?></b>
                             </span>
                         </li>
                         <li>
-                            <a class="dropdown-item dashboard-dropdown">
+                            <a class="dropdown-item <?php if($_SESSION['usertypeid'] == 2) { echo 'dashboard-dropdown'; } else if($_SESSION['usertypeid'] == 1) { echo 'sp-dashboard-dropdown'; } ?>">
                                 My Dashboard
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item setting-dropdown">
+                            <a class="dropdown-item <?php if($_SESSION['usertypeid'] == 2) { echo 'setting-dropdown'; } else if($_SESSION['usertypeid'] == 1) { echo 'sp-setting-dropdown'; } ?>">
                                 My Settings
                             </a>
                         </li>

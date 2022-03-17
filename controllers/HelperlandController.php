@@ -356,12 +356,19 @@ class HelperlandController
         $row = $this->model->send_service_request_mail_to_sp('user', $postalcode);
 
         if ($row != null) {
+
             foreach ($row as $emaildata) {
-                $to_email = $emaildata['Email'];
-                $subject = "New service request";
-                $body = "Hi, Service Provider!!! One service request is available in your area. Kindly check by login. http://localhost/Helperland/Home.php";
-                $headers = "From: kp916777@gmail.com";
-                mail($to_email, $subject, $body, $headers);
+
+                $checkblock = $this->model->check_block_unblock('favoriteandblocked', $_SESSION['userid'], $emaildata['UserId']);
+
+                if ($checkblock == null) {
+
+                    $to_email = $emaildata['Email'];
+                    $subject = "New service request";
+                    $body = "Hi, Service Provider!!! One service request is available in your area. Kindly check by login. http://localhost/Helperland/Home.php";
+                    $headers = "From: kp916777@gmail.com";
+                    mail($to_email, $subject, $body, $headers);
+                }
             }
         }
     }
@@ -394,6 +401,8 @@ class HelperlandController
 
                         $totalratings = 0;
                         $averagerating = 0;
+
+                        $previousdate = date('Y-m-d H-i-s', strtotime($dashboard['ServiceStartDate'] . '-1 day'));
 
                         if ($dashboard['ServiceProviderId'] != "") {
                             $serviceprovider = $this->model->get_sp_or_customer_byid('user', $dashboard['ServiceProviderId']);
@@ -460,8 +469,14 @@ class HelperlandController
                                 </div>
                             </td>
                             <td>
-                                <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="btn-reschedule">reschedule</button>
-                                <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="btn-cancel">Cancel</button>
+                                <?php
+                                if ($previousdate > date('Y-m-d H-i-s')) {
+                                ?>
+                                    <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="button-reschedule">reschedule</button>
+                                    <button id="<?php echo $dashboard['ServiceRequestId']; ?>" class="button-cancel">Cancel</button>
+                                <?php
+                                }
+                                ?>
                             </td>
                         </tr>
                     <?php
@@ -642,10 +657,10 @@ class HelperlandController
             <hr>
             <div class="d-flex align-items-center">
                 <div>
-                    <button name="submit" id="<?php echo $row['ServiceRequestId']; ?>" class="btn-reschedule"><i class="fas fa-history"></i>&nbsp; Reschedule</button>
+                    <button name="submit" id="<?php echo $row['ServiceRequestId']; ?>" class="button-reschedule"><i class="fas fa-history"></i>&nbsp; Reschedule</button>
                 </div>
                 <div class="ps-2">
-                    <button name="submit" id="<?php echo $row['ServiceRequestId']; ?>" class="btn-cancel"><i class="fas fa-times"></i>&nbsp; Cancel</button>
+                    <button name="submit" id="<?php echo $row['ServiceRequestId']; ?>" class="button-cancel"><i class="fas fa-times"></i>&nbsp; Cancel</button>
                 </div>
             </div>
         <?php
@@ -678,20 +693,75 @@ class HelperlandController
     public function reschedule_servicerequest()
     {
         $selectedrequestid = $_POST['selectedrequestid'];
-        $date = $_POST['servicedate'];
-        $time = $_POST['servicetime'];
-        $datetime = $date . " " . $time;
-        $this->model->reschedule_servicerequest('servicerequest', $datetime, $selectedrequestid);
+
+        $row = $this->model->fill_selected_pending_request('servicerequest', $selectedrequestid);
+        $previousdate = date('Y-m-d H-i-s', strtotime($row['ServiceStartDate'] . '-1 day'));
+
+        if ($previousdate > date('Y-m-d H-i-s')) {
+            $date = $_POST['servicedate'];
+            $time = $_POST['servicetime'];
+            $datetime = $date . " " . $time;
+
+            $this->model->reschedule_servicerequest('servicerequest', $datetime, $selectedrequestid);
+        } else {
+            echo 'not-cancel';
+        }
+
+        $serviceprovider = $this->model->fill_data_reschedule_modal('servicerequest', $selectedrequestid);
+
+        if ($serviceprovider['ServiceProviderId'] != "") {
+
+            $serviceproviderdetails = $this->model->get_sp_or_customer_byid('user', $serviceprovider['ServiceProviderId']);
+
+            $to_email = $serviceproviderdetails['Email'];
+            $subject = "Reschedule request";
+            $body = "Hi, " . $serviceproviderdetails['FirstName'] . " " . $serviceproviderdetails['LastName'] . "!!! servicerequestid" . " " . $selectedrequestid . " " . "is rescheduled.";
+            $headers = "From: kp916777@gmail.com";
+            $_SESSION['email'] = $_POST['email'];
+
+            mail($to_email, $subject, $body, $headers);
+        }
+        else {
+
+            $list = $this->model->send_service_request_mail_to_sp('user', $row['ZipCode']);
+
+            foreach ($list as $emaildata) {
+
+                $checkblock = $this->model->check_block_unblock('favoriteandblocked', $_SESSION['userid'], $emaildata['UserId']);
+
+                if ($checkblock == null) {
+
+                    $serviceproviderdetails = $this->model->get_sp_or_customer_byid('user', $serviceprovider['ServiceProviderId']);
+
+                    $to_email = $serviceproviderdetails['Email'];
+                    $subject = "Reschedule request";
+                    $body = "Hi, " . $serviceproviderdetails['FirstName'] . " " . $serviceproviderdetails['LastName'] . "!!! servicerequestid" . " " . $selectedrequestid . " " . "is rescheduled.";
+                    $headers = "From: kp916777@gmail.com";
+                    $_SESSION['email'] = $_POST['email'];
+
+                    mail($to_email, $subject, $body, $headers);
+                }
+            }
+        }
     }
 
     public function cancel_servicerequest()
     {
         $selectedrequestid = $_POST['selectedrequestid'];
-        $cancelreason = $_POST['cancelreason'];
-        $this->model->cancel_servicerequest('servicerequest', $selectedrequestid);
+        $row = $this->model->fill_selected_pending_request('servicerequest', $selectedrequestid);
+        $previousdate = date('Y-m-d H-i-s', strtotime($row['ServiceStartDate'] . '-1 day'));
+
+        if ($previousdate > date('Y-m-d H-i-s')) {
+            $cancelreason = $_POST['cancelreason'];
+            $this->model->cancel_servicerequest('servicerequest', $selectedrequestid);
+        } else {
+            echo 'not-cancel';
+        }
+
         $serviceprovider = $this->model->fill_data_reschedule_modal('servicerequest', $selectedrequestid);
 
         if ($serviceprovider['ServiceProviderId'] != "") {
+
             $serviceproviderdetails = $this->model->get_sp_or_customer_byid('user', $serviceprovider['ServiceProviderId']);
 
             $to_email = $serviceproviderdetails['Email'];
@@ -701,6 +771,26 @@ class HelperlandController
             $_SESSION['email'] = $_POST['email'];
 
             mail($to_email, $subject, $body, $headers);
+        } 
+        else {
+            $list = $this->model->send_service_request_mail_to_sp('user', $row['ZipCode']);
+            foreach ($list as $emaildata) {
+
+                $checkblock = $this->model->check_block_unblock('favoriteandblocked', $_SESSION['userid'], $emaildata['ServiceProviderId']);
+
+                if ($checkblock == null) {
+
+                    $serviceproviderdetails = $this->model->get_sp_or_customer_byid('user', $serviceprovider['ServiceProviderId']);
+
+                    $to_email = $serviceproviderdetails['Email'];
+                    $subject = "Cancel request";
+                    $body = "Hi, " . $serviceproviderdetails['FirstName'] . " " . $serviceproviderdetails['LastName'] . "!!! servicerequestid" . " " . $selectedrequestid . " " . "is cancelled. reason for cancellation :" . " " . $cancelreason;
+                    $headers = "From: kp916777@gmail.com";
+                    $_SESSION['email'] = $_POST['email'];
+
+                    mail($to_email, $subject, $body, $headers);
+                }
+            }
         }
     }
 
@@ -730,11 +820,14 @@ class HelperlandController
                     <?php
 
                     foreach ($row as $history) {
+                        $averagerating = 0;
+                        $totalratings = 0;
+
                         if ($history['ServiceProviderId'] != "") {
                             $serviceprovider = $this->model->get_sp_or_customer_byid('user', $history['ServiceProviderId']);
                             $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $history['ServiceProviderId']);
                             $i = 0;
-                            $totalratings = 0;
+                            
                             if ($allratingsofsp == "") {
                                 $averagerating = 0;
                             } else {
@@ -843,6 +936,7 @@ class HelperlandController
             $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $serviceprovider['ServiceProviderId']);
             $i = 0;
             $totalratings = 0;
+            $averagerating = 0;
             if ($allratingsofsp == null) {
                 $averagerating = 0;
             } else {
@@ -995,7 +1089,7 @@ class HelperlandController
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="language">E-mail address</label><br>
+                        <label for="language">Language</label><br>
                         <select name="language" id="language" required>
                             <option value="Gujarati">English</option>
                             <option value="Maths">Hindi</option>
@@ -1031,7 +1125,7 @@ class HelperlandController
     public function fill_addresses_user()
     {
         $userid = $_SESSION['userid'];
-        $list = $this->model->fill_addresses_user("useraddress", $userid);
+        $list = $this->model->fill_addresses_user('useraddress', $userid);
 
         if ($list != "") {
             foreach ($list as $address) {

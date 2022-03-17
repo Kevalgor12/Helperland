@@ -141,7 +141,7 @@ session_start();
         <div class="max-width">
             <div class="service-history-content">
                 <div class="user-name">
-                    <span>Welcome, <b><?php echo $_SESSION['username'] ?></b></span>
+                    Welcome, <b><?php echo $_SESSION['username'] ?></b>
                 </div>
             </div>
             <div class="sidebar-table">

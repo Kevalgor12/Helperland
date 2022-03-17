@@ -277,7 +277,7 @@
 	transform: rotateY(180deg);
 }
 
-.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-reschedule {
+.modal .modal-dialog .modal-content .modal-body .register-inputs .button-reschedule {
 	font-family: 'Roboto';
 	font-size: 14px;
 	padding: 5px 10px;
@@ -288,11 +288,11 @@
 	border: 1px solid #1D7A8C;
 }
 
-.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-reschedule:hover {
+.modal .modal-dialog .modal-content .modal-body .register-inputs .button-reschedule:hover {
 	background: #29626D;
 }
 
-.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-cancel {
+.modal .modal-dialog .modal-content .modal-body .register-inputs .button-cancel {
 	font-family: 'Roboto';
 	font-size: 14px;
 	padding: 5px 10px;
@@ -303,7 +303,7 @@
 	border: #FF6B6B;
 }
 
-.modal .modal-dialog .modal-content .modal-body .register-inputs .btn-cancel:hover {
+.modal .modal-dialog .modal-content .modal-body .register-inputs .button-cancel:hover {
 	background: #fD4B4B;
 }
 
@@ -1816,20 +1816,13 @@ footer .privacy-policy button{
 }
 
 .upcoming-service .upcoming-service-content .user-name {
-	height: 119px;
-	text-align: center;
-}
-
-.upcoming-service .upcoming-service-content .user-name span {
 	font-family: 'Roboto';
 	font-size: 30px;
 	letter-spacing: 0px;
 	color: #4F4F4F;
 	opacity: 1;
-	height: 119px;
 	text-align: center;
-	top: 40px;
-	position: relative;
+	padding: 30px 0;
 }
 
 .upcoming-service .sidebar-table {
@@ -1844,7 +1837,6 @@ footer .privacy-policy button{
 	min-width: calc(250px);
 	text-align: left;
 	background-color: #1D7A8C;
-	margin-right: 15px;
 }
 
 .upcoming-service .sidebar-table .sidebar a {
@@ -1937,6 +1929,235 @@ footer .privacy-policy button{
 	display: none;
 }
 
+.upcoming-service .sidebar-table .sp-ratings-body .table {
+	border: none !important;
+}
+
+.upcoming-service .sidebar-table .sp-ratings-body .table tr {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto 40px auto;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting {
+	width: 100%;
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-btn-setting {
+	width: 100%;
+	height: 50px;
+	background-color: #FFFFFF;
+	border: none;
+	border-bottom: 2px solid #E1E1E1;
+	color: #4F4F4F;
+	font-family: 'Roboto';
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-btn-setting.active {
+	color: #1D7A8C;
+	border-bottom: 2px solid #1D7A8C;
+	font-size: 18px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body {
+	font-family: 'Roboto';
+	color: #4F4F4F;
+	font-size: 16px;
+	margin: 15px 0;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .active{
+	color: #5BCF5B;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .notactive{
+	color: #fD4B4B;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .error-line{
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .sp-basic{
+	position: relative;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .sp-breakline{
+	margin: 12px 0;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .sp-avatar{
+	position: absolute;
+	right: 0;
+	top: -50%;
+	padding: 10px 10px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .sp-avatar img{
+	width: 85px;
+	height: 85px;
+	border: 1px solid #E1E1E1;
+	border-radius: 50%;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .label {
+	font-weight: 600;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .input {
+	width: 100%;
+	height: 46px;
+	padding: 0 12px;
+	border: 1px solid #E1E1E1;
+	border-radius: 3px;
+	margin: 5px 0 15px 0;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .input-group .input-group-text {
+	width: 54px;
+	height: 46px;
+	border: 1px solid #E1E1E1;
+	border-right: none;
+	border-radius: 3px 0 0 3px;
+	margin: 5px 0 15px 0;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .input-group input {
+	width: calc(100% - 54px);
+	height: 46px;
+	margin: 5px 0 15px 0;
+	border: 1px solid #E1E1E1;
+	border-radius: 0 3px 3px 0;
+	padding-left: 15px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body select {
+	color: #4F4F4F;
+	width: 100%;
+	height: 46px;
+	border: 1px solid #E1E1E1;
+	padding-left: 8px;
+	border-radius: 3px;
+	margin: 5px 0 15px 0;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .gender {
+	display: flex;
+	padding-top: 5px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .gender div {
+	padding-right: 20px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .choose-avatar {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .choose-avatar .avatar-image {
+	padding: 10px 10px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .choose-avatar .avatar-image .active {
+	border: 3px solid #1D7A8C;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .choose-avatar .avatar-image :not(.active) {
+	border: none;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .choose-avatar .avatar-image img {
+	width: 85px;
+	height: 85px;
+	border: 2px solid #F3F3F3;
+	border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+	.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .gender {
+		flex-direction: column;
+		margin: 0 0 10px 0 !important;
+		padding-top: 0 !important;
+	}
+
+	.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .gender div {
+		padding: 5px 0 0 0;
+	}
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .sp-details-save {
+	height: 46px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	padding: 5px 20px;
+	margin: 20px 0;
+	border-radius: 23px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-details-body .sp-details-save:hover {
+	background-color: #29626D;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-password-body {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #4F4F4F;
+	font-weight: 500;
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-password_error {
+	display: none;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-password-body .password-label {
+	margin: 15px 0 5px 0;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-password-body .password-input {
+	width: 300px;
+	height: 45px;
+	padding: 5px 10px;
+	border: 1px solid #E1E1E1;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-password-body .sp-password-save {
+	height: 46px;
+	color: #FFFFFF;
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	padding: 5px 20px;
+	margin: 20px 0;
+	border-radius: 23px;
+}
+
+.upcoming-service .sidebar-table .sp_mysetting .sp-button-body .sp-password-body .sp-password-save:hover {
+	background-color: #29626D;
+}
+
+.upcoming-service .sidebar-table .table tbody, td, tfoot, th, thead, tr {
+    border-style: none;
+	vertical-align: middle;
+	padding: 15px 15px !important;
+}
+
+.upcoming-service .sidebar-table .sp-ratings-body .table tr td {
+	border: none !important;
+}
+
+.upcoming-service .sidebar-table .sp-ratings-body .rate-detail {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .upcoming-service .sidebar-table .sp-block-customer-body {
 	display: none;
 }
@@ -1946,7 +2167,7 @@ footer .privacy-policy button{
 	color: #4F4F4F;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-evenly;
 }
 
 .upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card {
@@ -1984,7 +2205,7 @@ footer .privacy-policy button{
 	font-family: 'Roboto';
 	font-size: 16px;
 	color: #FFFFFF;
-	width: 80px;
+	padding: 0 20px;
 	height: 34px;
 	border-radius: 17px;
 	background: #FF6B6B;
@@ -1993,6 +2214,21 @@ footer .privacy-policy button{
 
 .upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .block-unblock-button .block-button:hover {
 	background: #fD4B4B;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .block-unblock-button .unblock-button {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
+	padding: 0 20px;
+	height: 34px;
+	border-radius: 17px;
+	background: #1D7A8C;
+	border: 1px solid #29626D;
+}
+
+.upcoming-service .sidebar-table .sp-block-customer-body .card-customer .card .block-unblock-button .unblock-button:hover {
+	background: #29626D;
 }
 
 .upcoming-service .sidebar-table .sp-notifications-body {
@@ -2147,6 +2383,15 @@ footer .privacy-policy button{
 	.upcoming-service .sidebar-table .customer-table .export-btn-text {
 		text-align: center;
 		padding-bottom: 15px;
+	}
+	.upcoming-service .sidebar-table .sp-ratings-body .rate-detail {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.upcoming-service .sidebar-table .sp-ratings-body .rate-detail .rate-content {
+		margin: 10px 0;
 	}
 }
 
@@ -2611,7 +2856,7 @@ footer .privacy-policy button{
 	margin: 3px 0;
 }
 
-.service-history .sidebar-table .tabledashboard .table .btn-reschedule {
+.service-history .sidebar-table .tabledashboard .table .button-reschedule {
 	font-family: 'Roboto';
 	font-size: 14px;
 	padding: 5px 10px;
@@ -2622,11 +2867,11 @@ footer .privacy-policy button{
 	border: 1px solid #1D7A8C;
 }
 
-.service-history .sidebar-table .tabledashboard .table .btn-reschedule:hover {
+.service-history .sidebar-table .tabledashboard .table .button-reschedule:hover {
 	background: #29626D;
 }
 
-.service-history .sidebar-table .tabledashboard .table .btn-cancel {
+.service-history .sidebar-table .tabledashboard .table .button-cancel {
 	font-family: 'Roboto';
 	font-size: 14px;
 	padding: 5px 10px;
@@ -2637,7 +2882,7 @@ footer .privacy-policy button{
 	border: #FF6B6B;
 }
 
-.service-history .sidebar-table .tabledashboard .table .btn-cancel:hover {
+.service-history .sidebar-table .tabledashboard .table .button-cancel:hover {
 	background: #fD4B4B;
 }
 

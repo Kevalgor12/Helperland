@@ -9,7 +9,7 @@ $(document).ready(function () {
         $("#request_detail_modal").modal("toggle"); 
     });
 
-    $(document).on ('click', '.btn-reschedule', function (e) {
+    $(document).on ('click', '.button-reschedule', function (e) {
         e.stopPropagation();
         $("#request_detail_modal").modal("hide"); 
         $(".error-reschdule").html("");
@@ -17,7 +17,7 @@ $(document).ready(function () {
         $("#reschedule_modal").modal("toggle");
     });
 
-    $(document).on ('click', '.btn-cancel', function (e) {
+    $(document).on ('click', '.button-cancel', function (e) {
         e.stopPropagation();
         $("#request_detail_modal").modal("hide"); 
         $(".error-cancelrequest").html("");

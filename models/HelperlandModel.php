@@ -274,7 +274,7 @@ class HelperlandModel
 
     public function fill_details_user($table, $userid)
     {
-        $sql_qry = "SELECT FirstName, LastName, Email, Mobile, DateOfBirth FROM $table WHERE UserId = $userid";
+        $sql_qry = "SELECT * FROM $table WHERE UserId = $userid";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
@@ -429,6 +429,59 @@ class HelperlandModel
                     VALUES ($serviceproviderid, $selectedcustomerid, 1)";
         $statement= $this->conn->prepare($sql_qry);
         $statement->execute();
+    }
+
+    public function unblock_customer($table, $selectedcustomerid, $serviceproviderid)
+    {
+        $sql_qry = "DELETE FROM $table WHERE UserId = $serviceproviderid AND TargetUserId = $selectedcustomerid AND IsBlocked = 1";
+        $statement= $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function fill_sp_rating_table($table, $serviceproviderid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE RatingTo = $serviceproviderid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_sp_address($table, $userid)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE UserId = $userid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function update_sp_details($table, $userid, $array)
+    {
+        $sql_qry = "UPDATE $table
+                    SET FirstName = :spfname, LastName = :splname , Mobile = :spmobile, DateOfBirth = :spdob, LanguageId = :splanguage, NationalityId = :spnationality, Gender = :spgender, UserProfilePicture = :selectedavatar
+                    WHERE UserId = $userid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute($array);
+    }
+
+    function insert_update_spaddress($table, $array2, $edit)
+    {
+        if($edit == 0)
+        {
+            $sql_query = "INSERT INTO $table (UserId, AddressLine1, AddressLine2, City, PostalCode, Mobile, Email)
+                        VALUES (:UserId, :AddressLine1, :AddressLine2, :City, :PostalCode, :Mobile, :Email)";
+            $statement= $this->conn->prepare($sql_query);
+            $statement->execute($array2);
+        }
+        else
+        {
+            $sql_query = "UPDATE $table
+                        SET AddressLine1 = :AddressLine1, AddressLine2 = :AddressLine2 , City = :City, PostalCode = :PostalCode
+                        WHERE AddressId = :AddressId";
+            $statement = $this->conn->prepare($sql_query);
+            $statement->execute($array2);
+        }
     }
 }
 ?>

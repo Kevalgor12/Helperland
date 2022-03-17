@@ -27,7 +27,7 @@
                                 <input type="checkbox" class="checkbox" id="remember-me" name="remember-me">
                             </div>
                             <div>
-                                <label for="sendnewsletter"> Remember me</label><br>
+                                <label for="remember-me"> Remember me</label><br>
                             </div>
                         </div>
                         <button name="submit" class="btn-login">Login</button>
