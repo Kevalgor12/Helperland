@@ -25,14 +25,14 @@ session_start();
     <!-- rowclick servicedetail modal -->
 
     <div class="modal fade" id="request_detail_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog sp-modal modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Service Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="register-inputs fill-selected-request me-0 ms-0">
+                    <div class="register-inputs details_map fill-selected-request me-0 ms-0">
 
                     </div>
                 </div>

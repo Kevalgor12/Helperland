@@ -106,24 +106,32 @@ class ServiceProviderController
         }
     }
 
-    public function fill_selected_pending_request()
+    public function fill_selected_servicerequest()
     {
+        $selectmodal = $_POST['selectmodal'];
         $selectedrequestid = $_POST['selectedrequestid'];
 
         $row = $this->model->fill_selected_pending_request('servicerequest', $selectedrequestid);
         $extraservice = $this->model->fill_selected_pending_request_extraservice('servicerequestextra', $selectedrequestid);
         $address = $this->model->fill_selected_pending_request_useraddress('servicerequestaddress', $selectedrequestid);
+        $customerdetails = $this->model->get_sp_or_customer_byid('user', $row['UserId']);
 
         if ($row != "") {
 
             $startdate = substr($row['ServiceStartDate'], 0, 10);
             $starttime = substr($row['ServiceStartDate'], 11, 5);
             $duration = $row['ServiceHours'] + $row['ExtraHours'];
+            $totalminutes = $this->HourMinuteToDecimal($starttime) + ($duration * 60);
+            $totaltime = $this->DecimalToHoursMins($totalminutes);
+            $timecomplete = "+" . ($row['ServiceHours'] + $row['ExtraHours']) . " " . "hours";
+            $previousdate = date('Y-m-d H-i-s', strtotime($row['ServiceStartDate'] . '-1 day'));
+            $serviceenddate = date("Y-m-d H-i-s", strtotime($row['ServiceStartDate'] . $timecomplete));
 
         ?>
+        <div class="customerservice-detail">
             <div class="row">
                 <div class="col-sm-12">
-                    <span class="service-datetime"><?php echo $startdate ?> &nbsp; <?php echo $starttime ?> </span>
+                    <span class="service-datetime"><?php echo $startdate ?> &nbsp; <?php echo $starttime." - ".$totaltime; ?> </span>
                 </div>
             </div>
             <div class="d-flex align-items-center">
@@ -150,7 +158,7 @@ class ServiceProviderController
                 <div class="service-detail-text ps-2">
                     <span>
                         <?php
-                        if ($extraservice != "") {
+                        if ($extraservice != null) {
                             foreach ($extraservice as $extra) {
                                 if ($extra['ServiceExtraId'] == 1) {
                                     $extraservicename[] = 'Inside cabinets';
@@ -176,7 +184,7 @@ class ServiceProviderController
             </div>
             <div class="d-flex align-items-center">
                 <div>
-                    <span class="service-detail">Net Amount: </span>
+                    <span class="service-detail">Total Payment: </span>
                 </div>
                 <div class="service-detail-euro ps-2">
                     <span> &euro; <?php echo $row['TotalCost'] ?> </span>
@@ -185,13 +193,22 @@ class ServiceProviderController
             <hr>
             <div class="d-flex align-items-center">
                 <div>
+                    <span class="service-detail">Customer Name: </span>
+                </div>
+                <div class="service-detail-text ps-2">
+                    <span> <?php echo $customerdetails['FirstName']." ".$customerdetails['LastName']; ?> </span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
                     <span class="service-detail">Service Address: </span>
                 </div>
                 <div class="service-detail-text ps-2">
                     <span>
                         <?php
                         if ($address != "") {
-                            echo $address['AddressLine1'] . " " . $address['AddressLine2'] . ", " . $address['City'] . " - " . $address['PostalCode'];
+                            $customeraddress = $address['AddressLine1'] . " " . $address['AddressLine2'] . ", " . $address['City'] . " - " . $address['PostalCode'];
+                            echo $customeraddress;
                         }
                         ?>
                     </span>
@@ -199,41 +216,13 @@ class ServiceProviderController
             </div>
             <div class="d-flex align-items-center">
                 <div>
-                    <span class="service-detail">Billing Address: </span>
+                    <span class="service-detail">Distance: </span>
                 </div>
                 <div class="service-detail-text ps-2">
                     <span>
                         <?php
                         if ($address != "") {
-                            echo $address['AddressLine1'] . " " . $address['AddressLine2'] . ", " . $address['City'] . " - " . $address['PostalCode'];
-                        }
-                        ?>
-                    </span>
-                </div>
-            </div>
-            <div class="d-flex align-items-center">
-                <div>
-                    <span class="service-detail">Phone: </span>
-                </div>
-                <div class="service-detail-text ps-2">
-                    <span>
-                        <?php
-                        if ($address != "") {
-                            echo $address['Mobile'];
-                        }
-                        ?>
-                    </span>
-                </div>
-            </div>
-            <div class="d-flex align-items-center">
-                <div>
-                    <span class="service-detail">Email: </span>
-                </div>
-                <div class="service-detail-text ps-2">
-                    <span>
-                        <?php
-                        if ($address != "") {
-                            echo $address['Email'];
+                            echo $row['Distance'].' '.'km';
                         }
                         ?>
                     </span>
@@ -267,14 +256,43 @@ class ServiceProviderController
                 </div>
             </div>
             <hr>
-            <div class="d-flex align-items-center">
+            <div>
+                <?php
+                if($selectmodal == 0)
+                {
+                ?>
                 <div>
-                    <button name="submit" id="<?php echo $row['ServiceRequestId']; ?>" class="btn-reschedule"><i class="fas fa-history"></i>&nbsp; Reschedule</button>
+                    <button class="btn-accept" id="<?php echo $row['ServiceRequestId']; ?>">Accept</button>
                 </div>
-                <div class="ps-2">
-                    <button name="submit" id="<?php echo $row['ServiceRequestId']; ?>" class="btn-cancel"><i class="fas fa-times"></i>&nbsp; Cancel</button>
+                <?php
+                }
+                else if($selectmodal == 1)
+                {
+                ?>
+                <div>
+                    <?php
+                    if ($serviceenddate < date('Y-m-d H-i-s')) {
+                    ?>
+                        <button class="btn-complete" id="<?php echo $row['ServiceRequestId']; ?>">Complete</button>
+                    <?php
+                    }
+                    if ($previousdate > date('Y-m-d H-i-s')) {
+                    ?>
+                        <button class="btn-cancel" id="<?php echo $row['ServiceRequestId'] ?>">Cancel</button>
+                    <?php
+                    }
+                    ?>
                 </div>
+                <?php
+                }
+                ?>
             </div>
+        </div>
+        <div class="address-map">
+            <?php
+            echo '<iframe width="280" height="400" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=' . str_replace(",", "", str_replace(" ", "+", $customeraddress)) . '&z=14&output=embed"></iframe>';
+            ?>
+        </div>
         <?php
         }
     }
@@ -365,7 +383,7 @@ class ServiceProviderController
                         $totalminutes = $this->HourMinuteToDecimal($time) + (($upservice['ServiceHours'] + $upservice['ExtraHours']) * 60);
                         $totaltime = $this->DecimalToHoursMins($totalminutes);
                     ?>
-                        <tr class="tr-upservice">
+                        <tr class="tr-upservice" id="<?php echo $upservice['ServiceRequestId']; ?>">
                             <td><?php echo $upservice['ServiceRequestId']; ?> </td>
                             <td>
                                 <div>

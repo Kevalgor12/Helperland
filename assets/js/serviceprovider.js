@@ -4,13 +4,22 @@ $(document).ready(function () {
     var selectedcustomerid;
     var selectedaddressid = "";
     selectedavatar = [];
+    var selectmodal = "";
 
     fill_sp_newservicerequest_table();
     fill_sp_upcomingservice_table();
 
     $(document).on ('click', '.tr-newservice', function (e) {
         selectedrequestid = this.id;
-        fill_selected_request(); 
+        selectmodal = 0;
+        fill_selected_servicerequest(); 
+        $("#request_detail_modal").modal("toggle"); 
+    });
+
+    $(document).on ('click', '.tr-upservice', function (e) {
+        selectedrequestid = this.id;
+        selectmodal = 1;
+        fill_selected_servicerequest(); 
         $("#request_detail_modal").modal("toggle"); 
     });
 
@@ -24,12 +33,14 @@ $(document).ready(function () {
         e.stopPropagation();
         selectedrequestid = this.id;
         cancelrequest();
+        $("#request_detail_modal").modal("hide");
     });
 
     $(document).on ('click', '.btn-complete', function (e) {
         e.stopPropagation();
         selectedrequestid = this.id;
         completerequest();
+        $("#request_detail_modal").modal("hide");
     });
 
     $(document).on ('click', '.block-button', function (e) {
@@ -302,12 +313,13 @@ $(document).ready(function () {
         });
     }
 
-    function fill_selected_request()
+    function fill_selected_servicerequest()
     {
         $.ajax({
             type: "POST",
-            url: "http://localhost/Helperland/?controller=ServiceProvider&function=fill_selected_pending_request",
+            url: "http://localhost/Helperland/?controller=ServiceProvider&function=fill_selected_servicerequest",
             data: {
+                    "selectmodal" : selectmodal,
                     "selectedrequestid" : selectedrequestid,
                   },
             success: function (response) {

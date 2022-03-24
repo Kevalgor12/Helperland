@@ -42,8 +42,8 @@ class HelperlandModel
         $sql_qry = "SELECT * FROM $table where Email = '$email'";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
-        $count = $statement->rowCount();
-        return $count;
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
     }
 
     public function insert_user($table, $array)
@@ -272,6 +272,16 @@ class HelperlandModel
         return $row;
     }
 
+    public function export_service_history($userid)
+    {
+        $sql_qry = "SELECT servicerequest.ServiceRequestId, CONCAT(user.FirstName, ' ', user.LastName) AS ServiceProvider, servicerequest.ServiceStartDate, servicerequest.ServiceHourlyRate, servicerequest.ServiceHours, servicerequest.ExtraHours, servicerequest.HasPets, servicerequest.SubTotal, servicerequest.Discount, servicerequest.TotalCost, servicerequest.Status 
+                    FROM servicerequest INNER JOIN user ON user.UserId = servicerequest.ServiceProviderId WHERE servicerequest.Status IN (-1,1) AND servicerequest.UserId = $userid";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
     public function fill_details_user($table, $userid)
     {
         $sql_qry = "SELECT * FROM $table WHERE UserId = $userid";
@@ -465,23 +475,73 @@ class HelperlandModel
         $statement->execute($array);
     }
 
-    function insert_update_spaddress($table, $array2, $edit)
+    public function insert_update_spaddress($table, $array2, $edit)
     {
         if($edit == 0)
         {
-            $sql_query = "INSERT INTO $table (UserId, AddressLine1, AddressLine2, City, PostalCode, Mobile, Email)
+            $sql_qry = "INSERT INTO $table (UserId, AddressLine1, AddressLine2, City, PostalCode, Mobile, Email)
                         VALUES (:UserId, :AddressLine1, :AddressLine2, :City, :PostalCode, :Mobile, :Email)";
-            $statement= $this->conn->prepare($sql_query);
+            $statement= $this->conn->prepare($sql_qry);
             $statement->execute($array2);
         }
         else
         {
-            $sql_query = "UPDATE $table
+            $sql_qry = "UPDATE $table
                         SET AddressLine1 = :AddressLine1, AddressLine2 = :AddressLine2 , City = :City, PostalCode = :PostalCode
                         WHERE AddressId = :AddressId";
-            $statement = $this->conn->prepare($sql_query);
+            $statement = $this->conn->prepare($sql_qry);
             $statement->execute($array2);
         }
+    }
+
+    public function fill_service_requests_admin($table)
+    {
+        $sql_qry = "SELECT * FROM $table";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function fill_user_management_admin($table)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE UserTypeId != 3";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function reschedule_selected_service_request($array, $array2)
+    {
+        $sql_qry1 = "UPDATE servicerequest SET ServiceStartDate = :ServiceStartDate, Comments = :Comments WHERE ServiceRequestId = :ServiceRequestId";
+        $statement= $this->conn->prepare($sql_qry1);
+        $statement->execute($array); 
+        
+        $sql_qry2 = "UPDATE servicerequestaddress SET AddressLine1 = :AddressLine1, AddressLine2 = :AddressLine2, PostalCode = :PostalCode, City = :City WHERE  ServiceRequestId = :ServiceRequestId";
+        $statement= $this->conn->prepare($sql_qry2);
+        $statement->execute($array2);
+    }
+
+    public function approve_serviceprovider($table, $selecteduserid)
+    {
+        $sql_qry = "UPDATE $table SET IsApproved = 1 WHERE  UserId = $selecteduserid";
+        $statement= $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function activate_user($table, $selecteduserid)
+    {
+        $sql_qry = "UPDATE $table SET IsActive = 1 WHERE  UserId = $selecteduserid";
+        $statement= $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function deactivate_user($table, $selecteduserid)
+    {
+        $sql_qry = "UPDATE $table SET IsActive = 0 WHERE  UserId = $selecteduserid";
+        $statement= $this->conn->prepare($sql_qry);
+        $statement->execute();
     }
 }
 ?>

@@ -2,11 +2,24 @@
 
 class HelperlandController
 {
+    public function __construct()
+    {
+        include('models/HelperlandModel.php');
+        $this->model = new HelperlandModel();
+        session_start();
+    }
+
+    public function Helperland()
+    {
+        include("./views/Home.php");
+    }
+
     public function HourMinuteToDecimal($time)
     {
         $starttime = explode(':', $time);
         return $starttime[0] * 60 + $starttime[1];
     }
+    
     public function DecimalToHoursMins($totalminutes)
     {
         $hour = (int)($totalminutes / 60);
@@ -18,18 +31,6 @@ class HelperlandController
             $minute = "0" . $minute;
         }
         return $hour . ":" . $minute;
-    }
-
-    public function __construct()
-    {
-        include('models/HelperlandModel.php');
-        $this->model = new HelperlandModel();
-        session_start();
-    }
-
-    public function Helperland()
-    {
-        include("./views/Home.php");
     }
 
     public function insert_contactus()
@@ -157,21 +158,30 @@ class HelperlandController
                 } else {
                     $serviceprovider = "http://localhost/Helperland/UserServiceProvider.php";
                     $customer = "http://localhost/Helperland/ServiceHistory.php";
+                    $admin = "http://localhost/Helperland/Adminscreen.php";
                     $usertypeid = $this->model->check_usertype('user', $email);
                     $row = $this->model->login_user('user', $email, $password);
 
                     if ($row != "") {
-                        $_SESSION['userid'] = $row['UserId'];
-                        $_SESSION['usertypeid'] = $row['UserTypeId'];
-                        $_SESSION['username'] = $row['FirstName'] . " " . $row['LastName'];
-                        $_SESSION['email'] = $row['Email'];
+                        if ($count['IsApproved'] == 1) {
+                            $_SESSION['userid'] = $row['UserId'];
+                            $_SESSION['usertypeid'] = $row['UserTypeId'];
+                            $_SESSION['username'] = $row['FirstName'] . " " . $row['LastName'];
+                            $_SESSION['email'] = $row['Email'];
 
-                        if ($usertypeid == 1) {
-                            header('Location:' . $serviceprovider);
-                        } else if ($usertypeid == 2) {
-                            header('Location:' . $customer);
-                        } else {
-                            echo "Admin is here.";
+                            if ($usertypeid == 1) {
+                                header('Location:' . $serviceprovider);
+                            } else if ($usertypeid == 2) {
+                                header('Location:' . $customer);
+                            } else if ($usertypeid == 3) {
+                                header('Location:' . $admin);
+                            }
+                        }
+                        else {
+                            echo    '<script>
+                                        alert("Your account is not approved.");
+                                        location. href="http://localhost/Helperland/";
+                                    </script>';
                         }
                     } else {
                         echo    '<script>
@@ -507,11 +517,13 @@ class HelperlandController
             $startdate = substr($row['ServiceStartDate'], 0, 10);
             $starttime = substr($row['ServiceStartDate'], 11, 5);
             $duration = $row['ServiceHours'] + $row['ExtraHours'];
+            $totalminutes = $this->HourMinuteToDecimal($starttime) + ($duration * 60);
+            $totaltime = $this->DecimalToHoursMins($totalminutes);
 
         ?>
             <div class="row">
                 <div class="col-sm-12">
-                    <span class="service-datetime"><?php echo $startdate ?> &nbsp; <?php echo $starttime ?> </span>
+                    <span class="service-datetime"><?php echo $startdate ?> &nbsp; <?php echo $starttime." - ".$totaltime; ?> </span>
                 </div>
             </div>
             <div class="d-flex align-items-center">
@@ -803,7 +815,11 @@ class HelperlandController
         ?>
             <div class="row">
                 <div class="col-md-8 service-history-text"><b>Service History</b></div>
-                <div class="col-md-4 export-btn-text"><button class="button-export">Export</button></div>
+                <div class="col-md-4 export-btn-text">
+                    <form method="POST" action="http://localhost/Helperland/?controller=Helperland&function=exporthistory">
+                        <button type="submit" class="button-export" id="button">Export</button>
+                    </form>
+                </div>
             </div>
             <table id="tableservice" class="table display dataTable">
                 <thead>
@@ -923,6 +939,41 @@ class HelperlandController
             </div>
         <?php
         }
+    }
+
+    public function exporthistory()
+    {
+        $userid = $_SESSION['userid'];
+        $list = $this->model->export_service_history($userid);
+        $haspetArray = [0 => 'No', 1 => 'Yes'];
+        $statusArray = [0 => 'Pending', 1 => 'Completed', -1 => 'Cancelled'];
+
+        $filename = 'Service_History.csv';
+        $file = fopen($filename,"w");
+
+        $fields = array('ServiceRequest Id', 'ServiceProvider Name', 'Service Date-Time', 'Service Rate(/hour)', 'Service Hours', 'ExtraService Hours', 'HasPets', 'SubTotal', 'Discount', 'TotalCost', 'Status');
+        fputcsv($file, $fields);
+
+        foreach ($list as $line)
+        {
+            $csvHasPets = $haspetArray[$line['HasPets']];
+            $csvStatus = $statusArray[$line['Status']];
+            $line['HasPets'] = $csvHasPets;
+            $line['Status'] = $csvStatus;
+
+            fputcsv($file, $line);
+        }
+        fclose($file);
+
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=".$filename);
+        header("Content-Type: application/csv; "); 
+
+        readfile($filename);
+
+       // deleting file
+       unlink($filename);
+       exit();  
     }
 
     public function fill_sp_ratings()
@@ -1206,8 +1257,8 @@ class HelperlandController
             $edit = 1; //to update
             $array = [
                 'AddressId' => $_POST['selectedaddid'],
-                'AddressLine1' => $_POST['housenumber'],
-                'AddressLine2' => $_POST['streetname'],
+                'AddressLine1' => $_POST['streetname'],
+                'AddressLine2' => $_POST['housenumber'],
                 'City' => $_POST['city'],
                 'PostalCode' => $_POST['postalcode'],
                 'Mobile' => $_POST['phonenumber'],
@@ -1217,8 +1268,8 @@ class HelperlandController
         {
             $edit = 0; //to insert
             $array = [
-                'AddressLine1' => $_POST['housenumber'],
-                'AddressLine2' => $_POST['streetname'],
+                'AddressLine1' => $_POST['streetname'],
+                'AddressLine2' => $_POST['housenumber'],
                 'City' => $_POST['city'],
                 'PostalCode' => $_POST['postalcode'],
                 'Mobile' => $_POST['phonenumber'],

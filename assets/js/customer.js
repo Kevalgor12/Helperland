@@ -131,7 +131,7 @@ $(document).ready(function () {
                     },
                     "dom": '<"top">rt<"bottom"lip><"clear">',
                     responsive: true,
-                    "order": []
+                    "order": [],
                 });
             }
         });
