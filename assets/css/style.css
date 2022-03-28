@@ -2299,7 +2299,11 @@ footer .privacy-policy button{
 	background-color: #29626D;
 }
 
-.upcoming-service .sidebar-table .table tbody, td, tfoot, th, thead, tr {
+.upcoming-service .sidebar-table .table thead th {
+	border-bottom: 1.2px solid #E1E1E1;
+}
+
+.upcoming-service .sidebar-table .table tbody tr td {
     border-style: none;
 	vertical-align: middle;
 	padding: 15px 15px !important;
@@ -2978,11 +2982,15 @@ footer .privacy-policy button{
 	letter-spacing: 0px;
 }
 
-.service-history .sidebar-table .table tbody tr, td {
+.service-history .sidebar-table .table tbody tr, .service-history .sidebar-table .table tbody tr td {
 	background: #FFFFFF !important;
 }
 
-.service-history .sidebar-table .table tbody, td, tfoot, th, thead, tr {
+.service-history .sidebar-table .table thead th {
+	border-bottom: 1.2px solid #E1E1E1 !important;
+}
+
+.service-history .sidebar-table .table tbody tr td {
     border-style: none;
 	vertical-align: middle;
 	border-bottom: 1.2px solid #E1E1E1 !important;
@@ -3146,60 +3154,6 @@ footer .privacy-policy button{
 	border-top: none;
 }
 
-.admin .sidebar-table .sidebar .accordion .accordion-item {
-	border: none;
-	border-bottom: 1px solid #E1E1E1;
-}
-
-.admin .sidebar-table .sidebar .accordion .accordion-item .accordion-button {
-	width: 271px;
-	height: 57px;
-	font-family: 'Roboto';
-	font-size: 16px;
-	color: #646464;
-	padding: 16px;
-}
-
-.admin .sidebar-table .sidebar .accordion .accordion-button:focus {
-    border: none;
-    box-shadow: none;
-}
-
-.admin .sidebar-table .sidebar .accordion .accordion-item .accordion-body {
-	font-family: 'Roboto';
-	font-size: 15px;
-	color: #646464;
-	padding: 0px;
-}
-
-.admin .sidebar-table .sidebar .accordion .accordion-button {
-    background-color: #FFFFFF;
-}
-
-.admin .sidebar-table .sidebar .accordion .accordion-button:not(.collapsed) {
-    background-color: #F9F9F9;
-}
-
-.admin .sidebar-table .sidebar .accordion .accordion-button::after{
-    flex-shrink: 0;
-    width: 20px;
-    height: 10px;
-    content: "";
-    background-image: url("../images/admin-small-arrow.png");
-	transform: rotate(-90deg);
-    background-repeat: no-repeat;
-    background-size: 1.25rem;
-    transition: transform .2s ease-in-out;
-}
-
-.admin .sidebar-table .sidebar .accordion .accordion-button::before{
-	display: none;
-}
-
-.admin .sidebar-table .sidebar .accordion .accordion-button:not(.collapsed)::after {
-    transform: rotate(0deg);
-}
-
 .admin .sidebar-table .sidebar .subnav {
 	font-family: 'Roboto';
 	font-size: 15px;
@@ -3231,6 +3185,16 @@ footer .privacy-policy button{
 	padding: 0px 20px;
 	width: 1287px;
 	background: #F2F4F5;
+}
+
+.admin .sidebar-table .table thead tr th {
+    vertical-align: middle;
+}
+
+.admin .sidebar-table .table tbody tr td {
+    border-style: none;
+    vertical-align: middle;
+    padding: 15px 15px !important;
 }
 
 .admin .sidebar-table .customer-table.admin-service-requests-body {
@@ -3283,6 +3247,48 @@ footer .privacy-policy button{
 	justify-content: space-between;
 }
 
+.admin .sidebar-table .customer-table .user-inputs .nav .select2-container {
+    height: 46px;
+	width: 210px !important;
+	margin-right: 5px;
+	font-family: 'Roboto';
+	color: #111111;
+}
+
+.admin .sidebar-table .customer-table .user-inputs .nav .select2-container--default .select2-selection--single {
+    height: 46px;
+	width: auto;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px;
+}
+
+.admin .sidebar-table .customer-table .user-inputs .nav .select2-container--default .select2-selection--single .select2-selection__rendered {
+	line-height: 46px;
+	padding: 0 20px 0 10px;
+}
+
+.admin .sidebar-table .customer-table .user-inputs .nav .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 46px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 20px;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #1FB6FF;
+    color: white;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: #1FB6FF;
+	color: #FFFFFF;
+}
+
+.select2-results__option[aria-selected]:hover {
+	background-color: #1FB6FF !important;
+}
+
 .admin .sidebar-table .customer-table .user-inputs .nav .nav-item {
 	padding: 0px 0px;
 	margin: 10px 0;
@@ -3297,16 +3303,26 @@ footer .privacy-policy button{
 	width: 15px;
 }
 
-.admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group input[type="date"]::-webkit-inner-spin-button, .admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group input[type="date"]::-webkit-calendar-picker-indicator {
-    font-size: 30px;
-    background: transparent url('../images/admin-calendar-blue.png') 9px center no-repeat !important;
-    left: -25px;
-    /* padding-left: 0px !important; */
-    position: absolute;
+.select2-container--default .select2-search--dropdown .select2-search__field {
+	color: #111111;
+	padding-left: 35px;
+	background: transparent url('../images/search.png') 9px center no-repeat !important;
     z-index: 999;
 }
 
 .admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group #fromdate, .admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group #todate {
+    background: transparent url('../images/admin-calendar-blue.png') 9px center no-repeat !important;
+}
+
+.admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group #fromdate, .admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group #todate {
+	padding-left: 35px;
+}
+
+.admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group #usermanagementfromdate, .admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group #usermanagementtodate {
+    background: transparent url('../images/admin-calendar-blue.png') 9px center no-repeat !important;
+}
+
+.admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group #usermanagementfromdate, .admin .sidebar-table .customer-table .user-inputs .nav .nav-item .input-group #usermanagementtodate {
 	padding-left: 35px;
 }
 
@@ -3424,11 +3440,15 @@ footer .privacy-policy button{
 	border-radius: 50%;
 }
 
-.admin .sidebar-table .table tbody tr, td {
+.admin .sidebar-table .table tbody tr, .admin .sidebar-table .table tbody td {
 	background: #FFFFFF !important;
 }
 
-.admin .sidebar-table .table tbody, td, tfoot, th, thead, tr {
+.admin .sidebar-table .table thead th {
+	border-bottom: 1.2px solid #E1E1E1 !important;
+}
+
+.admin .sidebar-table .table tbody tr td {
     border-style: none;
 	vertical-align: middle;
 	text-align: left;
@@ -3440,6 +3460,7 @@ footer .privacy-policy button{
 	font-size: 13px;
 	color: #FFFFFF;
 	height: 24px;
+	width: 85px;
 	padding: 2px 5px;
 	background: #F2BB37;
 	border: 1px solid #F2BB37;

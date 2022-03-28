@@ -543,5 +543,109 @@ class HelperlandModel
         $statement= $this->conn->prepare($sql_qry);
         $statement->execute();
     }
+
+    public function fill_option_for_Select($typeid1,$typeid2)
+    {
+        if ($typeid2 != "") {
+            $sql_qry = "SELECT FirstName, LastName FROM user WHERE UserTypeId IN ($typeid1, $typeid2)";
+        } else {
+            $sql_qry = "SELECT FirstName, LastName FROM user WHERE UserTypeId IN ($typeid1)";
+        }
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function service_request_search($array)
+    {
+        $ServiceRequestId = $array['ServiceRequestId'];
+        $ZipCode = $array['ZipCode'];
+        $Customer = $array['Customer'];
+        $Sprovider = $array['Sprovider'];
+        $Status = $array['Status'];
+        $fromdate = $array['fromdate'];
+        $todate = $array['todate'];
+
+
+        $sql_qry ="SELECT * FROM servicerequest 
+                  WHERE servicerequest.ServiceRequestId > 0 ";
+
+        if($ServiceRequestId != '')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ServiceRequestId = '$ServiceRequestId' ";
+        }
+        if($ZipCode != '')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ZipCode = '$ZipCode' ";
+        }
+        if($Customer != '')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.UserId = (SELECT UserId from user WHERE CONCAT(FirstName,' ',LastName) = '$Customer') ";
+        }
+        if($Sprovider != '')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ServiceProviderId = (SELECT UserId from user WHERE CONCAT(FirstName,' ',LastName) = '$Sprovider') ";
+        }
+        if($Status != '')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.Status = '$Status' ";
+        }
+        if($fromdate != '')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ServiceStartDate >= '$fromdate' ";
+        }
+        if($todate != '')
+        {
+            $sql_qry = $sql_qry." AND servicerequest.ServiceStartDate <= '$todate' ";
+        }
+
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function user_management_search($array)
+    {
+        $Username = $array['Username'];
+        $UserTypeId = $array['UserTypeId'];
+        $Mobile = $array['Mobile'];
+        $ZipCode = $array['ZipCode'];
+        $fromdate = $array['fromdate'];
+        $todate = $array['todate'];
+
+        $sql_qry = "SELECT * FROM user WHERE UserTypeId <> 3 ";
+
+        if($Username != "")
+        {
+            $sql_qry = $sql_qry." AND CONCAT(FirstName,' ',LastName) = '$Username' ";
+        }
+        if($UserTypeId != "")
+        {
+            $sql_qry = $sql_qry." AND UserTypeId = '$UserTypeId' ";
+        }
+        if($Mobile != "")
+        {
+            $sql_qry = $sql_qry." AND Mobile = '$Mobile' ";
+        }
+        if($ZipCode != "")
+        {
+            $sql_qry = $sql_qry." AND ZipCode = '$ZipCode' ";
+        }
+        if($fromdate != "")
+        {
+            $sql_qry = $sql_qry." AND CreatedDate >= '$fromdate' ";
+        }
+        if($todate != "")
+        {
+            $sql_qry = $sql_qry." AND CreatedDate <= '$todate' ";
+        }
+
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
 }
 ?>

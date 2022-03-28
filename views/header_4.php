@@ -18,8 +18,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img src="http://localhost/Helperland/assets/images/logout.png" alt="bell-icon">
+                    <a class="nav-link" href="http://localhost/Helperland/?controller=Helperland&function=logout">
+                        <img src="http://localhost/Helperland/assets/images/logout.png" alt="logout-icon">
                     </a>
                 </li>
             </ul>

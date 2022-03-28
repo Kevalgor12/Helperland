@@ -8,7 +8,9 @@
     <title>Service Requests</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <link rel="stylesheet" href="http://localhost/Helperland/assets/css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -156,11 +158,137 @@
                     <a class="menu admin-service-requests active">Service Requests</a>
                     <a class="menu admin-user-management">User Management</a>
                 </div>
-                <div class="customer-table admin-service-requests-body fill-all-service">
+                <div class="customer-table admin-service-requests-body">
+                    <div class="row">
+                        <div class="col-md-12 admin-text"><b>Service Requests</b></div>
+                    </div>
+                    <div class="row user-inputs">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <input type="text" id="serviceid" name="serviceid" placeholder="Service ID">
+                            </li>
+                            <li class="nav-item">
+                                <input type="text" id="postalcode" name="postalcode" placeholder="Postal Code">
+                            </li>
+                            <li class="nav-item d-none">
+                                <input type="email" id="email" name="email" placeholder="Email">
+                            </li>
+                            <li class="nav-item">
+                                <select class="customer" name="customer" id="customer">
+                                    <option disabled selected hidden value="disable">Select Customer</option>
+                                </select>
+                            </li>
+                            <li class="nav-item">
+                                <select class="serviceprovider" name="sprovider" id="sprovider">
+                                    <option disabled selected hidden value="disable">Select Service Provider</option>
+                                </select>
+                            </li>
+                            <li class="nav-item">
+                                <select name="service-status" id="service-status">
+                                    <option disabled selected hidden value="disable">Status</option>
+                                    <option value="0">New</option>
+                                    <option value="0">Pending</option>
+                                    <option value="1">Completed</option>
+                                    <option value="-1">Cancelled</option>
+                                </select>
+                            </li>
+                            <li class="nav-item">
+                                <select name="sp-payment-status" id="sp-payment-status" disabled>
+                                    <option disabled selected hidden value="disable">SP payment Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </li>
+                            <li class="nav-item">
+                                <select name="status" id="status" disabled>
+                                    <option disabled selected hidden value="disable">Status</option>
+                                    <option value="0">New</option>
+                                    <option value="0">Pending</option>
+                                    <option value="1">Completed</option>
+                                    <option value="-1">Cancelled</option>
+                                </select>
+                            </li>
+                            <li class="nav-item">
+                                <div class="input-group">
+                                    <input type="checkbox" id="issue" name="issue" value="issue">
+                                    <label for="issue"> Has Issue</label>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="input-group position-relative">
+                                    <input type="text" id="fromdate" name="fromdate" placeholder="From Date">
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="input-group position-relative">
+                                    <input type="text" id="todate" name="todate" placeholder="To Date">
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div>
+                                    <button class="btn-search request-search">Search</button>
+                                    <button class="btn-clear request-clear">Clear</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fill-all-service">
 
+                    </div>
                 </div>
-                <div class="customer-table admin-user-management-body fill-user-management">
+                <div class="customer-table admin-user-management-body">
+                    <div class="row">
+                        <div class="col-md-6 admin-text"><b>User Management</b></div>
+                        <div class="col-md-6 addnew-btn-text"><button class="button-addnew"><img src="http://localhost/Helperland/assets/images/add.png" alt=""> Add New User</button></div>
+                    </div>
+                    <div class="row user-inputs">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <select class="username" name="usermanagementusername" id="username">
+                                    <option disabled selected hidden value="disable">Select User name</option>
+                                </select>
+                            </li>
+                            <li class="nav-item">
+                                <select name="usermanagementusertype" id="usertype">
+                                    <option disabled selected hidden value="disable">User Type</option>
+                                    <option value="2">Customer</option>
+                                    <option value="1">Service Provider</option>
+                                </select>
+                            </li>
+                            <li class="nav-item">
+                                <div class="input-group">
+                                    <span class="input-group-text">+49</span>
+                                    <input type="text" id="phonenumber" name="usermanagementphonenumber" placeholder="Phone number">
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <input type="text" id="postalcode" name="usermanagementpostalcode" placeholder="Postal Code">
+                            </li>
+                            <li class="nav-item d-none">
+                                <input type="email" id="email" name="usermanagementemail" placeholder="Email">
+                            </li>
+                            <li class="nav-item">
+                                <div class="input-group position-relative">
+                                    <input type="text" id="usermanagementfromdate" name="usermanagementfromdate" placeholder="From Date">
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="input-group position-relative">
+                                    <input type="text" id="usermanagementtodate" name="usermanagementtodate" placeholder="To Date">
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div>
+                                    <button class="btn-search user-management-search">Search</button>
+                                    <button class="btn-clear user-management-clear">Clear</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fill-user-management">
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -176,6 +304,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 </body>
 
 </html>
