@@ -19,7 +19,7 @@ class HelperlandController
         $starttime = explode(':', $time);
         return $starttime[0] * 60 + $starttime[1];
     }
-    
+
     public function DecimalToHoursMins($totalminutes)
     {
         $hour = (int)($totalminutes / 60);
@@ -72,7 +72,7 @@ class HelperlandController
                 $count = $this->model->check_email_existance('user', $email);
                 if ($count == 0) {
                     if ($_POST['password'] == $_POST['confirm-password']) {
-                        $password = $_POST['password'];
+                        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
                         $array = [
                             'fname' => $fname,
                             'lname'  => $lname,
@@ -116,7 +116,7 @@ class HelperlandController
                 $count = $this->model->check_email_existance('user', $email);
                 if ($count == 0) {
                     if ($_POST['password'] == $_POST['confirm-password']) {
-                        $password = $_POST['password'];
+                        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
                         $array = [
                             'fname' => $fname,
                             'lname'  => $lname,
@@ -160,9 +160,9 @@ class HelperlandController
                     $customer = "http://localhost/Helperland/ServiceHistory.php";
                     $admin = "http://localhost/Helperland/Adminscreen.php";
                     $usertypeid = $this->model->check_usertype('user', $email);
-                    $row = $this->model->login_user('user', $email, $password);
+                    $row = $this->model->login_user('user', $email);
 
-                    if ($row != "") {
+                    if (password_verify($password, $row['Password'])) {
                         if ($count['IsApproved'] == 1) {
                             $_SESSION['userid'] = $row['UserId'];
                             $_SESSION['usertypeid'] = $row['UserTypeId'];
@@ -176,8 +176,7 @@ class HelperlandController
                             } else if ($usertypeid == 3) {
                                 header('Location:' . $admin);
                             }
-                        }
-                        else {
+                        } else {
                             echo    '<script>
                                         alert("Your account is not approved.");
                                         location. href="http://localhost/Helperland/";
@@ -238,7 +237,7 @@ class HelperlandController
                 $email = $_SESSION['email'];
 
                 if ($_POST['password'] == $_POST['confirm-password']) {
-                    $password = $_POST['password'];
+                    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
                     $this->model->reset_password('user', $email, $password);
                     header('location:' . $base_url);
                 } else {
@@ -320,6 +319,26 @@ class HelperlandController
         $this->model->insert_address('useraddress', $array);
     }
 
+    public function favpro_booking()
+    {
+        $i = 0;
+        $row=$this->model->favpro_list($_SESSION['userid']);
+        foreach($row as $data)
+        {
+            $i++;
+            $SP=$this->model->get_sp_or_customer_byid('user', $data['TargetUserId']);
+        ?>
+        <div class="card">
+            <div class="serviceprovider-image"><img src="<?php echo $SP['UserProfilePicture']; ?>" alt=""></div>
+            <div class="serviceprovider-name"><b><?php echo $SP['FirstName']." ".$SP['LastName']; ?></b></div>
+            <div class="select-deselect-button">
+                <button class="select-button button<?php echo $i; ?>" id="<?php echo $data['TargetUserId']; ?>">Select</button>
+            </div>
+        </div>
+        <?php
+        }
+    }
+
     public function add_service_request()
     {
         $postalcode = $_POST['postalcode'];
@@ -333,6 +352,7 @@ class HelperlandController
         $subtotal = $_POST['subtotal'];
         $totalpayment = $_POST['totalpay'];
         $comment = $_POST['comment'];
+        $selectedserviceprovider = $_POST['selectedserviceprovider'];
 
         $array = [
             'userid' => $_SESSION['userid'],
@@ -345,6 +365,7 @@ class HelperlandController
             'subtotal' => $subtotal,
             'totalpayment' => $totalpayment,
             'comment' => $comment,
+            'serviceproviderid' => $selectedserviceprovider
         ];
         $requestid = $this->model->add_service_request('servicerequest', $array);
         $selectedaddressid = $_POST['selectedaddressid'];
@@ -363,21 +384,32 @@ class HelperlandController
             }
         }
 
-        $row = $this->model->send_service_request_mail_to_sp('user', $postalcode);
+        if ($selectedserviceprovider != "") {
+            $favouritesp = $this->model->get_sp_or_customer_byid('user', $selectedserviceprovider);
 
-        if ($row != null) {
+            $to_email = $favouritesp['Email'];
+            $subject = "New service request";
+            $body = "Hi, Service Provider!!! One service request is available in your area. Kindly check by login. http://localhost/Helperland/Home.php";
+            $headers = "From: kp916777@gmail.com";
+            mail($to_email, $subject, $body, $headers);
+        } 
+        else {
+            $row = $this->model->send_service_request_mail_to_sp('user', $postalcode);
 
-            foreach ($row as $emaildata) {
+            if ($row != null) {
 
-                $checkblock = $this->model->check_block_unblock('favoriteandblocked', $_SESSION['userid'], $emaildata['UserId']);
+                foreach ($row as $emaildata) {
 
-                if ($checkblock == null) {
+                    $checkblock = $this->model->check_block_unblock('favoriteandblocked', $emaildata['UserId'], $_SESSION['userid']);
 
-                    $to_email = $emaildata['Email'];
-                    $subject = "New service request";
-                    $body = "Hi, Service Provider!!! One service request is available in your area. Kindly check by login. http://localhost/Helperland/Home.php";
-                    $headers = "From: kp916777@gmail.com";
-                    mail($to_email, $subject, $body, $headers);
+                    if ($checkblock == null) {
+
+                        $to_email = $emaildata['Email'];
+                        $subject = "New service request";
+                        $body = "Hi, Service Provider!!! One service request is available in your area. Kindly check by login. http://localhost/Helperland/Home.php";
+                        $headers = "From: kp916777@gmail.com";
+                        mail($to_email, $subject, $body, $headers);
+                    }
                 }
             }
         }
@@ -418,9 +450,8 @@ class HelperlandController
                             $serviceprovider = $this->model->get_sp_or_customer_byid('user', $dashboard['ServiceProviderId']);
                             $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $dashboard['ServiceProviderId']);
                             $i = 0;
-                            
+
                             if ($allratingsofsp == "") {
-                                
                             } else {
                                 foreach ($allratingsofsp as $allrate) {
                                     $totalratings += $allrate['Ratings'];
@@ -523,7 +554,7 @@ class HelperlandController
         ?>
             <div class="row">
                 <div class="col-sm-12">
-                    <span class="service-datetime"><?php echo $startdate ?> &nbsp; <?php echo $starttime." - ".$totaltime; ?> </span>
+                    <span class="service-datetime"><?php echo $startdate ?> &nbsp; <?php echo $starttime . " - " . $totaltime; ?> </span>
                 </div>
             </div>
             <div class="d-flex align-items-center">
@@ -732,14 +763,13 @@ class HelperlandController
             $_SESSION['email'] = $_POST['email'];
 
             mail($to_email, $subject, $body, $headers);
-        }
-        else {
+        } else {
 
             $list = $this->model->send_service_request_mail_to_sp('user', $row['ZipCode']);
 
             foreach ($list as $emaildata) {
 
-                $checkblock = $this->model->check_block_unblock('favoriteandblocked', $_SESSION['userid'], $emaildata['UserId']);
+                $checkblock = $this->model->check_block_unblock('favoriteandblocked', $emaildata['UserId'], $_SESSION['userid']);
 
                 if ($checkblock == null) {
 
@@ -783,12 +813,11 @@ class HelperlandController
             $_SESSION['email'] = $_POST['email'];
 
             mail($to_email, $subject, $body, $headers);
-        } 
-        else {
+        } else {
             $list = $this->model->send_service_request_mail_to_sp('user', $row['ZipCode']);
             foreach ($list as $emaildata) {
 
-                $checkblock = $this->model->check_block_unblock('favoriteandblocked', $_SESSION['userid'], $emaildata['ServiceProviderId']);
+                $checkblock = $this->model->check_block_unblock('favoriteandblocked', $emaildata['ServiceProviderId'], $_SESSION['userid']);
 
                 if ($checkblock == null) {
 
@@ -843,7 +872,7 @@ class HelperlandController
                             $serviceprovider = $this->model->get_sp_or_customer_byid('user', $history['ServiceProviderId']);
                             $allratingsofsp = $this->model->fill_average_rating_of_sp('rating', $history['ServiceProviderId']);
                             $i = 0;
-                            
+
                             if ($allratingsofsp == "") {
                                 $averagerating = 0;
                             } else {
@@ -949,13 +978,12 @@ class HelperlandController
         $statusArray = [0 => 'Pending', 1 => 'Completed', -1 => 'Cancelled'];
 
         $filename = 'Service_History.csv';
-        $file = fopen($filename,"w");
+        $file = fopen($filename, "w");
 
         $fields = array('ServiceRequest Id', 'ServiceProvider Name', 'Service Date-Time', 'Service Rate(/hour)', 'Service Hours', 'ExtraService Hours', 'HasPets', 'SubTotal', 'Discount', 'TotalCost', 'Status');
         fputcsv($file, $fields);
 
-        foreach ($list as $line)
-        {
+        foreach ($list as $line) {
             $csvHasPets = $haspetArray[$line['HasPets']];
             $csvStatus = $statusArray[$line['Status']];
             $line['HasPets'] = $csvHasPets;
@@ -966,14 +994,117 @@ class HelperlandController
         fclose($file);
 
         header("Content-Description: File Transfer");
-        header("Content-Disposition: attachment; filename=".$filename);
-        header("Content-Type: application/csv; "); 
+        header("Content-Disposition: attachment; filename=" . $filename);
+        header("Content-Type: application/csv; ");
 
         readfile($filename);
 
-       // deleting file
-       unlink($filename);
-       exit();  
+        // deleting file
+        unlink($filename);
+        exit();
+    }
+
+    public function fill_serviceprovider_card()
+    {
+        $customerid = $_SESSION['userid'];
+        $data = $this->model->fill_serviceprovider_card('servicerequest', $customerid);
+
+        if ($data != null) {
+        ?>
+            <div class="card-serviceprovider">
+                <?php
+                foreach ($data as $request) {
+                    if ($request['ServiceProviderId'] != "") {
+                        $customerdetails = $this->model->get_sp_or_customer_byid('user', $request['ServiceProviderId']);
+                        $num_of_cleanings = $this->model->cleanings($customerid, $request['ServiceProviderId']);
+                        $rates = $this->model->fill_average_rating_of_sp('rating', $request['ServiceProviderId']);
+
+                        $i = 0;
+                        $totalrate = 0;
+
+                        if ($rates == NULL) {
+                            $avrrate = 0;
+                        } else {
+                            foreach ($rates as $rate) {
+                                $totalrate += $rate['Ratings'];
+                                $i++;
+                            }
+                            if ($i == 0) {
+                                $avrrate = $totalrate;
+                            } else {
+                                $avrrate = $totalrate / $i;
+                            }
+                        }
+
+                ?>
+                        <div class="card align-items-center">
+                            <div class="serviceprovider-image"><img src="<?php echo $customerdetails['UserProfilePicture'] ?>" alt=""></div>
+                            <div class="serviceprovider-name"><b> <?php echo $customerdetails['FirstName'] . " " . $customerdetails['LastName']; ?> </b></div>
+                            <div class="d-flex align-items-center justify-content-center mb-3">
+                                <div class="rateyo favorite" id="rating" data-rateyo-rating="<?php echo $avrrate; ?>"></div>
+                                <div><?php echo round($avrrate, 1); ?></div>
+                            </div>
+                            <div class="text-center mb-3"><span><?php echo $num_of_cleanings; ?> Cleanings</span></div>
+                            <div class="block-unblock-button">
+                                <?php
+                                $checkfavourite = $this->model->check_favourite('favoriteandblocked', $customerid, $request['ServiceProviderId']);
+                                if ($checkfavourite == null) {
+                                ?>
+                                    <button class="service-provider-add-button" id="<?php echo $request['ServiceProviderId']; ?>">Add</button>
+                                <?php
+                                } else {
+                                ?>
+                                    <button class="service-provider-remove-button" id="<?php echo $request['ServiceProviderId']; ?>">Remove</button>
+                                <?php
+                                }
+                                $checkblockunblock = $this->model->check_block_unblock('favoriteandblocked', $customerid, $request['ServiceProviderId']);
+                                if ($checkblockunblock == null) {
+                                ?>
+                                    <button class="service-provider-block-button" id="<?php echo $request['ServiceProviderId']; ?>">Block</button>
+                                <?php
+                                } else {
+                                ?>
+                                    <button class="service-provider-unblock-button" id="<?php echo $request['ServiceProviderId']; ?>">Unblock</button>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+            </div>
+        <?php
+        }
+    }
+
+    public function add_favourite_serviceprovider()
+    {
+        $customerid = $_SESSION['userid'];
+        $serviceproviderid = $_POST['selectedserviceproviderid'];
+        $this->model->add_favourite_serviceprovider('favoriteandblocked', $customerid, $serviceproviderid);
+    }
+
+    public function remove_favourite_serviceprovider()
+    {
+        $customerid = $_SESSION['userid'];
+        $serviceproviderid = $_POST['selectedserviceproviderid'];
+        $this->model->remove_favourite_serviceprovider('favoriteandblocked', $customerid, $serviceproviderid);
+    }
+
+    public function block_serviceprovider()
+    {
+        $customerid = $_SESSION['userid'];
+        $serviceproviderid = $_POST['selectedserviceproviderid'];
+        $this->model->block_customer('favoriteandblocked', $customerid, $serviceproviderid);
+    }
+
+    public function unblock_serviceprovider()
+    {
+        $customerid = $_SESSION['userid'];
+        $serviceproviderid = $_POST['selectedserviceproviderid'];
+        $this->model->unblock_customer('favoriteandblocked', $customerid, $serviceproviderid);
     }
 
     public function fill_sp_ratings()
@@ -1218,21 +1349,29 @@ class HelperlandController
         <div class="row">
             <div class="col-md-6">
                 <label class="addresslable" for="streetname">Street name</label><br>
-                <input class="input" type="text" name="streetname" placeholder="Street name" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['AddressLine1']; } ?>">
+                <input class="input" type="text" name="streetname" placeholder="Street name" value="<?php if (isset($_POST['selectedaddid'])) {
+                                                                                                        echo $list['AddressLine1'];
+                                                                                                    } ?>">
             </div>
             <div class="col-md-6">
                 <label class="addresslable" for="housenumber">House number</label><br>
-                <input class="input" type="text" name="housenumber" placeholder="House number" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['AddressLine2']; } ?>">
+                <input class="input" type="text" name="housenumber" placeholder="House number" value="<?php if (isset($_POST['selectedaddid'])) {
+                                                                                                            echo $list['AddressLine2'];
+                                                                                                        } ?>">
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <label class="addresslable" for="postalcode">Postal code</label><br>
-                <input class="input" type="text" name="postal_code" placeholder="360005" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['PostalCode']; } ?>">
+                <input class="input" type="text" name="postal_code" placeholder="360005" value="<?php if (isset($_POST['selectedaddid'])) {
+                                                                                                    echo $list['PostalCode'];
+                                                                                                } ?>">
             </div>
             <div class="col-md-6">
                 <label class="addresslable" for="city">City</label><br>
-                <input class="input" type="text" name="city" placeholder="Bonn" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['City']; } ?>">
+                <input class="input" type="text" name="city" placeholder="Bonn" value="<?php if (isset($_POST['selectedaddid'])) {
+                                                                                            echo $list['City'];
+                                                                                        } ?>">
             </div>
         </div>
         <div class="row">
@@ -1240,20 +1379,21 @@ class HelperlandController
                 <label class="addresslable" for="phonenumber">Phone number</label><br>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">+49</span>
-                    <input class="input" type="text" name="phonenumber" placeholder="9745643546" value="<?php if(isset($_POST['selectedaddid'])) { echo $list['Mobile']; } ?>">
+                    <input class="input" type="text" name="phonenumber" placeholder="9745643546" value="<?php if (isset($_POST['selectedaddid'])) {
+                                                                                                            echo $list['Mobile'];
+                                                                                                        } ?>">
                 </div>
             </div>
         </div>
         <div>
-            <button name="submit" <?php if(isset($_POST['selectedaddid'])) { ?> id="<?php echo $list['AddressId']; ?>" <?php } ?> class="btn-addresssave">save</button>
+            <button name="submit" <?php if (isset($_POST['selectedaddid'])) { ?> id="<?php echo $list['AddressId']; ?>" <?php } ?> class="btn-addresssave">save</button>
         </div>
-        <?php
+<?php
     }
 
     public function insert_update_useraddress()
     {
-        if(isset($_POST['selectedaddid']))
-        {
+        if (isset($_POST['selectedaddid'])) {
             $edit = 1; //to update
             $array = [
                 'AddressId' => $_POST['selectedaddid'],
@@ -1263,9 +1403,7 @@ class HelperlandController
                 'PostalCode' => $_POST['postalcode'],
                 'Mobile' => $_POST['phonenumber'],
             ];
-        }
-        else
-        {
+        } else {
             $edit = 0; //to insert
             $array = [
                 'AddressLine1' => $_POST['streetname'],
@@ -1296,6 +1434,7 @@ class HelperlandController
 
         if ($count == 1) {
             if ($newpassword == $confirmpassword) {
+                $newpassword = password_hash($newpassword, PASSWORD_BCRYPT);
                 $this->model->update_password('user', $email, $newpassword);
             } else {
                 echo '0';

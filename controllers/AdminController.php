@@ -478,26 +478,27 @@ class AdminController
                 $_SESSION['email'] = $_POST['email'];
 
                 mail($to_email, $subject, $body, $headers);
-            } else {
-                $list = $this->model->send_service_request_mail_to_sp('user', $row['ZipCode']);
-                foreach ($list as $emaildata) {
+            } 
+            // else {
+            //     $list = $this->model->send_service_request_mail_to_sp('user', $row['ZipCode']);
+            //     foreach ($list as $emaildata) {
 
-                    $checkblock = $this->model->check_block_unblock('favoriteandblocked', $_SESSION['userid'], $emaildata['ServiceProviderId']);
+            //         $checkblock = $this->model->check_block_unblock('favoriteandblocked', $_SESSION['userid'], $emaildata['ServiceProviderId']);
 
-                    if ($checkblock == null) {
+            //         if ($checkblock == null) {
 
-                        $serviceproviderdetails = $this->model->get_sp_or_customer_byid('user', $serviceprovider['ServiceProviderId']);
+            //             $serviceproviderdetails = $this->model->get_sp_or_customer_byid('user', $serviceprovider['ServiceProviderId']);
 
-                        $to_email = $serviceproviderdetails['Email'];
-                        $subject = "Cancel request";
-                        $body = "Hi, " . $serviceproviderdetails['FirstName'] . " " . $serviceproviderdetails['LastName'] . "!!! servicerequestid" . " " . $selectedrequestid . " " . "is cancelled.";
-                        $headers = "From: kp916777@gmail.com";
-                        $_SESSION['email'] = $_POST['email'];
+            //             $to_email = $serviceproviderdetails['Email'];
+            //             $subject = "Cancel request";
+            //             $body = "Hi, " . $serviceproviderdetails['FirstName'] . " " . $serviceproviderdetails['LastName'] . "!!! servicerequestid" . " " . $selectedrequestid . " " . "is cancelled.";
+            //             $headers = "From: kp916777@gmail.com";
+            //             $_SESSION['email'] = $_POST['email'];
 
-                        mail($to_email, $subject, $body, $headers);
-                    }
-                }
-            }
+            //             mail($to_email, $subject, $body, $headers);
+            //         }
+            //     }
+            // }
         } else {
             echo 'not-cancel';
         }

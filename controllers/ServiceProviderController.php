@@ -53,7 +53,7 @@ class ServiceProviderController
                     <?php
                     foreach ($data as $newservice) {
 
-                        $checkblock = $this->model->check_block_unblock('favoriteandblocked', $newservice['UserId'], $serviceproviderid);
+                        $checkblock = $this->model->check_block_unblock('favoriteandblocked', $serviceproviderid, $newservice['UserId']);
 
                         if ($checkblock == null) {
 
@@ -108,7 +108,6 @@ class ServiceProviderController
 
     public function fill_selected_servicerequest()
     {
-        $selectmodal = $_POST['selectmodal'];
         $selectedrequestid = $_POST['selectedrequestid'];
 
         $row = $this->model->fill_selected_pending_request('servicerequest', $selectedrequestid);
@@ -258,7 +257,7 @@ class ServiceProviderController
             <hr>
             <div>
                 <?php
-                if($selectmodal == 0)
+                if($row['SPAcceptedDate'] == "" && $row['Status'] == 0)
                 {
                 ?>
                 <div>
@@ -266,7 +265,7 @@ class ServiceProviderController
                 </div>
                 <?php
                 }
-                else if($selectmodal == 1)
+                else if($row['SPAcceptedDate'] != "" && $row['Status'] == 0)
                 {
                 ?>
                 <div>
@@ -458,6 +457,40 @@ class ServiceProviderController
         }
     }
 
+    public function service_schedule_sp()
+    {
+        $events = $this->model->getSPScheduledetail($_SESSION['userid']);
+        $data = array();
+        foreach ($events as $row) {
+
+            $starttime = substr($row['ServiceStartDate'], 11, 5);
+            $totalminutes = $this->HourMinuteToDecimal($starttime) + (($row['ServiceHours'] + $row['ExtraHours']) * 60);
+            $totaltime = $this->DecimalToHoursMins($totalminutes);
+
+            if ($row['Status'] == '0' && $row['SPAcceptedDate'] == "") {
+                $color = "#F2BB37";
+            }
+            if ($row['Status'] == '0' && $row['SPAcceptedDate'] != "") {
+                $color = "#1FB6FF";
+            }
+            if ($row['Status'] == '1') {
+                $color = "#67B644";
+            }
+            if ($row['Status'] == '-1') {
+                $color = "#FF6B6B";
+            }
+
+            $data[] = array(
+                'id' => $row['ServiceRequestId'],
+                'title' => "$starttime" . " - " . "$totaltime",
+                'start' => date("Y-m-d", strtotime($row['ServiceStartDate'])),
+                'end' => date("Y-m-d", strtotime($row['ServiceStartDate'])),
+                'color' => "$color"
+            );
+        }
+        echo json_encode($data);
+    }
+
     public function fill_sp_servicehistory_table()
     {
         $serviceproviderid = $_SESSION['userid'];
@@ -544,12 +577,12 @@ class ServiceProviderController
                 foreach ($data as $request) {
                     $customerdetails = $this->model->get_sp_or_customer_byid('user', $request['UserId']);
                 ?>
-                    <div class="card">
-                        <div class="customer-image"><img src="http://localhost/Helperland/assets/images/cap.png" alt=""></div>
+                    <div class="card align-items-center">
+                        <div class="avatar-image"><img src="<?php echo $customerdetails['UserProfilePicture'] ?>" alt=""></div>
                         <div class="customer-name"><b> <?php echo $customerdetails['FirstName'] . " " . $customerdetails['LastName']; ?> </b></div>
                         <div class="block-unblock-button">
                             <?php
-                            $checkblockunblock = $this->model->check_block_unblock('favoriteandblocked', $request['UserId'], $serviceproviderid);
+                            $checkblockunblock = $this->model->check_block_unblock('favoriteandblocked', $serviceproviderid, $request['UserId']);
                             if ($checkblockunblock == null) {
                             ?>
                                 <button class="block-button" id="<?php echo $request['UserId']; ?>">Block</button>
@@ -574,14 +607,14 @@ class ServiceProviderController
     {
         $serviceproviderid = $_SESSION['userid'];
         $selectedcustomerid = $_POST['selectedcustomerid'];
-        $this->model->block_customer('favoriteandblocked', $selectedcustomerid, $serviceproviderid);
+        $this->model->block_customer('favoriteandblocked', $serviceproviderid, $selectedcustomerid);
     }
 
     public function unblock_customer()
     {
         $serviceproviderid = $_SESSION['userid'];
         $selectedcustomerid = $_POST['selectedcustomerid'];
-        $this->model->unblock_customer('favoriteandblocked', $selectedcustomerid, $serviceproviderid);
+        $this->model->unblock_customer('favoriteandblocked', $serviceproviderid, $selectedcustomerid);
     }
 
     public function fill_sp_rating_table()
@@ -911,6 +944,7 @@ class ServiceProviderController
 
         if ($count == 1) {
             if ($newpassword == $confirmpassword) {
+                $newpassword = password_hash($newpassword, PASSWORD_BCRYPT);
                 $this->model->update_password('user', $email, $newpassword);
             } else {
                 echo '0';

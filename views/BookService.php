@@ -295,6 +295,26 @@
                                             <button type="submit" class="address-cancel" onclick="hideAddAddress()">Cancel</button>
                                         </div>
                                     </div>
+                                    <!-- fav pro -->
+                                    <div><b>Your Favourite Service Provider</b></div>
+                                    <hr>
+                                    <div><b>you can Choose your favorite provider from the below list</b></div>
+                                    <div class="card-serviceprovider">
+                                        <!-- <div class="card">
+                                            <div class="customer-image"><img src="./assets/Image/forma-1-copy-19.png" alt=""></div>
+                                            <div class="customer-name"><b>Rohit Parmar</b></div>
+                                            <div class="block-unblock-button">
+                                                <button class="add-button">Select</button>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="customer-image"><img src="./assets/Image/forma-1-copy-19.png" alt=""></div>
+                                            <div class="customer-name"><b>Rohit Parmar</b></div>
+                                            <div class="block-unblock-button">
+                                                <button class="add-button">Select</button>
+                                            </div>
+                                        </div> -->
+                                    </div>
                                     <div class="row">
                                         <div class="continue-right">
                                             <button type="submit" class="continue continue2" disabled>Continue</button>

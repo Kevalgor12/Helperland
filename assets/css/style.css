@@ -2078,6 +2078,49 @@ footer .privacy-policy button{
 	display: none;
 }
 
+.upcoming-service .sidebar-table .sp-service-schedule-body .date-label-info {
+	display: flex;
+	justify-content: right;
+}
+
+.upcoming-service .sidebar-table .sp-service-schedule-body .date-label-info .date-label {
+	display: flex;
+	align-items: center;
+	margin: 20px 5px;
+}
+
+.upcoming-service .sidebar-table .sp-service-schedule-body .date-label-info .date-label .date-label-new {
+	background: #F2BB37;
+	border: 1px solid #F2BB37;
+	width: 50px;
+	height: 20px;
+	margin-right: 5px;
+}
+
+.upcoming-service .sidebar-table .sp-service-schedule-body .date-label-info .date-label .date-label-pending {
+	background: #1FB6FF;
+	border: 1px solid #1FB6FF;
+	width: 50px;
+	height: 20px;
+	margin-right: 5px;
+}
+
+.upcoming-service .sidebar-table .sp-service-schedule-body .date-label-info .date-label .date-label-completed {
+	background: #67B644;
+	border: 1px solid #67B644;
+	width: 50px;
+	height: 20px;
+	margin-right: 5px;
+}
+
+.upcoming-service .sidebar-table .sp-service-schedule-body .date-label-info .date-label .date-label-cancelled {
+	background: #FF6B6B;
+	border: 1px solid #FF6B6B;
+	width: 50px;
+	height: 20px;
+	margin-right: 5px;
+}
+
 .upcoming-service .sidebar-table .sp-service-history-body {
 	display: none;
 }
@@ -2845,6 +2888,81 @@ footer .privacy-policy button{
 
 .service-history .sidebar-table .history {
 	display: none;
+}
+
+.service-history .sidebar-table .customer-favourite-pros {
+	display: none;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider {
+	font-family: 'Roboto';
+	color: #4F4F4F;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card {
+	min-width: 280px;
+	border: 1px solid #E1E1E1;
+	padding: 30px 0;
+	border-radius: 0px;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .serviceprovider-image {
+	margin: auto;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .serviceprovider-image img {
+	width: 80px;
+	height: 80px;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .serviceprovider-name {
+	font-size: 20px;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button {
+	text-align: center;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button .service-provider-block-button,
+	.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button .service-provider-remove-button {
+		font-family: 'Roboto';
+		font-size: 16px;
+		color: #FFFFFF;
+		padding: 0 20px;
+		height: 34px;
+		border-radius: 17px;
+		background: #FF6B6B;
+		border: 1px solid #FF6B6B;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button .service-provider-block-button:hover,
+	.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button .service-provider-remove-button:hover {
+	background: #fD4B4B;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button .service-provider-unblock-button,
+	.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button .service-provider-add-button {
+	font-family: 'Roboto';
+	font-size: 16px;
+	color: #FFFFFF;
+	padding: 0 20px;
+	height: 34px;
+	border-radius: 17px;
+	background: #1D7A8C;
+	border: 1px solid #29626D;
+}
+
+.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button .service-provider-unblock-button:hover,
+	.service-history .sidebar-table .customer-favourite-pros .card-serviceprovider .card .block-unblock-button .service-provider-add-button:hover {
+	background: #29626D;
 }
 
 .service-history .sidebar-table .customer-table .row {
@@ -3880,6 +3998,58 @@ footer .privacy-policy button{
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content .add-address .address-cancel:hover {
 	border: 1px solid #1D7A8C;
 	color: #1D7A8C;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .card-serviceprovider {
+	font-family: 'Roboto';
+	color: #4F4F4F;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	margin: 30px 0 20px 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .card-serviceprovider .card {
+	min-width: 200px;
+	border: 1px solid #E1E1E1;
+	padding: 30px 0;
+	border-radius: 0px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .card-serviceprovider .card .serviceprovider-image {
+	margin: auto;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .card-serviceprovider .card .serviceprovider-image img {
+	width: 80px;
+	height: 80px;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .card-serviceprovider .card .serviceprovider-name {
+	font-size: 20px;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .card-serviceprovider .card .select-deselect-button {
+	text-align: center;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .card-serviceprovider .card .select-deselect-button .select-button {
+	padding: 0 10px;
+	background-color: #1D7A8C;
+	border: 1px solid #1D7A8C;
+	color: #FFFFFF;
+}
+
+.book-service .bookservice-content .bookservice-area .faq-tab .tab-content .card-serviceprovider .card .select-deselect-button .select-button.active {
+	padding: 0 10px;
+	background-color: #FF6B6B;
+	border: 1px solid #FF6B6B;
+	color: #FFFFFF;
 }
 
 .book-service .bookservice-content .bookservice-area .faq-tab .tab-content label {

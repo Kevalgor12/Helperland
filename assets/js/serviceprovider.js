@@ -4,21 +4,18 @@ $(document).ready(function () {
     var selectedcustomerid;
     var selectedaddressid = "";
     selectedavatar = [];
-    var selectmodal = "";
 
     fill_sp_newservicerequest_table();
     fill_sp_upcomingservice_table();
 
     $(document).on ('click', '.tr-newservice', function (e) {
         selectedrequestid = this.id;
-        selectmodal = 0;
         fill_selected_servicerequest(); 
         $("#request_detail_modal").modal("toggle"); 
     });
 
     $(document).on ('click', '.tr-upservice', function (e) {
         selectedrequestid = this.id;
-        selectmodal = 1;
         fill_selected_servicerequest(); 
         $("#request_detail_modal").modal("toggle"); 
     });
@@ -137,6 +134,8 @@ $(document).ready(function () {
         $(".sp-notifications").removeClass("active");
         $(".sp-notifications-body").hide();
         $(".sp_mysetting").hide();
+
+        service_schedule_sp();
     });
     $(".sp-service-history").click(function (e) { 
         $(".sp-dashboard").removeClass("active");
@@ -319,7 +318,6 @@ $(document).ready(function () {
             type: "POST",
             url: "http://localhost/Helperland/?controller=ServiceProvider&function=fill_selected_servicerequest",
             data: {
-                    "selectmodal" : selectmodal,
                     "selectedrequestid" : selectedrequestid,
                   },
             success: function (response) {
@@ -401,6 +399,7 @@ $(document).ready(function () {
             }
         });
     }
+
     function cancelrequest()
     {
         $.ajax({
@@ -439,6 +438,7 @@ $(document).ready(function () {
             }
         });
     }
+
     function completerequest()
     {
         $.ajax({
@@ -462,6 +462,26 @@ $(document).ready(function () {
             }
         });
     }
+
+    /*service schedule*/
+    
+    function service_schedule_sp() { 
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=ServiceProvider&function=service_schedule_sp",
+            success: function (response) {
+                $("#calendar").fullCalendar({
+                    events: JSON.parse(response),
+                    eventClick: function (event) {
+                        selectedrequestid = event.id;
+                        fill_selected_servicerequest();
+                        $("#request_detail_modal").modal("toggle"); 
+                    }
+                });
+            }
+        });
+    }
+
     function fill_sp_servicehistory_table()
     {
         $.ajax({
@@ -491,6 +511,7 @@ $(document).ready(function () {
             }
         });
     }
+
     function fill_customer_card()
     {
         $.ajax({
@@ -502,6 +523,7 @@ $(document).ready(function () {
             }
         });
     }
+
     function block_customer()
     {
         $.ajax({
@@ -515,6 +537,7 @@ $(document).ready(function () {
             }
         });
     }
+
     function unblock_customer()
     {
         $.ajax({
@@ -528,6 +551,7 @@ $(document).ready(function () {
             }
         });
     }
+
     function fill_sp_rating_table()
     {
         $.ajax({

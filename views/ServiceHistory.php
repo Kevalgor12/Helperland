@@ -148,16 +148,19 @@ session_start();
                 <div class="sidebar">
                     <a class="dashboard active">Dashboard</a>
                     <a class="servicehistory">Service History</a>
-                    <a href="#service-schedule">Service Schedule</a>
-                    <a href="#service-history">Favourite Pros</a>
-                    <a href="#my-ratings">Invoices</a>
-                    <a href="#block-customer">Notifications</a>
+                    <a>Service Schedule</a>
+                    <a class="favouritepros">Favourite Pros</a>
+                    <a>Invoices</a>
+                    <a>Notifications</a>
                 </div>
                 <div class="customer-table tabledashboard fill_dashboard">                            
                     
                 </div>
                 <div class="customer-table history fill_history">
                                             
+                </div>
+                <div class="customer-table customer-favourite-pros fill-sp-card">
+                    
                 </div>
                 <div class="customer-table mysetting">
                     <div class="d-flex align-items-center justify-content-center">

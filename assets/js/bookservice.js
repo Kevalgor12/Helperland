@@ -11,6 +11,7 @@ var date = 0;
 var time = 0;
 var selectedaddressid;
 var selectextraserviceid = [];
+var selectedserviceprovider = "";
 
 $(document).ready(function(){
     
@@ -130,8 +131,46 @@ $(document).ready(function(){
         if(date != 0 && time != 0 && servicehours != 0){
             switchtab("SchedulePlan","YourDetails");
             comment = $(".service-comment").val();
+            favourite_pros_list();
         }
     });
+
+    function favourite_pros_list()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=favpro_booking",
+            success: function (response) {
+                $(".card-serviceprovider").html(response);
+                var spav = document.querySelectorAll(".card-serviceprovider .card .select-button");
+                
+                for (let i = 1; i <= spav.length; i++) {
+                    $(".card-serviceprovider .card .button"+i).click(function (e) {
+                        for (let j = 1; j <= spav.length; j++){
+                            if(i == j){
+                                if(!$(".card-serviceprovider .card .select-button.button"+j).hasClass("active"))
+                                {
+                                    $(".card-serviceprovider .card .select-button.button"+j).html("Selected");
+                                    $(".card-serviceprovider .card .select-button.button"+j).addClass("active");
+                                    selectedserviceprovider = this.id;
+                                }
+                                else
+                                {
+                                    $(".card-serviceprovider .card .select-button.button" + j).html("Select");
+                                    $(".card-serviceprovider .card .select-button.button" + j).removeClass("active");
+                                    selectedserviceprovider = "";
+                                }
+                            }
+                            else{
+                                $(".card-serviceprovider .card .select-button.button"+j).html("Select");
+                                $(".card-serviceprovider .card .select-button.button"+j).removeClass("active");
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
 
     $(".continue2").click(function(){ 
         switchtab("YourDetails","MakePayment");
@@ -170,6 +209,7 @@ $(document).ready(function(){
                     "comment" : comment,
                     "selectedaddressid" : selectedaddressid,
                     "selectextraserviceid" : selectextraserviceid,
+                    "selectedserviceprovider" : selectedserviceprovider,
                    },
             success: function (response) {
                 $("#loader").addClass("d-none");

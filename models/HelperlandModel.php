@@ -64,9 +64,9 @@ class HelperlandModel
         return $usertypeid;
     }
 
-    public function login_user($table, $email, $password)
+    public function login_user($table, $email)
     {
-        $sql_qry = "SELECT * FROM $table WHERE Email = '$email' AND Password = '$password'";
+        $sql_qry = "SELECT * FROM $table WHERE Email = '$email'";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
@@ -115,10 +115,19 @@ class HelperlandModel
         $statement->execute($array);
     }
 
+    public function favpro_list($id)
+    {
+        $sql = "SELECT DISTINCT TargetUserId FROM favoriteandblocked WHERE UserId = '$id' AND IsFavorite=1";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $row  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row; 
+    }
+
     public function add_service_request($table, $array)
     {
-        $sql_qry = "INSERT INTO $table(UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, HasPets, SubTotal, TotalCost, Comments) 
-                    VALUES (:userid, :servicedatetime, :postalcode, :servicehourlyrate, :servicehours, :extrahours, :haspet, :subtotal, :totalpayment, :comment)";
+        $sql_qry = "INSERT INTO $table(UserId, ServiceStartDate, ZipCode, ServiceHourlyRate, ServiceHours, ExtraHours, HasPets, SubTotal, TotalCost, Comments, ServiceProviderId) 
+                    VALUES (:userid, :servicedatetime, :postalcode, :servicehourlyrate, :servicehours, :extrahours, :haspet, :subtotal, :totalpayment, :comment, :serviceproviderid)";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute($array);
         $requestid = $this->conn->lastInsertId();
@@ -272,6 +281,15 @@ class HelperlandModel
         return $row;
     }
 
+    public function fill_serviceprovider_card($table, $customerid)
+    {
+        $sql_qry = "SELECT DISTINCT ServiceProviderId FROM $table WHERE UserId = $customerid AND Status = 1";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
     public function export_service_history($userid)
     {
         $sql_qry = "SELECT servicerequest.ServiceRequestId, CONCAT(user.FirstName, ' ', user.LastName) AS ServiceProvider, servicerequest.ServiceStartDate, servicerequest.ServiceHourlyRate, servicerequest.ServiceHours, servicerequest.ExtraHours, servicerequest.HasPets, servicerequest.SubTotal, servicerequest.Discount, servicerequest.TotalCost, servicerequest.Status 
@@ -399,11 +417,20 @@ class HelperlandModel
         return $row;
     }
 
-    function completerequest($table, $selectedrequestid)
+    public function completerequest($table, $selectedrequestid)
     {
         $sql_query = "UPDATE $table SET Status = 1 WHERE  ServiceRequestId = '$selectedrequestid'";
         $statement= $this->conn->prepare($sql_query);
         $statement->execute();  
+    }
+
+    public function getSPScheduledetail($id)
+    {
+        $sql_qry = "SELECT * FROM servicerequest WHERE ServiceProviderId = $id";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
     }
 
     public function fill_sp_servicehistory_table($table, $serviceproviderid, $zipcode)
@@ -424,28 +451,61 @@ class HelperlandModel
         return $row;
     }
 
-    public function check_block_unblock($table, $selectedcustomerid, $serviceproviderid)
+    public function check_favourite($table, $UserId, $TargetUserId)
     {
-        $sql_qry = "SELECT * FROM $table WHERE UserId = $serviceproviderid AND TargetUserId = $selectedcustomerid";
+        $sql_qry = "SELECT * FROM $table WHERE UserId = $UserId AND TargetUserId = $TargetUserId AND IsFavorite = 1";
         $statement = $this->conn->prepare($sql_qry);
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         return $row;
     }
 
-    public function block_customer($table, $selectedcustomerid, $serviceproviderid)
+    public function add_favourite_serviceprovider($table, $UserId, $TargetUserId)
     {
-        $sql_qry = "INSERT INTO $table(UserId, TargetUserId, IsBlocked)
-                    VALUES ($serviceproviderid, $selectedcustomerid, 1)";
+        $sql_qry = "INSERT INTO $table(UserId, TargetUserId, IsFavorite)
+                    VALUES ($UserId, $TargetUserId, 1)";
         $statement= $this->conn->prepare($sql_qry);
         $statement->execute();
     }
 
-    public function unblock_customer($table, $selectedcustomerid, $serviceproviderid)
+    public function remove_favourite_serviceprovider($table, $UserId, $TargetUserId)
     {
-        $sql_qry = "DELETE FROM $table WHERE UserId = $serviceproviderid AND TargetUserId = $selectedcustomerid AND IsBlocked = 1";
+        $sql_qry = "DELETE FROM $table WHERE UserId = $UserId AND TargetUserId = $TargetUserId AND IsFavorite = 1";
         $statement= $this->conn->prepare($sql_qry);
         $statement->execute();
+    }
+
+    public function check_block_unblock($table, $UserId, $TargetUserId)
+    {
+        $sql_qry = "SELECT * FROM $table WHERE UserId = $UserId AND TargetUserId = $TargetUserId AND IsBlocked = 1";
+        $statement = $this->conn->prepare($sql_qry);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function block_customer($table, $UserId, $TargetUserId)
+    {
+        $sql_qry = "INSERT INTO $table(UserId, TargetUserId, IsBlocked)
+                    VALUES ($UserId, $TargetUserId, 1)";
+        $statement= $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function unblock_customer($table, $UserId, $TargetUserId)
+    {
+        $sql_qry = "DELETE FROM $table WHERE UserId = $UserId AND TargetUserId = $TargetUserId AND IsBlocked = 1";
+        $statement= $this->conn->prepare($sql_qry);
+        $statement->execute();
+    }
+
+    public function cleanings($customer, $sp)
+    {
+        $Check_Query = "SELECT * FROM servicerequest WHERE  UserId = $customer AND ServiceProviderId = $sp AND Status = 1";
+        $statement= $this->conn->prepare($Check_Query);
+        $statement->execute();
+        $count = $statement->rowCount();
+        return $count;
     }
 
     public function fill_sp_rating_table($table, $serviceproviderid)

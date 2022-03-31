@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link rel="stylesheet" href="http://localhost/Helperland/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 </head>
 
 <body>
@@ -70,7 +71,25 @@ session_start();
 
                 </div>
                 <div class="customer-table sp-service-schedule-body">
-                    service-schedule
+                    <div class="date-label-info">
+                        <div class="date-label">
+                            <div class="date-label-new"></div>
+                            <div>New</div>
+                        </div>
+                        <div class="date-label">
+                            <div class="date-label-pending"></div>
+                            <div>Pending</div>
+                        </div>
+                        <div class="date-label">
+                            <div class="date-label-completed"></div>
+                            <div>Completed</div>
+                        </div>
+                        <div class="date-label">
+                            <div class="date-label-cancelled"></div>
+                            <div>Cancelled</div>
+                        </div>
+                    </div>
+                    <div id="calendar"></div>
                 </div>
                 <div class="customer-table sp-servicehistory-table sp-service-history-body">
                     

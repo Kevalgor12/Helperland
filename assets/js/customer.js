@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     var selectedrequestid;
     var selectedaddid = "";
+    var selectedserviceproviderid = "";
 
     $(document).on ('click', '.tr', function (e) {
         selectedrequestid = this.id;
@@ -24,6 +25,28 @@ $(document).ready(function () {
         $(".why-cancel").val("");
         selectedrequestid = e.target.id;
         $("#cancel_bookingrequest_modal").modal("toggle");
+    });
+
+    $(document).on ('click', '.service-provider-block-button', function (e) {
+        selectedserviceproviderid = this.id;
+        block_serviceprovider();
+        remove_favourite_serviceprovider();
+    });
+
+    $(document).on ('click', '.service-provider-unblock-button', function (e) {
+        selectedserviceproviderid = this.id;
+        unblock_serviceprovider();
+    });
+
+    $(document).on ('click', '.service-provider-add-button', function (e) {
+        selectedserviceproviderid = this.id;
+        add_favourite_serviceprovider();
+        unblock_serviceprovider();
+    });
+
+    $(document).on ('click', '.service-provider-remove-button', function (e) {
+        selectedserviceproviderid = this.id;
+        remove_favourite_serviceprovider();
     });
     
     fill_dashboard();
@@ -284,6 +307,8 @@ $(document).ready(function () {
         $(".mysetting").hide();
         $(".tabledashboard").hide();
         $(".history").show();
+        $(".favouritepros").removeClass("active");
+        $(".customer-favourite-pros").hide();
     });
 
     $(".dashboard").click(function (e) { 
@@ -293,6 +318,8 @@ $(document).ready(function () {
         $(".mysetting").hide();
         $(".tabledashboard").show();
         $(".history").hide();
+        $(".favouritepros").removeClass("active");
+        $(".customer-favourite-pros").hide();
     });
 
     $(".dashboard-dropdown").click(function (e) { 
@@ -301,6 +328,8 @@ $(document).ready(function () {
         $(".mysetting").hide();
         $(".tabledashboard").show();
         $(".history").hide();
+        $(".favouritepros").removeClass("active");
+        $(".customer-favourite-pros").hide();
     });
 
     $(".setting-dropdown").click(function () { 
@@ -315,9 +344,101 @@ $(document).ready(function () {
         $(".address-body").hide();
         $(".password").removeClass("active");
         $(".password-body").hide();
+        $(".favouritepros").removeClass("active");
+        $(".customer-favourite-pros").hide();
 
         fill_details_user();
     });
+
+    $(".favouritepros").click(function (e) { 
+        $(".dashboard").removeClass("active");
+        $(".tabledashboard").hide();
+        $(".servicehistory").removeClass("active");
+        $(".history").hide();
+        $(".mysetting").hide();
+        $(".details").removeClass("active");
+        $(".details-body").hide();
+        $(".addresses").removeClass("active");
+        $(".address-body").hide();
+        $(".password").removeClass("active");
+        $(".password-body").hide();
+        $(".favouritepros").addClass("active");
+        $(".customer-favourite-pros").show();
+
+        fill_serviceprovider_card();
+    });
+
+    function fill_serviceprovider_card()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=fill_serviceprovider_card",
+            success: function (response) {
+                $(".fill-sp-card").html(response);
+                $(".favorite").rateYo({
+                    starWidth: "16px",
+                    ratedFill: "#FFD600",
+                    readOnly: true
+                });
+            }
+        });
+    }
+
+    function add_favourite_serviceprovider()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=add_favourite_serviceprovider",
+            data: {
+                "selectedserviceproviderid" : selectedserviceproviderid,
+            },
+            success: function (response) {
+                fill_serviceprovider_card();
+            }
+        });
+    }
+
+    function remove_favourite_serviceprovider()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=remove_favourite_serviceprovider",
+            data: {
+                "selectedserviceproviderid" : selectedserviceproviderid,
+            },
+            success: function (response) {
+                fill_serviceprovider_card();
+            }
+        });
+    }
+
+    function block_serviceprovider()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=block_serviceprovider",
+            data: {
+                "selectedserviceproviderid" : selectedserviceproviderid,
+            },
+            success: function (response) {
+                fill_serviceprovider_card();
+            }
+        });
+    }
+
+    function unblock_serviceprovider()
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/Helperland/?controller=Helperland&function=unblock_serviceprovider",
+            data: {
+                "selectedserviceproviderid" : selectedserviceproviderid,
+            },
+            success: function (response) {
+                fill_serviceprovider_card();
+            }
+        });
+    }
 
     function fill_details_user()
     {
